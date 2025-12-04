@@ -32,12 +32,4 @@ Examples:
 - `references/standard-readme-example-minimal.md` - Bare minimum compliant README
 - `references/standard-readme-example-maximal.md` - Full-featured with badges, ToC, all optional sections
 
----
 
-### signs-of-ai-writing.md
-`references/signs-of-ai-writing.md`
-
-**Why:** Ensure your README doesn't read like generic AI output
-**What:** Comprehensive catalog of AI writing patterns to avoid - puffery words, superficial "-ing" phrases, promotional language, overused vocabulary. Wikipedia's field guide for detecting AI writing.
-
-**When to use:** After drafting, when polishing. For quick checks, use `style-guide.md` at skill root. This reference is for deeper study.
