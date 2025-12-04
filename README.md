@@ -1,6 +1,6 @@
 # agent-skills
 
-A collection of Agent Skills for AI coding assistants, following the [Anthropic Agent Skills specification][agent-skills-docs].
+A collection of skills for agentic LLM tools, following the [Anthropic Agent Skills specification][agent-skills-docs].
 
 ## Available Skills
 
