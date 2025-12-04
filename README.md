@@ -43,7 +43,7 @@ Includes:
 - Output format specification for research documents
 
 > [!NOTE]
-> Requires installing the agent definitions to your CLI tool—see the [agents README](skills/researching-codebases/agents/README.md) for details.
+> Requires installing the agent definitions to your CLI tool. The OpenCode install script handles this automatically. For other tools, see the [agents README](skills/researching-codebases/agents/README.md).
 
 ### writing-clearly-and-concisely
 
@@ -55,11 +55,9 @@ Also includes a comprehensive guide to AI writing patterns Wikipedia editors dev
 
 ## Installation
 
-Manual for now—copy the skills you want to the appropriate location. Automated installation coming eventually.
-
 ### Claude Code
 
-Skills go in `~/.claude/skills/` or `.claude/skills/` in your project.
+Skills go in `~/.claude/skills/` or `.claude/skills/` in your project. Manual installation for now:
 
 ```bash
 cp -r skills/reducing-entropy ~/.claude/skills/
@@ -67,16 +65,20 @@ cp -r skills/reducing-entropy ~/.claude/skills/
 
 ### OpenCode
 
-OpenCode requires a plugin to load skills. Options:
+OpenCode requires a plugin to load skills:
 
 - [opencode-agent-skills](https://github.com/joshuadavidthomas/opencode-agent-skills) — provides tools for using skills
 - [opencode-skills](https://github.com/malhashemi/opencode-skills) — popular community plugin
 
-Both plugins read from `~/.config/opencode/skills/` or `.opencode/skills/` in your project.
+Clone this repo and run the install script:
 
 ```bash
-cp -r skills/reducing-entropy ~/.config/opencode/skills/
+git clone https://github.com/joshuadavidthomas/agent-skills.git
+cd agent-skills
+./install-opencode.sh
 ```
+
+The script symlinks skills to `~/.config/opencode/skills/` and agent definitions to `~/.config/opencode/agent/`. Individual symlinks let you mix these with your own skills and agents.
 
 ## Usage
 
