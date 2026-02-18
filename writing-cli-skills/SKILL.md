@@ -30,7 +30,7 @@ my-tool do-something  # try it!
 ln -s "$PWD/skills/my-tool" ~/.claude/skills/my-tool
 
 # OpenCode
-ln -s "$PWD/skills/my-tool" ~/.config/opencode/skill/my-tool
+ln -s "$PWD/skills/my-tool" ~/.config/opencode/skills/my-tool
 
 # Clawdbot
 ln -s "$PWD/skills/my-tool" ~/clawd/skills/my-tool
