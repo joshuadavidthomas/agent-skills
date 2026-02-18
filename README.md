@@ -67,6 +67,20 @@ npx openskills sync
 
 Use `--global` to install into `~/.claude/skills`.
 
+### dotagents
+
+You can also install via [dotagents](https://github.com/getsentry/dotagents):
+
+```bash
+npx @sentry/dotagents add joshuadavidthomas/agent-skills
+```
+
+Or install an individual skill:
+
+```bash
+npx @sentry/dotagents add joshuadavidthomas/agent-skills --name reducing-entropy
+```
+
 ## Usage
 
 Skills are model-invoked—the agent decides when to use them based on your request and the skill's description. You can also explicitly ask for a skill:
