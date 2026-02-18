@@ -1,0 +1,43 @@
+# Standard Docker Compose for Plausible Analytics
+# Source: https://github.com/plausible/community-edition
+
+services:
+  plausible:
+    image: ghcr.io/plausible/community-edition:v3.0.1
+    command: sh -c "/entrypoint.sh db createdb && /entrypoint.sh db migrate && /entrypoint.sh run"
+    ports:
+      - "8000:8000"
+    environment:
+      - BASE_URL=https://analytics.example.com
+      - SECRET_KEY_BASE=super-long-secret-key-at-least-64-chars-xxxxxxxxxxxxxxxxxxxxxxxx
+      - TOTP_VAULT_KEY=another-secret-key-for-totp-xxxxxxx
+      - DATABASE_URL=postgres://plausible:password123@plausible-db:5432/plausible
+      - CLICKHOUSE_DATABASE_URL=http://plausible-events-db:8123/plausible_events_db
+    depends_on:
+      - plausible-db
+      - plausible-events-db
+
+  plausible-db:
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_USER=plausible
+      - POSTGRES_PASSWORD=password123
+      - POSTGRES_DB=plausible
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  plausible-events-db:
+    image: clickhouse/clickhouse-server:24.12-alpine
+    environment:
+      - CLICKHOUSE_SKIP_USER_SETUP=1
+    volumes:
+      - clickhouse-data:/var/lib/clickhouse
+      - ./clickhouse/logs.xml:/etc/clickhouse-server/config.d/logs.xml:ro
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+
+volumes:
+  postgres-data:
+  clickhouse-data:

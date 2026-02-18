@@ -1,0 +1,22 @@
+# documentation: https://github.com/louislam/uptime-kuma
+# slogan: A fancy self-hosted monitoring tool for tracking uptime of services.
+# category: monitoring
+# tags: monitoring, status, uptime, alerts, notifications
+# logo: svgs/uptime-kuma.svg
+# port: 3001
+
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:2
+    environment:
+      - SERVICE_URL_UPTIMEKUMA_3001
+    volumes:
+      - uptime-kuma-data:/app/data
+    healthcheck:
+      test: ["CMD-SHELL", "extra/healthcheck"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  uptime-kuma-data:
