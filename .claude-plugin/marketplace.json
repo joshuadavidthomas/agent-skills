@@ -1,5 +1,5 @@
 {
-  "name": "jdt-skills-marketplace",
+  "name": "agent-skills-marketplace",
   "owner": {
     "name": "Josh Thomas"
   },
@@ -92,7 +92,7 @@
       "strict": false
     },
     {
-      "name": "jdt-agent-skills-all",
+      "name": "all",
       "source": "./",
       "description": "Install all skills from this repository",
       "skills": "./",
