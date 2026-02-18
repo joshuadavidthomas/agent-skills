@@ -29,7 +29,7 @@ my-tool do-something  # try it!
 # Claude Code
 ln -s "$PWD/skills/my-tool" ~/.claude/skills/my-tool
 
-# OpenCode (native skills)
+# OpenCode
 ln -s "$PWD/skills/my-tool" ~/.config/opencode/skills/my-tool
 
 # Clawdbot
