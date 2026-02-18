@@ -6,34 +6,56 @@ A collection of skills for agentic LLM tools, following the [Agent Skills specif
 
 ### Claude Code
 
-Clone the repo directly to your skills directory:
+Install via Claude Code's plugin marketplace:
 
 ```bash
-git clone https://github.com/joshuadavidthomas/agent-skills.git ~/.claude/skills
+/plugin marketplace add joshuadavidthomas/agent-skills
 ```
 
-Or for project-level skills:
+Install an individual skill plugin (recommended). Plugin names match skill directory names (for example `sveltekit`, `skill-authoring`, `writing-cli-skills`):
 
 ```bash
-git clone https://github.com/joshuadavidthomas/agent-skills.git .claude/skills
+/plugin install reducing-entropy@joshthomas-agent-skills
 ```
+
+Or install the bundle with all skills:
+
+```bash
+/plugin install all@joshthomas-agent-skills
+```
+
+CLI equivalent:
+
+```bash
+claude plugin install reducing-entropy@joshthomas-agent-skills --scope project
+```
+
+Requires Claude Code v1.0.33 or later.
 
 ### OpenCode
 
-OpenCode requires a plugin to load skills:
+OpenCode v1.0.190+ has native skill loading built in.
 
-- [opencode-agent-skills](https://github.com/joshuadavidthomas/opencode-agent-skills) — provides tools for using skills
-- [opencode-skills](https://github.com/malhashemi/opencode-skills) — popular community plugin
-
-Clone this repo and run the install script:
+Install by cloning this repo, then symlink the skills you want:
 
 ```bash
 git clone https://github.com/joshuadavidthomas/agent-skills.git
 cd agent-skills
-./install-opencode.sh
+mkdir -p ~/.config/opencode/skills
+ln -s "$PWD/reducing-entropy" ~/.config/opencode/skills/reducing-entropy
 ```
 
-The script symlinks skills to `~/.config/opencode/skills/` and agent definitions to `~/.config/opencode/agent/`. Individual symlinks let you mix these with your own skills and agents.
+OpenCode also discovers skills from `.opencode/skills`, `.claude/skills`, and `.agents/skills` in your project.
+
+[`opencode-agent-skills`](https://github.com/joshuadavidthomas/opencode-agent-skills) is still available, but optional, and mainly useful if you want its specific loading behavior.
+
+### skills.sh
+
+You can also install this collection with [skills.sh](https://skills.sh/docs):
+
+```bash
+npx skills add joshuadavidthomas/agent-skills
+```
 
 ### OpenSkills
 
@@ -107,7 +129,7 @@ Includes:
 - Output format specification for research documents
 
 > [!NOTE]
-> Requires installing the agent definitions to your CLI tool. The OpenCode install script handles this automatically. For other tools, see the [agents README](researching-codebases/agents/README.md).
+> Requires installing agent definitions to your CLI tool. See the [agents README](researching-codebases/agents/README.md).
 
 ### [skill-authoring](./skill-authoring/)
 
