@@ -20,20 +20,21 @@ git clone https://github.com/joshuadavidthomas/agent-skills.git .claude/skills
 
 ### OpenCode
 
-OpenCode requires a plugin to load skills:
+OpenCode v1.0.190+ has native skill loading built in.
 
-- [opencode-agent-skills](https://github.com/joshuadavidthomas/opencode-agent-skills) — provides tools for using skills
-- [opencode-skills](https://github.com/malhashemi/opencode-skills) — popular community plugin
+- `opencode-skills` is deprecated and no longer needed.
+- [`opencode-agent-skills`](https://github.com/joshuadavidthomas/opencode-agent-skills) is still available, but optional, and mainly useful if you want its specific loading behavior.
 
-Clone this repo and run the install script:
+Install by cloning this repo, then symlink the skills you want:
 
 ```bash
 git clone https://github.com/joshuadavidthomas/agent-skills.git
 cd agent-skills
-./install-opencode.sh
+mkdir -p ~/.config/opencode/skills
+ln -s "$PWD/reducing-entropy" ~/.config/opencode/skills/reducing-entropy
 ```
 
-The script symlinks skills to `~/.config/opencode/skills/` and agent definitions to `~/.config/opencode/agent/`. Individual symlinks let you mix these with your own skills and agents.
+OpenCode also discovers skills from `.opencode/skills`, `.claude/skills`, and `.agents/skills` in your project.
 
 ## Usage
 
@@ -96,7 +97,7 @@ Includes:
 - Output format specification for research documents
 
 > [!NOTE]
-> Requires installing the agent definitions to your CLI tool. The OpenCode install script handles this automatically. For other tools, see the [agents README](researching-codebases/agents/README.md).
+> Requires installing agent definitions to your CLI tool. If you're using OpenCode native skills, install these separately (or use `opencode-agent-skills` if you prefer plugin-based loading). See the [agents README](researching-codebases/agents/README.md).
 
 ### [skill-authoring](./skill-authoring/)
 
