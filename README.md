@@ -1,6 +1,6 @@
 # agent-skills
 
-A collection of skills for agentic LLM tools, following the [Agent Skills specification][https://agentskills.io/specification].
+A collection of skills for agentic LLM tools, following the [Agent Skills specification](https://agentskills.io/specification).
 
 ## Installation
 
