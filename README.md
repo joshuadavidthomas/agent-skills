@@ -8,9 +8,9 @@ A collection of skills for agentic LLM tools, following the [Agent Skills specif
   - [Claude Code](#claude-code)
   - [OpenCode](#opencode)
 - **Package managers**
-  - [skills.sh](#skillssh)
-  - [OpenSkills](#openskills)
   - [dotagents](#dotagents)
+  - [OpenSkills](#openskills)
+  - [skills.sh](#skillssh)
 
 ### Agent-specific
 
@@ -60,12 +60,18 @@ Requires OpenCode v1.0.190 or later, which has native skill loading built in. [`
 
 ### Package managers
 
-#### skills.sh
+#### dotagents
 
-You can also install this collection with [skills.sh](https://skills.sh/docs):
+You can also install via [dotagents](https://github.com/getsentry/dotagents):
 
 ```bash
-npx skills add joshuadavidthomas/agent-skills
+npx @sentry/dotagents add joshuadavidthomas/agent-skills
+```
+
+Or install an individual skill:
+
+```bash
+npx @sentry/dotagents add joshuadavidthomas/agent-skills --name reducing-entropy
 ```
 
 #### OpenSkills
@@ -79,18 +85,12 @@ npx openskills sync
 
 Use `--global` to install into `~/.claude/skills`.
 
-#### dotagents
+#### skills.sh
 
-You can also install via [dotagents](https://github.com/getsentry/dotagents):
-
-```bash
-npx @sentry/dotagents add joshuadavidthomas/agent-skills
-```
-
-Or install an individual skill:
+You can also install this collection with [skills.sh](https://skills.sh/docs):
 
 ```bash
-npx @sentry/dotagents add joshuadavidthomas/agent-skills --name reducing-entropy
+npx skills add joshuadavidthomas/agent-skills
 ```
 
 ## Usage
