@@ -15,19 +15,19 @@ Install via Claude Code's plugin marketplace:
 Install an individual skill plugin (recommended). Plugin names match skill directory names (for example `sveltekit`, `skill-authoring`, `writing-cli-skills`):
 
 ```bash
-/plugin install reducing-entropy@agent-skills-marketplace
+/plugin install reducing-entropy@joshthomas-agent-skills
 ```
 
 Or install the bundle with all skills:
 
 ```bash
-/plugin install all@agent-skills-marketplace
+/plugin install all@joshthomas-agent-skills
 ```
 
 CLI equivalent:
 
 ```bash
-claude plugin install reducing-entropy@agent-skills-marketplace --scope project
+claude plugin install reducing-entropy@joshthomas-agent-skills --scope project
 ```
 
 Requires Claude Code v1.0.33 or later.
