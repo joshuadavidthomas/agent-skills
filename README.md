@@ -4,8 +4,13 @@ A collection of skills for agentic LLM tools, following the [Agent Skills specif
 
 ## Installation
 
-- **Agent-specific:** [Claude Code](#claude-code) · [OpenCode](#opencode)
-- **Package managers:** [skills.sh](#skillssh) · [OpenSkills](#openskills) · [dotagents](#dotagents)
+- **Agent-specific**
+  - [Claude Code](#claude-code)
+  - [OpenCode](#opencode)
+- **Package managers**
+  - [skills.sh](#skillssh)
+  - [OpenSkills](#openskills)
+  - [dotagents](#dotagents)
 
 ### Agent-specific
 
