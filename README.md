@@ -34,7 +34,6 @@ Requires Claude Code v1.0.33 or later.
 
 ### OpenCode
 
-OpenCode v1.0.190+ has native skill loading built in.
 
 Install by cloning this repo, then symlink the skills you want:
 
@@ -47,7 +46,7 @@ ln -s "$PWD/reducing-entropy" ~/.config/opencode/skills/reducing-entropy
 
 OpenCode also discovers skills from `.opencode/skills`, `.claude/skills`, and `.agents/skills` in your project.
 
-[`opencode-agent-skills`](https://github.com/joshuadavidthomas/opencode-agent-skills) is still available, but optional, and mainly useful if you want its specific loading behavior.
+Requires OpenCode v1.0.190 or later, which has native skill loading built in. [`opencode-agent-skills`](https://github.com/joshuadavidthomas/opencode-agent-skills) is still available if you are stuck on an older version or if you want its specific loading behavior.
 
 ### skills.sh
 
