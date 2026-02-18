@@ -124,7 +124,7 @@ Guide for building high-quality skills around CLI tools. Emphasizes hands-on too
 
 ## Acknowledgements
 
-This collection includes and adapts work from several sources:
+This collection includes and adapts work from several sources.
 
 ### crafting-effective-readmes
 
