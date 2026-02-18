@@ -4,7 +4,9 @@ A collection of skills for agentic LLM tools, following the [Agent Skills specif
 
 ## Installation
 
-### Claude Code
+### Agent-specific
+
+#### Claude Code
 
 Install via Claude Code's plugin marketplace:
 
@@ -32,7 +34,7 @@ claude plugin install reducing-entropy@joshthomas-agent-skills --scope project
 
 Requires Claude Code v1.0.33 or later.
 
-### OpenCode
+#### OpenCode
 
 
 Install by cloning this repo, then symlink the skills you want:
@@ -48,7 +50,9 @@ OpenCode also discovers skills from `.opencode/skills`, `.claude/skills`, and `.
 
 Requires OpenCode v1.0.190 or later, which has native skill loading built in. [`opencode-agent-skills`](https://github.com/joshuadavidthomas/opencode-agent-skills) is still available if you are stuck on an older version or if you want its specific loading behavior.
 
-### skills.sh
+### Package managers
+
+#### skills.sh
 
 You can also install this collection with [skills.sh](https://skills.sh/docs):
 
@@ -56,7 +60,7 @@ You can also install this collection with [skills.sh](https://skills.sh/docs):
 npx skills add joshuadavidthomas/agent-skills
 ```
 
-### OpenSkills
+#### OpenSkills
 
 You can also install via [OpenSkills](https://github.com/numman-ali/openskills):
 
@@ -67,7 +71,7 @@ npx openskills sync
 
 Use `--global` to install into `~/.claude/skills`.
 
-### dotagents
+#### dotagents
 
 You can also install via [dotagents](https://github.com/getsentry/dotagents):
 
