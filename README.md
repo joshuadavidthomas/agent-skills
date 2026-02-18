@@ -22,9 +22,6 @@ git clone https://github.com/joshuadavidthomas/agent-skills.git .claude/skills
 
 OpenCode v1.0.190+ has native skill loading built in.
 
-- `opencode-skills` is deprecated and no longer needed.
-- [`opencode-agent-skills`](https://github.com/joshuadavidthomas/opencode-agent-skills) is still available, but optional, and mainly useful if you want its specific loading behavior.
-
 Install by cloning this repo, then symlink the skills you want:
 
 ```bash
@@ -35,6 +32,8 @@ ln -s "$PWD/reducing-entropy" ~/.config/opencode/skills/reducing-entropy
 ```
 
 OpenCode also discovers skills from `.opencode/skills`, `.claude/skills`, and `.agents/skills` in your project.
+
+[`opencode-agent-skills`](https://github.com/joshuadavidthomas/opencode-agent-skills) is still available, but optional, and mainly useful if you want its specific loading behavior.
 
 ## Usage
 
