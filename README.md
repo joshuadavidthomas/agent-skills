@@ -35,6 +35,17 @@ cd agent-skills
 
 The script symlinks skills to `~/.config/opencode/skills/` and agent definitions to `~/.config/opencode/agent/`. Individual symlinks let you mix these with your own skills and agents.
 
+### OpenSkills
+
+You can also install via [OpenSkills](https://github.com/numman-ali/openskills):
+
+```bash
+npx openskills install joshuadavidthomas/agent-skills
+npx openskills sync
+```
+
+Use `--global` to install into `~/.claude/skills`.
+
 ## Usage
 
 Skills are model-invoked—the agent decides when to use them based on your request and the skill's description. You can also explicitly ask for a skill:
