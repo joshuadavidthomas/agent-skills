@@ -1,0 +1,49 @@
+# SvelteKit Data Flow
+
+## Quick Start
+
+**Which file?** Server-only (DB/secrets): `+page.server.ts` |
+Universal (runs both): `+page.ts` | API: `+server.ts`
+
+**Load decision:** Need server resources? → server load | Need client
+APIs? → universal load
+
+**Form actions:** Always `+page.server.ts`. Return `fail()` for
+errors, throw `redirect()` to navigate, throw `error()` for failures.
+
+## Example
+
+```typescript
+// +page.server.ts
+import { fail, redirect } from '@sveltejs/kit';
+
+export const load = async ({ locals }) => {
+	const user = await db.users.get(locals.userId);
+	return { user }; // Must be JSON-serializable
+};
+
+export const actions = {
+	default: async ({ request }) => {
+		const data = await request.formData();
+		const email = data.get('email');
+
+		if (!email) return fail(400, { email, missing: true });
+
+		await updateEmail(email);
+		throw redirect(303, '/success');
+	},
+};
+```
+
+## Reference Files
+
+- [references/load-functions.md](references/load-functions.md) — Server vs universal loads
+- [references/form-actions.md](references/form-actions.md) — Form handling patterns
+- [references/serialization.md](references/serialization.md) — What can/can't serialize
+- [references/error-redirect-handling.md](references/error-redirect-handling.md) — fail(), redirect(), error()
+
+## Notes
+
+- Server load output is automatically passed to universal load as `data` parameter
+- ALWAYS rethrow redirects/errors: `throw redirect()`, `throw error()`
+- Don't return class instances or functions from server load (not serializable)

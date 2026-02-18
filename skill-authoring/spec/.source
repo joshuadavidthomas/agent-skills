@@ -1,0 +1,7 @@
+source: https://agentskills.io
+skills-ref: https://github.com/agentskills/agentskills (main @ c9e5df0a28386e0797f46cbf8d147ce612d94f65)
+updated: 2026-01-30T03:13:12-06:00
+pages:
+  - what-are-skills
+  - specification
+  - integrate-skills

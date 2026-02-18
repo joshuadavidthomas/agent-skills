@@ -1,0 +1,29 @@
+# Standard Docker Compose for Ghost CMS
+# Typical setup from documentation
+
+services:
+  ghost:
+    image: ghost:5
+    ports:
+      - "2368:2368"
+    environment:
+      - url=https://myblog.example.com
+      - database__client=mysql
+      - database__connection__host=mysql
+      - database__connection__user=ghost
+      - database__connection__password=supersecretpassword
+      - database__connection__database=ghost
+    volumes:
+      - ./content:/var/lib/ghost/content
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      - MYSQL_USER=ghost
+      - MYSQL_PASSWORD=supersecretpassword
+      - MYSQL_DATABASE=ghost
+      - MYSQL_ROOT_PASSWORD=rootsecretpassword
+    volumes:
+      - ./mysql-data:/var/lib/mysql
