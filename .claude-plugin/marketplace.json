@@ -3,11 +3,100 @@
   "owner": {
     "name": "Josh Thomas"
   },
+  "metadata": {
+    "description": "Curated agent skills from joshuadavidthomas/agent-skills"
+  },
   "plugins": [
     {
-      "name": "jdt-agent-skills",
+      "name": "coolify-compose",
       "source": "./",
-      "description": "A curated collection of reusable agent skills"
+      "description": "Convert Docker Compose files to Coolify templates",
+      "skills": "./coolify-compose",
+      "strict": false
+    },
+    {
+      "name": "crafting-effective-readmes",
+      "source": "./",
+      "description": "Write audience-aware and effective README files",
+      "skills": "./crafting-effective-readmes",
+      "strict": false
+    },
+    {
+      "name": "diataxis",
+      "source": "./",
+      "description": "Apply the Diátaxis documentation framework",
+      "skills": "./diataxis",
+      "strict": false
+    },
+    {
+      "name": "frontend-design-principles",
+      "source": "./",
+      "description": "Design-focused frontend guidance",
+      "skills": "./frontend-design-principles",
+      "strict": false
+    },
+    {
+      "name": "improving-prompts",
+      "source": "./",
+      "description": "Improve CLAUDE.md, AGENTS.md, and skill prompts",
+      "skills": "./improving-prompts",
+      "strict": false
+    },
+    {
+      "name": "reducing-entropy",
+      "source": "./",
+      "description": "Code/design review with a bias toward deletion",
+      "skills": "./reducing-entropy",
+      "strict": false
+    },
+    {
+      "name": "researching-codebases",
+      "source": "./",
+      "description": "Coordinate sub-agents for complex codebase research",
+      "skills": "./researching-codebases",
+      "strict": false
+    },
+    {
+      "name": "skill-authoring",
+      "source": "./",
+      "description": "Create and refine high-signal agent skills",
+      "skills": "./skill-authoring",
+      "strict": false
+    },
+    {
+      "name": "svelte5",
+      "source": "./",
+      "description": "Svelte 5 runes and migration guidance",
+      "skills": "./svelte5",
+      "strict": false
+    },
+    {
+      "name": "sveltekit",
+      "source": "./",
+      "description": "SvelteKit routing, data loading, forms, and auth",
+      "skills": "./sveltekit",
+      "strict": false
+    },
+    {
+      "name": "writing-clearly-and-concisely",
+      "source": "./",
+      "description": "Clear, concise human-readable writing guidance",
+      "skills": "./writing-clearly-and-concisely",
+      "strict": false
+    },
+    {
+      "name": "writing-cli-skills",
+      "source": "./",
+      "description": "Guide for building high-quality CLI tool skills",
+      "skills": "./writing-cli-skills",
+      "strict": false
+    },
+    {
+      "name": "jdt-agent-skills-all",
+      "source": "./",
+      "description": "Install all skills from this repository",
+      "skills": "./",
+      "strict": false
     }
   ]
 }

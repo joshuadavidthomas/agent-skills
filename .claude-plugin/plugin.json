@@ -1,8 +1,0 @@
-{
-  "name": "jdt-agent-skills",
-  "description": "A curated collection of reusable agent skills",
-  "version": "1.0.0",
-  "license": "MIT",
-  "repository": "https://github.com/joshuadavidthomas/agent-skills",
-  "skills": "./"
-}
