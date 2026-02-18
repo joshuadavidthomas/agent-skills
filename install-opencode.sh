@@ -3,7 +3,7 @@ set -euo pipefail
 
 # Determine the directory where this script lives (repo root)
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-SKILLS_SOURCE="$SCRIPT_DIR/skills"
+SKILLS_SOURCE="$SCRIPT_DIR"
 OPENCODE_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/opencode"
 SKILLS_TARGET="$OPENCODE_CONFIG/skills"
 AGENTS_TARGET="$OPENCODE_CONFIG/agent"
@@ -23,6 +23,7 @@ mkdir -p "$SKILLS_TARGET"
 
 for skill_path in "$SKILLS_SOURCE"/*/; do
     [[ -d "$skill_path" ]] || continue
+    [[ -f "$skill_path/SKILL.md" ]] || continue
 
     skill_path="${skill_path%/}"
     skill_name="$(basename "$skill_path")"

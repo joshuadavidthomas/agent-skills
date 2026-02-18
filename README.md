@@ -43,7 +43,7 @@ Includes:
 - Output format specification for research documents
 
 > [!NOTE]
-> Requires installing the agent definitions to your CLI tool. The OpenCode install script handles this automatically. For other tools, see the [agents README](skills/researching-codebases/agents/README.md).
+> Requires installing the agent definitions to your CLI tool. The OpenCode install script handles this automatically. For other tools, see the [agents README](researching-codebases/agents/README.md).
 
 ### writing-clearly-and-concisely
 
@@ -57,10 +57,16 @@ Also includes a comprehensive guide to AI writing patterns Wikipedia editors dev
 
 ### Claude Code
 
-Skills go in `~/.claude/skills/` or `.claude/skills/` in your project. Manual installation for now:
+Clone the repo directly to your skills directory:
 
 ```bash
-cp -r skills/reducing-entropy ~/.claude/skills/
+git clone https://github.com/joshuadavidthomas/agent-skills.git ~/.claude/skills
+```
+
+Or for project-level skills:
+
+```bash
+git clone https://github.com/joshuadavidthomas/agent-skills.git .claude/skills
 ```
 
 ### OpenCode
