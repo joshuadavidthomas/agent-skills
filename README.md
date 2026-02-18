@@ -6,17 +6,31 @@ A collection of skills for agentic LLM tools, following the [Agent Skills specif
 
 ### Claude Code
 
-Clone the repo directly to your skills directory:
+Install via Claude Code's plugin marketplace:
 
 ```bash
-git clone https://github.com/joshuadavidthomas/agent-skills.git ~/.claude/skills
+/plugin marketplace add joshuadavidthomas/agent-skills
 ```
 
-Or for project-level skills:
+Install an individual skill plugin (recommended). Plugin names match skill directory names (for example `sveltekit`, `skill-authoring`, `writing-cli-skills`):
 
 ```bash
-git clone https://github.com/joshuadavidthomas/agent-skills.git .claude/skills
+/plugin install reducing-entropy@joshthomas-agent-skills
 ```
+
+Or install the bundle with all skills:
+
+```bash
+/plugin install all@joshthomas-agent-skills
+```
+
+CLI equivalent:
+
+```bash
+claude plugin install reducing-entropy@joshthomas-agent-skills --scope project
+```
+
+Requires Claude Code v1.0.33 or later.
 
 ### OpenCode
 
