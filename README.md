@@ -49,6 +49,14 @@ OpenCode also discovers skills from `.opencode/skills`, `.claude/skills`, and `.
 
 [`opencode-agent-skills`](https://github.com/joshuadavidthomas/opencode-agent-skills) is still available, but optional, and mainly useful if you want its specific loading behavior.
 
+### skills.sh
+
+You can also install this collection with [skills.sh](https://skills.sh/docs):
+
+```bash
+npx skills add joshuadavidthomas/agent-skills
+```
+
 ## Usage
 
 Skills are model-invoked—the agent decides when to use them based on your request and the skill's description. You can also explicitly ask for a skill:
