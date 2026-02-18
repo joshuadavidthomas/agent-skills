@@ -6,17 +6,20 @@ A collection of skills for agentic LLM tools, following the [Agent Skills specif
 
 ### Claude Code
 
-Clone the repo directly to your skills directory:
+Install via Claude Code's plugin marketplace:
 
 ```bash
-git clone https://github.com/joshuadavidthomas/agent-skills.git ~/.claude/skills
+/plugin marketplace add joshuadavidthomas/agent-skills
+/plugin install jdt-agent-skills@jdt-skills-marketplace
 ```
 
-Or for project-level skills:
+CLI equivalent:
 
 ```bash
-git clone https://github.com/joshuadavidthomas/agent-skills.git .claude/skills
+claude plugin install jdt-agent-skills@jdt-skills-marketplace --scope project
 ```
+
+Requires Claude Code v1.0.33 or later.
 
 ### OpenCode
 

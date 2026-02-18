@@ -1,0 +1,13 @@
+{
+  "name": "jdt-skills-marketplace",
+  "owner": {
+    "name": "Josh Thomas"
+  },
+  "plugins": [
+    {
+      "name": "jdt-agent-skills",
+      "source": "./",
+      "description": "A curated collection of reusable agent skills"
+    }
+  ]
+}
