@@ -96,7 +96,7 @@ Includes:
 - Output format specification for research documents
 
 > [!NOTE]
-> Requires installing agent definitions to your CLI tool. If you're using OpenCode native skills, install these separately (or use `opencode-agent-skills` if you prefer plugin-based loading). See the [agents README](researching-codebases/agents/README.md).
+> Requires installing agent definitions to your CLI tool. See the [agents README](researching-codebases/agents/README.md).
 
 ### [skill-authoring](./skill-authoring/)
 
