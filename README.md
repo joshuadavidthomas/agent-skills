@@ -128,6 +128,12 @@ Apply the Diátaxis framework for documentation structure and writing. Helps cla
 
 Design-focused frontend skill for producing intentional, non-generic interfaces. Includes required discovery gates, signature-definition workflow, and self-review checks before presenting UI output.
 
+### [jj](./jj/)
+
+Jujutsu (jj) version control for Git-compatible repos. Covers the mental model (working copy as commit, change IDs, mutable history), agent-specific rules (always `-m`, no interactive commands), daily workflows, and progressive deep dives into revsets/filesets/templates, bookmarks and sharing, history rewriting, workspaces for parallel agents, and configuration.
+
+Includes 13 reference files covering Git-to-jj command mapping, revset/fileset/template language specs, bookmark management, GitHub workflows, conflict handling, and more.
+
 ### [improving-prompts](./improving-prompts/)
 
 Apply Anthropic's documented Claude 4.5 best practices to CLAUDE.md, AGENTS.md, custom commands, and skill files. Uses actual guidance from Anthropic instead of inventing improvements.
@@ -207,6 +213,19 @@ Adapted from:
 ### improving-prompts
 
 Includes best practices from [Anthropic's Claude documentation](https://docs.anthropic.com).
+
+### jj
+
+Synthesizes guidance from:
+
+- [Jujutsu](https://github.com/jj-vcs/jj) — official documentation used for reference material (Apache-2.0)
+- [Steve Klabnik's Jujutsu Tutorial](https://github.com/steveklabnik/jujutsu-tutorial) — narrative tutorial providing mental model and conceptual grounding
+- [jujutsu-skill](https://github.com/danverbraganza/jujutsu-skill) by Dan Verbraganza — agent-specific workflow patterns and environment rules (MIT)
+- [dot-claude jj-workflow](https://github.com/TrevorS/dot-claude) by TrevorS — concise AI-focused daily workflow patterns (ISC)
+- [agent-skills working-with-jj](https://github.com/YPares/agent-skills) by Yves Parès — version-aware command syntax and `JJ_CONFIG` agent configuration pattern (MIT)
+- [jjtask](https://github.com/Coobaha/jjtask) by Alexander Ryzhikov — anti-patterns and gotchas for agent use (MIT)
+- [sgai](https://github.com/sandgardenhq/sgai) by Sandgarden — Git-to-jj command mapping table (modified MIT)
+- [dotfiles jj-history-investigation](https://github.com/edmundmiller/dotfiles) by Edmund Miller — history investigation techniques (MIT)
 
 ### reducing-entropy
 
