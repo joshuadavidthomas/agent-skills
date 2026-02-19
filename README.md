@@ -4,9 +4,19 @@ A collection of skills for agentic LLM tools, following the [Agent Skills specif
 
 ## Installation
 
-### Claude Code
+- **Agent-specific**
+  - [Claude Code](#claude-code)
+  - [OpenCode](#opencode)
+- **Package managers**
+  - [dotagents](#dotagents)
+  - [OpenSkills](#openskills)
+  - [skills.sh](#skillssh)
 
-Install via Claude Code's plugin marketplace:
+### Agent-specific
+
+#### Claude Code
+
+Install from the plugin marketplace:
 
 ```bash
 /plugin marketplace add joshuadavidthomas/agent-skills
@@ -32,10 +42,10 @@ claude plugin install reducing-entropy@joshthomas-agent-skills --scope project
 
 Requires Claude Code v1.0.33 or later.
 
-### OpenCode
+#### OpenCode
 
 
-Install by cloning this repo, then symlink the skills you want:
+Clone this repo and symlink the skills you want:
 
 ```bash
 git clone https://github.com/joshuadavidthomas/agent-skills.git
@@ -48,17 +58,25 @@ OpenCode also discovers skills from `.opencode/skills`, `.claude/skills`, and `.
 
 Requires OpenCode v1.0.190 or later, which has native skill loading built in. [`opencode-agent-skills`](https://github.com/joshuadavidthomas/opencode-agent-skills) is still available if you are stuck on an older version or if you want its specific loading behavior.
 
-### skills.sh
+### Package managers
 
-You can also install this collection with [skills.sh](https://skills.sh/docs):
+#### dotagents
+
+Install with [dotagents](https://github.com/getsentry/dotagents):
 
 ```bash
-npx skills add joshuadavidthomas/agent-skills
+npx @sentry/dotagents add joshuadavidthomas/agent-skills
 ```
 
-### OpenSkills
+Or install an individual skill:
 
-You can also install via [OpenSkills](https://github.com/numman-ali/openskills):
+```bash
+npx @sentry/dotagents add joshuadavidthomas/agent-skills --name reducing-entropy
+```
+
+#### OpenSkills
+
+Install with [OpenSkills](https://github.com/numman-ali/openskills):
 
 ```bash
 npx openskills install joshuadavidthomas/agent-skills
@@ -66,6 +84,14 @@ npx openskills sync
 ```
 
 Use `--global` to install into `~/.claude/skills`.
+
+#### skills.sh
+
+Install with [skills.sh](https://skills.sh/docs):
+
+```bash
+npx skills add joshuadavidthomas/agent-skills
+```
 
 ## Usage
 
