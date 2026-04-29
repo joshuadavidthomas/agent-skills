@@ -445,3 +445,8 @@ Props are automatically reactive - no need for extra $derived:
 - Value is used multiple times
 - Computation is expensive
 - You need to derive from multiple props
+
+## Official References
+
+- [Svelte docs: $props](https://svelte.dev/docs/svelte/$props)
+- [Svelte docs: $bindable](https://svelte.dev/docs/svelte/$bindable)

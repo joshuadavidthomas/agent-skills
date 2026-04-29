@@ -189,3 +189,8 @@ But **prefer context anyway** - it's safer and more predictable.
 | Module-level instance       | **NO**    | Never use in SvelteKit        |
 | Module-level $state         | **NO**    | Never use in SvelteKit        |
 | Exported mutable object     | **NO**    | Never use in SvelteKit        |
+
+## Official References
+
+- [SvelteKit docs: State management](https://svelte.dev/docs/kit/state-management)
+- [Svelte docs: Context](https://svelte.dev/docs/svelte/context)

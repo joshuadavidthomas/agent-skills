@@ -543,12 +543,17 @@ proxies.
 ## Best Practices Summary
 
 1. ✅ Use `$derived` for computed values, not `$effect`
-2. ✅ Never reassign `$derived` values
+2. ✅ Use `const` for read-only `$derived` values; reassign only for deliberate overrides
 3. ✅ Don't update dependencies inside `$effect`
 4. ✅ Keep runes at component top-level
-5. ✅ Reassign objects/arrays for nested changes
+5. ✅ Mutate local deep `$state` directly when that expresses the change
 6. ✅ Use consistent Svelte 5 syntax (no mixing)
 7. ✅ Wrap reactive variables with `$state()`
 8. ✅ Use `$bindable()` for two-way binding
 9. ✅ Use `{@render children()}` not `{children}`
 10. ✅ Use `onclick` not `on:click`
+
+## Official References
+
+- [Svelte docs: What are runes?](https://svelte.dev/docs/svelte/what-are-runes)
+- [Svelte docs: Svelte 5 migration guide](https://svelte.dev/docs/svelte/v5-migration-guide)

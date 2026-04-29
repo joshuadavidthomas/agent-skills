@@ -1,292 +1,121 @@
-# Load Functions: Server vs Universal
+# Load Functions
+
+Load functions are ownership declarations. They answer: who owns this data, can it run in the browser, and should it be available before the page renders?
 
 ## Decision Matrix
 
-| Need                                | Use            | File              |
-| ----------------------------------- | -------------- | ----------------- |
-| Database access                     | Server load    | `+page.server.ts` |
-| Secrets/env vars                    | Server load    | `+page.server.ts` |
-| Server-only packages                | Server load    | `+page.server.ts` |
-| Browser APIs (window, localStorage) | Universal load | `+page.ts`        |
-| Client-side fetch                   | Universal load | `+page.ts`        |
-| Runs on both                        | Universal load | `+page.ts`        |
+| Need | Default file | Why |
+|---|---|---|
+| Database access | `+page.server.ts` / `+layout.server.ts` | server-only resource |
+| Secrets/private env | `+page.server.ts` / `+layout.server.ts` | never ship to browser |
+| Session-derived data | `+layout.server.ts` or `+page.server.ts` | request-owned server state |
+| Public fetch that can rerun on navigation | `+page.ts` | universal data |
+| Browser-only data | component effect or guarded universal load | SSR has no browser APIs |
+| Shared app shell data | `+layout.server.ts` | inherited by child routes |
 
-## Server Load (+page.server.ts)
+## Server load is for trusted data
 
-**When:** Need server-only resources (DB, secrets, server APIs)
-
-**Runs:** Only on server (never in browser)
-
-```typescript
+```ts
 // src/routes/profile/+page.server.ts
 import type { PageServerLoad } from './$types';
 import { db } from '$lib/server/database';
 
-export const load: PageServerLoad = async ({ locals, params }) => {
-	// Access server-only resources
-	const user = await db.query.users.findFirst({
-		where: eq(users.id, locals.userId),
-	});
+export const load: PageServerLoad = async ({ locals }) => {
+	if (!locals.user) {
+		throw redirect(303, '/login');
+	}
 
-	const posts = await db.query.posts.findMany({
-		where: eq(posts.authorId, user.id),
-	});
+	const user = await db.users.find(locals.user.id);
 
-	// Must return serializable data
 	return {
 		user: {
 			id: user.id,
 			name: user.name,
 			email: user.email,
 		},
-		posts,
 	};
 };
 ```
 
-**Key points:**
+Use server load when the data depends on trust: DB access, secrets, private APIs, cookies, sessions, authorization.
 
-- Runs only on server
-- Can access `$lib/server/*` imports
-- Can use secrets from `env` safely
-- Return values must be JSON-serializable
-- Output is automatically passed to universal load
+## Universal load is for universal work
 
-## Universal Load (+page.ts)
-
-**When:** Need to run on both server and client, or need browser APIs
-
-**Runs:** Server (during SSR) AND client (during navigation)
-
-```typescript
-// src/routes/dashboard/+page.ts
+```ts
+// src/routes/posts/+page.ts
 import type { PageLoad } from './$types';
 
-export const load: PageLoad = async ({ data, fetch }) => {
-	// `data` comes from +page.server.ts if it exists
-	const { user } = data;
-
-	// Fetch additional data (works on both server and client)
-	const response = await fetch('/api/stats');
-	const stats = await response.json();
-
-	// Can access browser APIs (but check if in browser first)
-	const theme =
-		typeof window !== 'undefined'
-			? localStorage.getItem('theme')
-			: null;
-
-	return {
-		user,
-		stats,
-		theme,
-	};
-};
-```
-
-**Key points:**
-
-- Runs on both server AND client
-- Receives server load output as `data` parameter
-- Use SvelteKit's `fetch` (automatically handles SSR)
-- Check `typeof window !== 'undefined'` for browser APIs
-- Cannot import from `$lib/server/*`
-
-## Data Flow
-
-```
-Request → Server Load (+page.server.ts)
-            ↓ (returns { user })
-        Universal Load (+page.ts)
-            ↓ (receives data: { user }, returns { user, stats })
-        Page Component (+page.svelte)
-            ↓ (receives data: { user, stats })
-```
-
-**Example:**
-
-```typescript
-// +page.server.ts
-export const load = async () => {
-  return { serverData: 'from server' };
-};
-
-// +page.ts
-export const load = async ({ data }) => {
-  console.log(data.serverData);  // 'from server'
-  return { ...data, clientData: 'from universal' };
-};
-
-// +page.svelte
-<script>
-  export let data;  // { serverData, clientData }
-</script>
-```
-
-## Common Patterns
-
-### Pattern 1: Server + Universal
-
-```typescript
-// +page.server.ts - Fetch sensitive data
-export const load = async ({ locals }) => {
-	const user = await getUser(locals.session);
-	return { user };
-};
-
-// +page.ts - Fetch public data
-export const load = async ({ data, fetch }) => {
-	const publicPosts = await fetch('/api/posts').then((r) => r.json());
-	return { ...data, publicPosts };
-};
-```
-
-### Pattern 2: Conditional Universal Load
-
-```typescript
-// +page.ts
-import { browser } from '$app/environment';
-
-export const load = async ({ fetch }) => {
-	const serverData = await fetch('/api/data').then((r) => r.json());
-
-	// Only run in browser
-	let clientOnlyData = null;
-	if (browser) {
-		clientOnlyData = localStorage.getItem('cache');
-	}
-
-	return { serverData, clientOnlyData };
-};
-```
-
-### Pattern 3: Depends for Revalidation
-
-```typescript
-// +page.ts
-export const load = async ({ fetch, depends }) => {
-	depends('app:posts'); // Invalidate with invalidate('app:posts')
-
+export const load: PageLoad = async ({ fetch, depends }) => {
+	depends('app:posts');
 	const posts = await fetch('/api/posts').then((r) => r.json());
 	return { posts };
 };
-
-// Somewhere else:
-import { invalidate } from '$app/navigation';
-invalidate('app:posts'); // Re-runs load function
 ```
 
-## Common Mistakes
+Universal load runs during SSR and again in the browser during client navigation. It cannot import `$lib/server/*`, cannot assume secrets, and should use SvelteKit's provided `fetch`.
 
-### ❌ Importing Server Code in Universal Load
+## Server data flows through universal load
 
-```typescript
-// +page.ts - WRONG
-import { db } from '$lib/server/database'; // ERROR - can't import server code
-
+```ts
+// +page.server.ts
 export const load = async () => {
-	const users = await db.query.users.findMany(); // Won't work
-	return { users };
+	return { user: await getUser() };
+};
+
+// +page.ts
+export const load = async ({ data, fetch }) => {
+	const stats = await fetch('/api/stats').then((r) => r.json());
+	return { ...data, stats };
 };
 ```
 
-**Fix:** Move to `+page.server.ts`
+```svelte
+<!-- +page.svelte -->
+<script lang="ts">
+	let { data } = $props();
+</script>
 
-### ❌ Returning Non-Serializable Data
+<h1>{data.user.name}</h1>
+```
 
-```typescript
-// +page.server.ts - WRONG
-export const load = async () => {
-	const user = await User.findOne(); // Returns class instance
-	return { user }; // ERROR - class instances aren't serializable
+## The React-shaped smell
+
+Smell:
+
+```svelte
+<script lang="ts">
+	import { onMount } from 'svelte';
+
+	let user = $state(null);
+
+	onMount(async () => {
+		user = await fetch('/api/me').then((r) => r.json());
+	});
+</script>
+```
+
+This treats SvelteKit like an SPA. The page renders without its server-owned data, then patches itself later.
+
+Better:
+
+```ts
+// +layout.server.ts or +page.server.ts
+export const load = async ({ locals }) => {
+	return { user: locals.user };
 };
 ```
 
-**Fix:** Return plain objects
+Load before render when the route needs the data to exist.
 
-```typescript
-export const load = async () => {
-	const user = await User.findOne();
-	return {
-		user: {
-			id: user.id,
-			name: user.name,
-			email: user.email,
-		},
-	};
-};
-```
+## Agent Smells
 
-### ❌ Using window/localStorage Without Check
+- Fetching DB/session-owned data from `onMount`.
+- Importing `$lib/server/*` from `+page.ts`.
+- Using universal load because it feels more flexible, even though the data is private.
+- Returning ORM entities or class instances from load; see [serialization.md](serialization.md).
+- Reading `window`/`localStorage` during SSR; see [ssr-hydration.md](ssr-hydration.md).
+- Encoding authorization failures as data instead of throwing `redirect()` or `error()`; see [errors-and-redirects.md](errors-and-redirects.md).
 
-```typescript
-// +page.ts - WRONG
-export const load = async () => {
-	const theme = localStorage.getItem('theme'); // ERROR on server
-	return { theme };
-};
-```
+## Official References
 
-**Fix:** Check for browser
-
-```typescript
-import { browser } from '$app/environment';
-
-export const load = async () => {
-	const theme = browser ? localStorage.getItem('theme') : 'light';
-	return { theme };
-};
-```
-
-## TypeScript
-
-```typescript
-import type { PageServerLoad } from './$types';
-
-export const load: PageServerLoad = async ({
-	locals,
-	params,
-	url,
-}) => {
-	// TypeScript knows return type must be serializable
-	return {
-		user: {
-			id: 1,
-			name: 'Alice',
-		},
-	};
-};
-```
-
-```typescript
-import type { PageLoad } from './$types';
-
-export const load: PageLoad = async ({ data, fetch, params }) => {
-	// `data` is typed from +page.server.ts return type
-	return {
-		...data,
-		extra: 'data',
-	};
-};
-```
-
-## When to Use Which
-
-**Use Server Load when:**
-
-- Need database access
-- Need secrets/environment variables
-- Need server-only npm packages
-- Need to hide implementation details
-
-**Use Universal Load when:**
-
-- Need browser APIs (localStorage, window)
-- Need to fetch public APIs (works on both)
-- Want client-side navigation without server round-trip
-- Data is public and doesn't need server resources
-
-**Use Both when:**
-
-- Server load fetches sensitive data
-- Universal load fetches public data or adds client-side enhancements
+- [SvelteKit docs: Loading data](https://svelte.dev/docs/kit/load)

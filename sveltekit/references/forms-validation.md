@@ -331,3 +331,8 @@ export const ChangePasswordSchema = z
 
 // In extractFormData, use schema.safeParse() instead of v.safeParse()
 ```
+
+## Official References
+
+- [SvelteKit docs: Form actions](https://svelte.dev/docs/kit/form-actions)
+- [Svelte docs: use:enhance](https://svelte.dev/docs/kit/form-actions#Progressive-enhancement)

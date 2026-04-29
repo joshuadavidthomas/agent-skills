@@ -193,3 +193,8 @@ BUT:
 ```
 
 **Rule:** Set context in a **common ancestor** of all components that need it.
+
+## Official References
+
+- [Svelte docs: Context](https://svelte.dev/docs/svelte/context)
+- [Svelte docs: $state](https://svelte.dev/docs/svelte/$state)

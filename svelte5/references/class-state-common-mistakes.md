@@ -276,3 +276,8 @@ Before using class-based state:
 - [ ] Using Symbol for context key
 - [ ] Using Svelte 5 syntax (`onclick` not `on:click`)
 - [ ] Handling missing context with `hasContext`
+
+## Official References
+
+- [Svelte docs: $state](https://svelte.dev/docs/svelte/$state)
+- [Svelte docs: Context](https://svelte.dev/docs/svelte/context)

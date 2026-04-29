@@ -8,7 +8,7 @@
 | Named content    | `<slot name="header" />`       | `{@render header()}`                   |
 | Provide content  | `<div slot="header">...</div>` | `{#snippet header()}...{/snippet}`     |
 | Slot props       | `<slot item={data} />`         | `{@render item(data)}`                 |
-| Fallback content | `<slot>Fallback</slot>`        | `{@render children?.() ?? 'Fallback'}` |
+| Fallback content | `<slot>Fallback</slot>`        | `{#if children}{@render children()}{:else}Fallback{/if}` |
 
 ## Children (Default Slot Replacement)
 
@@ -192,7 +192,7 @@
 </Card>
 ```
 
-### Shorthand with ?.()
+### Optional Snippet with Conditional Fallback
 
 ```svelte
 <script>
@@ -200,7 +200,12 @@
 </script>
 
 <div class="card">
-  <h2>{@render header?.() ?? 'Default Title'}</h2>
+  {#if header}
+    <h2>{@render header()}</h2>
+  {:else}
+    <h2>Default Title</h2>
+  {/if}
+
   {@render children()}
 </div>
 ```
@@ -450,16 +455,15 @@ Snippets can be defined and reused within a component:
 ### ❌ Forgetting to Declare children
 
 ```svelte
+<!-- WRONG: children is not declared -->
+<div>
+	{@render children()}
+</div>
+
 <!-- RIGHT -->
 <script>
 	let { children } = $props();
 </script>
-
-<!-- WRONG -->
-<div>
-	{@render children()}
-	<!-- ERROR: children not defined -->
-</div>
 
 <div>
 	{@render children()}
@@ -524,3 +528,8 @@ Snippets can be defined and reused within a component:
 5. **More powerful** - Can define reusable snippets within components
 6. **Consistent** - Everything is a prop, not a special `<slot>`
    element
+
+## Official References
+
+- [Svelte docs: Snippets](https://svelte.dev/docs/svelte/snippet)
+- [Svelte 5 migration guide: Snippets instead of slots](https://svelte.dev/docs/svelte/v5-migration-guide#Snippets-instead-of-slots)

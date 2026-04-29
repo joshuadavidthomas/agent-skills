@@ -322,8 +322,8 @@ Svelte stores (`writable`, `readable`, `derived`) still work in Svelte
 
 **When to use stores vs runes:**
 
-- **Runes:** Component-local state
-- **Stores:** Global state, shared across components
+- **Runes:** Component-local state, reusable `.svelte.ts` state, and context-owned state
+- **Stores:** External streams, public store APIs, manual subscription semantics, interop, or deliberately app-wide client state
 
 ## TypeScript Changes
 
@@ -380,19 +380,10 @@ Svelte stores (`writable`, `readable`, `derived`) still work in Svelte
 5. **Read the migration guide** -
    https://svelte.dev/docs/svelte/v5-migration-guide
 
-## Feature Detection
+## Version Boundaries
 
-If you need to support both Svelte 4 and 5:
+Do not maintain dual Svelte 4/Svelte 5 syntax inside components. During review, detect the project version from `package.json` and local conventions, then migrate components consistently within that boundary.
 
-```svelte
-<script>
-	import { VERSION } from 'svelte/compiler';
+## Official References
 
-	const isSvelte5 = VERSION.startsWith('5');
-
-	// Conditionally use syntax based on version
-</script>
-```
-
-**But:** Generally better to fully migrate to Svelte 5 than maintain
-dual syntax.
+- [Svelte docs: Svelte 5 migration guide](https://svelte.dev/docs/svelte/v5-migration-guide)

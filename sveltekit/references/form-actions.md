@@ -28,7 +28,7 @@ export const actions: Actions = {
 ```svelte
 <!-- +page.svelte -->
 <script>
-	export let form; // Contains return value from action
+	let { form } = $props(); // Contains return value from action
 </script>
 
 <form method="POST">
@@ -283,8 +283,8 @@ export const actions = {
 
 ```svelte
 <script>
-	export let data; // From load function
-	export let form; // From action return value
+	let { data } = $props(); // From load function
+	let { form } = $props(); // From action return value
 </script>
 
 {#if form?.error}
@@ -314,3 +314,7 @@ export const actions = {
 5. ✅ Don't catch redirects/errors without rethrowing
 6. ✅ Use `enhance` for progressive enhancement
 7. ✅ Access FormData with `data.get('fieldName')`
+
+## Official References
+
+- [SvelteKit docs: Form actions](https://svelte.dev/docs/kit/form-actions)

@@ -178,3 +178,8 @@ Generate: `openssl rand -base64 32`
 | `building` error | Missing import | Import from `$app/environment` |
 | Auth routes 404 | Missing svelteKitHandler | Add to hooks.server.ts |
 | Session not persisting | Mismatched baseURL | Use `event.url.origin` |
+
+## Official References
+
+- [Better Auth docs: SvelteKit integration](https://www.better-auth.com/docs/integrations/svelte-kit)
+- [SvelteKit docs: Hooks](https://svelte.dev/docs/kit/hooks)

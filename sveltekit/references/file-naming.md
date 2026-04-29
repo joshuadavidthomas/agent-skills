@@ -38,32 +38,11 @@
 - `service-worker.ts` - Service worker
 - `params/*.ts` - Param validators
 
-## Common Patterns
+## Mindset
 
-```
-src/routes/
-├── +layout.svelte              # Root layout
-├── +layout.ts                  # Root data
-├── +page.svelte                # Homepage
-├── +error.svelte               # Root error boundary
-│
-├── (app)/                      # App routes (grouped)
-│   ├── +layout.svelte          # App layout (auth required)
-│   ├── dashboard/+page.svelte  # /dashboard
-│   └── settings/+page.svelte   # /settings
-│
-├── (marketing)/                # Marketing routes (grouped)
-│   ├── +layout.svelte          # Marketing layout
-│   ├── about/+page.svelte      # /about
-│   └── pricing/+page.svelte    # /pricing
-│
-├── blog/
-│   ├── +page.svelte            # /blog (list)
-│   └── [slug]/
-│       ├── +page.svelte        # /blog/post-title
-│       └── +page.server.ts     # Load post data
-│
-└── api/
-    └── posts/
-        └── +server.ts          # API: GET/POST /api/posts
-```
+File names are behavior. Before adding code, choose the file that matches the runtime boundary. If you are reaching for `onMount` or a client fetch to get route data, ask whether a `+page.server.ts` or `+layout.server.ts` should own it instead.
+
+## Official References
+
+- [SvelteKit docs: Routing](https://svelte.dev/docs/kit/routing)
+- [SvelteKit docs: Project structure](https://svelte.dev/docs/kit/project-structure)

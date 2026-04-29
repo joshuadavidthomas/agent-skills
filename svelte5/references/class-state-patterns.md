@@ -93,12 +93,10 @@ class Counter {
 class TodoState {
 	todos = $state<Todo[]>([]);
 
-	// Computed property using getter + $derived
-	get completed() {
-		return $derived(this.todos.filter((t) => t.done).length);
-	}
+	// Computed property as a reactive class field
+	completed = $derived(this.todos.filter((t) => t.done).length);
 
-	// Or as a method
+	// Or as a non-reactive method for one-off reads
 	getCompleted = () => this.todos.filter((t) => t.done).length;
 }
 ```
@@ -258,3 +256,8 @@ interface ToastState {
 - Type is needed by consumers (e.g., for typing variables)
 - Type appears in public method signatures
 - Type is used in component props
+
+## Official References
+
+- [Svelte docs: $state in classes](https://svelte.dev/docs/svelte/$state#Classes)
+- [Svelte docs: .svelte.js and .svelte.ts files](https://svelte.dev/docs/svelte/svelte-js-files)

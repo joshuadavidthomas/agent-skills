@@ -7,6 +7,8 @@ data.**
 
 Data travels from server → client as JSON. Non-JSON types break.
 
+Remote functions use a different transport and can support some richer values such as `Date`, `Map`, `Set`, `RegExp`, and typed arrays. Do not copy serialization assumptions between `load`/actions and remote functions without checking the boundary. See [remote-functions.md](remote-functions.md).
+
 ## ✅ Serializable (Safe)
 
 | Type         | Example                   | Notes                             |
@@ -50,7 +52,7 @@ export const load = async () => {
 ```svelte
 <!-- +page.svelte -->
 <script>
-	export let data;
+	let { data } = $props();
 	console.log(data.createdAt); // String, not Date
 	console.log(data.createdAt.getTime()); // ERROR - not a Date
 </script>
@@ -76,7 +78,7 @@ export const load = async () => {
 ```svelte
 <!-- +page.svelte -->
 <script>
-	export let data;
+	let { data } = $props();
 	const createdAt = new Date(data.user.createdAt); // Parse back to Date
 </script>
 ```
@@ -104,7 +106,7 @@ export const load = async () => {
 
 ```svelte
 <script>
-	export let data;
+	let { data } = $props();
 	console.log(data.user.getDisplayName()); // ERROR - method doesn't exist
 </script>
 ```
@@ -141,7 +143,7 @@ export const load = async () => {
 
 ```svelte
 <script>
-	export let data;
+	let { data } = $props();
 	console.log('email' in data); // false - key is missing!
 </script>
 ```
@@ -315,3 +317,8 @@ Before returning from server load or form action:
 5. ✅ No Map/Set? (convert to object/array)
 6. ✅ No functions?
 7. ✅ No BigInt? (convert to string)
+
+## Official References
+
+- [SvelteKit docs: Loading data](https://svelte.dev/docs/kit/load)
+- [SvelteKit docs: Form actions](https://svelte.dev/docs/kit/form-actions)
