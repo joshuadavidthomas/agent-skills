@@ -1,178 +1,106 @@
 ---
 name: sveltekit
-description: "SvelteKit guidance — routing, layouts, data loading, form actions, authentication, form validation, remote functions, error handling, and SSR. Use for +page.svelte, +layout.svelte, +server.ts, +page.server.ts, load functions, fail(), redirect(), error(), route groups, protecting routes, sessions, Standard Schema validation (valibot/zod), extractFormData, FormErrors, command(), query(), form() in .remote.ts files. Triggers on: SvelteKit, +page, +layout, +server, +error, load function, form action, hooks.server.ts, route group, progressive enhancement."
+description: >
+  Mental-model reset for SvelteKit apps. Use when writing or reviewing routes,
+  layouts, load functions, form actions, remote functions, hooks, auth, cookies,
+  endpoints, redirects, errors, SSR, progressive enhancement, or app-level data
+  flow. Triggers on SvelteKit, +page, +layout, +server, +page.server.ts,
+  +layout.server.ts, hooks.server.ts, load, actions, fail(), redirect(), error(),
+  cookies, locals, route groups, protected routes, sessions, form actions,
+  enhance, remote functions, command(), query(), form(), getRequestEvent(), SSR,
+  hydration, and serialization. Use svelte5 for component-level runes, snippets,
+  accessibility, actions, transitions, and component API review.
 ---
 
-# SvelteKit
+# Think in SvelteKit
 
-## Topics
+SvelteKit is not just Svelte with folders. It is an application boundary system: route files define ownership of data, server code stays on the server, form submissions progressively enhance, and redirects/errors are part of control flow.
 
-| Topic | File |
-|-------|------|
-| Routing, layouts, error boundaries, SSR | [structure.md](structure.md) |
-| Load functions, form actions, serialization | [data-flow.md](data-flow.md) |
-| Authentication, hooks, route protection | [auth.md](auth.md) |
-| Form validation, extractFormData, FormErrors | [forms-validation.md](forms-validation.md) |
-| Remote functions (command/query/form) | [remote-functions.md](remote-functions.md) |
+The core failure mode: writing SvelteKit like a client-side SPA with incidental server helpers. Fetching server-owned data from components. Hiding auth in hooks and assuming layouts protect endpoints. Returning class instances from `load`. Calling `redirect()` without throwing. Building JavaScript-only forms when native forms plus actions would work. These work until SSR, progressive enhancement, caching, or security boundaries matter.
 
-## Structure & Routing
+Use this skill for app-level SvelteKit decisions. Use **svelte5** for component internals: runes, snippets, component props, DOM events, accessibility, transitions, and component state.
 
-**File types:** `+page.svelte` (page) | `+layout.svelte` (wrapper) | `+error.svelte` (error boundary) | `+server.ts` (API endpoint)
+## How SvelteKit Thinks
 
-**Routes:** `src/routes/about/+page.svelte` → `/about` | `src/routes/posts/[id]/+page.svelte` → `/posts/123`
+### Routes own application boundaries
 
-Layouts apply to all child routes. Use `(groups)` for layout organization without affecting URLs.
+**1. File names are behavior.** `+page.svelte`, `+layout.server.ts`, `+page.server.ts`, and `+server.ts` are not organization trivia; they decide where code runs and who can call it. See [references/file-naming.md](references/file-naming.md).
 
-```
-src/routes/
-├── +layout.svelte              # Root layout (all pages)
-├── +page.svelte                # Homepage /
-├── (app)/                      # Protected routes (group doesn't affect URL)
-│   ├── +layout.server.ts       # Auth check for all (app) routes
-│   ├── +layout.svelte          # Nav bar, user info
-│   └── dashboard/+page.svelte  # /dashboard
-└── (auth)/                     # Public routes
-    └── login/+page.svelte      # /login
-```
+**2. Route groups organize policy, not URLs.** `(app)` and `(auth)` are for layout/auth/data boundaries without changing paths. Put protected routes under a protected layout; keep login/signup outside that group. See [references/layout-patterns.md](references/layout-patterns.md).
 
-```svelte
-<!-- +layout.svelte — must render children in Svelte 5 -->
-<script>
-  let { children } = $props();
-</script>
-<nav><!-- Navigation --></nav>
-<main>{@render children()}</main>
-```
+**3. Layouts protect pages, not endpoints.** A protected `+layout.server.ts` gates child pages. It does not protect sibling or child `+server.ts` endpoints; every endpoint must enforce auth itself. See [references/auth.md](references/auth.md).
 
-→ Deep dives: [structure.md](structure.md) for file naming, layout nesting, error boundaries, SSR/hydration.
+### Data flow should reveal ownership
 
-## Data Loading
+**4. Server-owned data loads on the server.** Database queries, secrets, private APIs, and session-derived data belong in `+page.server.ts` / `+layout.server.ts`, not in component `onMount` or browser fetches. See [references/load-functions.md](references/load-functions.md).
 
-**Which file?** Server-only (DB, secrets) → `+page.server.ts` | Universal (both sides) → `+page.ts` | API → `+server.ts`
+**5. Universal load is for universal work.** Use `+page.ts` only when the code can safely run in both browser and server. If it needs secrets or trusted auth, it is not universal.
 
-```typescript
-// +page.server.ts
-import { fail, redirect } from '@sveltejs/kit';
+**6. Load returns data, not behavior.** Return serializable data from server load. Do not return class instances, functions, database handles, or rich objects that depend on identity. See [references/serialization.md](references/serialization.md).
 
-export const load = async ({ locals }) => {
-  const user = await db.users.get(locals.userId);
-  return { user };  // Must be JSON-serializable
-};
+**7. Redirects and errors are thrown control flow.** In SvelteKit 2, `redirect()` and `error()` return objects; throw them. Bare calls are bugs. See [references/errors-and-redirects.md](references/errors-and-redirects.md).
 
-export const actions = {
-  default: async ({ request }) => {
-    const data = await request.formData();
-    const email = data.get('email');
-    if (!email) return fail(400, { email, missing: true });
-    await updateEmail(email);
-    throw redirect(303, '/success');
-  },
-};
-```
+### Forms are server-first
 
-Key rules:
-- **Always `throw redirect()` and `throw error()`** — in SvelteKit 2 these return objects, they don't throw automatically
-- Server load output is automatically passed to universal load as `data` parameter
-- Don't return class instances or functions from server load (not serializable)
-- Form actions always go in `+page.server.ts`
+**8. Form actions are the default mutation boundary.** If a user submits form-shaped data, prefer a native form plus `+page.server.ts` action before inventing a client-only mutation path. See [references/form-actions.md](references/form-actions.md).
 
-→ Deep dives: [data-flow.md](data-flow.md) for load functions, form actions, serialization rules.
+**9. Progressive enhancement is enhancement.** The form should work without JavaScript; `use:enhance` improves pending states, focus, invalidation, and UX. It should not be the only way the mutation works.
 
-## Authentication
+**10. Validation lives at the boundary.** Validate on the server, return field-shaped errors with `fail`, and let the component display them. Client validation is UX, not authority. See [references/forms-validation.md](references/forms-validation.md).
 
-**Route protection happens in layout server files, NOT in hooks.**
+### Auth is explicit and boring
 
-Hooks populate `locals.session`/`locals.user`. Layouts check and redirect.
+**11. Hooks populate context; routes enforce policy.** `hooks.server.ts` should parse sessions and populate `locals`. Layout/server loads and endpoints decide what is allowed. Do not silently skip auth if infrastructure is missing. See [references/auth.md](references/auth.md).
 
-```typescript
-// routes/(app)/+layout.server.ts
-import { redirect } from '@sveltejs/kit';
-import type { LayoutServerLoad } from './$types';
+**12. Cookies and locals are request state.** Treat them as per-request server data. Do not mirror them into global module state or trust client copies for authorization.
 
-export const load: LayoutServerLoad = async ({ locals }) => {
-  if (!locals.session) {
-    throw redirect(303, '/login');  // ⚠️ Must throw, not bare call
-  }
-  return { user: locals.user };
-};
-```
+**13. API endpoints are their own security boundary.** Check method, auth, authorization, input validation, and response shape inside each `+server.ts`. A page layout is irrelevant to direct HTTP calls.
 
-**⚠️ Layouts do NOT protect API routes.** You must check `locals.session` explicitly in every `+server.ts`:
+### Remote functions are still server boundaries
 
-```typescript
-// routes/(app)/api/data/+server.ts
-export const GET: RequestHandler = async ({ locals }) => {
-  if (!locals.session) {
-    return json({ error: 'Unauthorized' }, { status: 401 });
-  }
-  // ...
-};
-```
+**14. Remote functions do not remove validation.** `command`, `query`, and `form` still cross a client/server boundary. Validate arguments, check auth, and return serializable data. Remote functions are version/feature-flag dependent; confirm the project has opted in before recommending them. See [references/remote-functions.md](references/remote-functions.md).
 
-**⚠️ Never silently skip auth in hooks** — if your DB binding is missing, `throw new Error()`, don't `return resolve(event)`. Silent fallthrough means unauthenticated users get through.
+**15. Choose the remote primitive by intent.** Use `query` for repeated reads, `command` for imperative mutations, and `form` for form-shaped submissions. Do not use remote functions to bypass SvelteKit's normal page/form model without a reason.
 
-→ Deep dives: [auth.md](auth.md) for full hooks setup, TypeScript config, Better Auth and Cloudflare specifics.
+### SSR is the default environment
 
-## Form Validation
+**16. Browser APIs are conditional.** `window`, `document`, `localStorage`, media APIs, and DOM measurement do not exist during SSR. Use component effects, `browser`, or client-only boundaries deliberately. See [references/ssr-hydration.md](references/ssr-hydration.md).
 
-Server-first validation with progressive enhancement. Schema defined once, server validates, client displays errors.
+**17. Hydration mismatches are design feedback.** If server and client render different initial markup, fix the data boundary or defer browser-only rendering intentionally. Do not paper over mismatches with random client checks.
 
-```typescript
-// $lib/schemas/profile.ts
-import * as v from 'valibot';
+## Common Mistakes (Agent Failure Modes)
 
-export const ProfileSchema = v.object({
-  name: v.pipe(v.string(), v.trim(), v.minLength(1, 'Name is required.')),
-  email: v.pipe(v.string(), v.trim(), v.toLowerCase(), v.email('Invalid email.')),
-});
-```
+- **Fetching server-owned data in `onMount`** → use server `load`.
+- **Using universal load for secrets** → move to `+page.server.ts` or `+layout.server.ts`.
+- **Returning classes/functions from load** → return serializable plain data.
+- **Calling `redirect()` / `error()` without `throw`** → throw them.
+- **Protecting endpoints via layouts** → check auth in every `+server.ts`.
+- **Doing auth policy in hooks only** → hooks populate `locals`; routes enforce.
+- **Silently skipping auth when DB/session infrastructure is missing** → fail closed.
+- **Putting login inside the protected route group** → keep auth pages outside protected layouts.
+- **Building JS-only forms** → use native forms + actions + progressive enhancement.
+- **Trusting client validation** → validate on the server boundary.
+- **Using remote functions without auth/validation** → treat them as server endpoints.
+- **Using browser APIs during SSR** → gate with effects/browser-only logic.
+- **Using svelte5 component advice for app data flow** → load the SvelteKit reference.
 
-Pattern: `extractFormData()` utility validates request → returns typed data or field-keyed errors → `fail(400, { errors })` → client `FormErrors` class clears errors on input, shows after submit.
+## Quick Reference
 
-→ Deep dives: [forms-validation.md](forms-validation.md) for the full extractFormData utility, FormErrors class, cross-field validation, Field.Set, blur validation, and Zod equivalents.
-
-## Remote Functions
-
-`*.remote.ts` files expose server functions callable from the browser:
-
-```typescript
-// actions.remote.ts
-import { command } from '$app/server';
-import * as v from 'valibot';
-
-export const delete_user = command(
-  v.object({ id: v.string() }),
-  async ({ id }) => {
-    await db.users.delete(id);
-    return { success: true };
-  },
-);
-// Client: await delete_user({ id: '123' });
-```
-
-**Which function?** One-time action → `command()` | Repeated reads → `query()` | Forms → `form()`
-
-Args and returns must be JSON-serializable. Use `getRequestEvent()` for cookies/headers.
-
-→ Deep dives: [remote-functions.md](remote-functions.md) for complete patterns.
-
-## Common Mistakes
-
-| Mistake | Fix |
-|---------|-----|
-| `redirect()` without `throw` | `throw redirect(303, '/path')` |
-| Protecting API routes via layouts | Check `locals.session` in each `+server.ts` |
-| Silently skipping auth when DB missing | `throw new Error()` in hooks |
-| Auth page inside protected group | Put login in `(auth)/`, not `(app)/` |
-| Returning non-serializable from load | Only return plain objects, no classes/functions |
-| `<slot />` in layouts | `{@render children()}` (Svelte 5) |
+| Smell | SvelteKit default move | Reference |
+|---|---|---|
+| Route file choice unclear | Pick by runtime and boundary | [file-naming](references/file-naming.md) |
+| Protected page group | `+layout.server.ts` auth check | [auth](references/auth.md) |
+| Protected endpoint | auth check inside `+server.ts` | [auth](references/auth.md) |
+| DB/secrets in browser code | server load/action/endpoint | [load-functions](references/load-functions.md) |
+| Form-shaped mutation | form action | [form-actions](references/form-actions.md) |
+| Field validation errors | `fail(400, { errors })` | [forms-validation](references/forms-validation.md) |
+| Bare `redirect()` or `error()` | `throw redirect(...)` / `throw error(...)` | [errors-and-redirects](references/errors-and-redirects.md) |
+| Rich object returned from load | serializable plain data | [serialization](references/serialization.md) |
+| Client-only API in SSR | effect/browser guard | [ssr-hydration](references/ssr-hydration.md) |
+| Repeated server read from client | `query()` if remote functions fit | [remote-functions](references/remote-functions.md) |
+| Imperative server mutation from client | `command()` with validation/auth | [remote-functions](references/remote-functions.md) |
+| Component API/runes issue | use svelte5 | **svelte5** |
 
 ## Reference Index
 
-**Structure:** [File Naming](references/file-naming.md) · [Layout Patterns](references/layout-patterns.md) · [Error Handling](references/error-handling.md) · [SSR & Hydration](references/ssr-hydration.md)
-
-**Data Flow:** [Load Functions](references/load-functions.md) · [Form Actions](references/form-actions.md) · [Serialization](references/serialization.md) · [Error & Redirect Handling](references/error-redirect-handling.md)
-
-**Auth:** [Better Auth](references/better-auth.md) · [Cloudflare](references/cloudflare.md)
-
-**Remote Functions:** [Reference](references/remote-functions-reference.md)
+[File Naming](references/file-naming.md) · [Layout Patterns](references/layout-patterns.md) · [Load Functions](references/load-functions.md) · [Form Actions](references/form-actions.md) · [Forms Validation](references/forms-validation.md) · [Auth](references/auth.md) · [Errors/Redirects](references/errors-and-redirects.md) · [Serialization](references/serialization.md) · [SSR/Hydration](references/ssr-hydration.md) · [Remote Functions](references/remote-functions.md) · [Better Auth](references/better-auth.md) · [Cloudflare](references/cloudflare.md)

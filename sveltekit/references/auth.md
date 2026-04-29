@@ -2,7 +2,7 @@
 
 Framework-agnostic patterns for auth in SvelteKit. Works with Better Auth, Lucia, Auth.js, or custom solutions.
 
-**For Better Auth specifics, see [references/better-auth.md](references/better-auth.md).**
+**For Better Auth specifics, see [references/better-auth.md](better-auth.md).**
 
 ## Core Principle
 
@@ -197,5 +197,10 @@ Each route group can have its own layout that only applies to routes within it. 
 
 ## References
 
-- [references/better-auth.md](references/better-auth.md) — Better Auth integration, svelteKitHandler, auth client
-- [references/cloudflare.md](references/cloudflare.md) — D1, Drizzle, preview deployments, cross-subdomain cookies
+- [references/better-auth.md](better-auth.md) — Better Auth integration, svelteKitHandler, auth client
+- [references/cloudflare.md](cloudflare.md) — D1, Drizzle, preview deployments, cross-subdomain cookies
+
+## Official References
+
+- [SvelteKit docs: Hooks](https://svelte.dev/docs/kit/hooks)
+- [SvelteKit docs: Auth best practices](https://svelte.dev/docs/kit/auth)

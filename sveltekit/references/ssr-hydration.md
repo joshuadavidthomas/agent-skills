@@ -1,92 +1,75 @@
 # SSR & Hydration
 
-## The Problem
+SvelteKit renders on the server first, then hydrates in the browser. Treat that as the default environment, not an edge case.
 
-SvelteKit runs on server (SSR) then hydrates in browser. Code using
-browser APIs (`window`, `document`, `localStorage`) fails on server.
+## Browser APIs are not route data
 
-## Solution: Check for Browser
+`window`, `document`, `localStorage`, layout measurement, media APIs, and DOM observers do not exist during SSR. Keep them out of server load functions.
 
-```typescript
+```ts
+// +page.ts
 import { browser } from '$app/environment';
 
-// In load function
 export const load = async () => {
-	const theme = browser ? localStorage.getItem('theme') : 'light';
-	return { theme };
+	return {
+		theme: browser ? localStorage.getItem('theme') : 'light',
+	};
 };
 ```
 
+Use this sparingly. If browser-only data does not need to exist before initial render, keep it in the component.
+
 ```svelte
-<!-- In component -->
-<script>
-	import { browser } from '$app/environment';
-	import { onMount } from 'svelte';
+<script lang="ts">
+	let width = $state<number | null>(null);
 
-	let data = $state(null);
-
-	// Option 1: Use browser check
-	if (browser) {
-		data = localStorage.getItem('data');
-	}
-
-	// Option 2: Use onMount (only runs in browser)
-	onMount(() => {
-		data = localStorage.getItem('data');
-	});
-
-	// Option 3: Use $effect with browser check
 	$effect(() => {
-		if (browser) {
-			data = localStorage.getItem('data');
-		}
+		width = window.innerWidth;
 	});
 </script>
 ```
 
-## Common Mistakes
+Effects do not run during SSR, so browser APIs are safe there.
 
-### ❌ Using window Without Check
+## Hydration mismatch is design feedback
 
-```typescript
-// WRONG - fails on server
-export const load = async () => {
-	const width = window.innerWidth; // ERROR on server
-	return { width };
-};
+A mismatch means the server rendered one thing and the browser's first render produced another. Do not reflexively hide the problem with `if (browser)`. Ask which boundary is wrong:
 
-// RIGHT
-import { browser } from '$app/environment';
+- Should this data come from `+page.server.ts` so server and client agree?
+- Should this UI render only after mount because it is genuinely browser-owned?
+- Is module-level state leaking between SSR requests?
+- Is the component using time/randomness/browser dimensions during initial render?
 
-export const load = async () => {
-	const width = browser ? window.innerWidth : 1024;
-	return { width };
-};
+```svelte
+<!-- Smell: server and client may render different initial markup -->
+<script lang="ts">
+	import { browser } from '$app/environment';
+	const label = browser ? localStorage.getItem('label') : 'Loading';
+</script>
+
+<h1>{label}</h1>
 ```
 
-### ❌ Accessing DOM in Load
+Better: either load stable route data on the server or intentionally render a stable placeholder and update after hydration.
 
-```typescript
-// WRONG
-export const load = async () => {
-	const el = document.getElementById('root'); // ERROR on server
-};
+## Disable SSR only as a last resort
 
-// RIGHT - Do DOM stuff in onMount
-export const load = async () => {
-	return {};
-};
-// Then in component:
-onMount(() => {
-	const el = document.getElementById('root');
-});
-```
-
-## Disable SSR (Not Recommended)
-
-```typescript
+```ts
 // +page.ts
-export const ssr = false; // Disables SSR for this page
+export const ssr = false;
 ```
 
-Only use when absolutely necessary (e.g., heavy Canvas/WebGL).
+This turns the route into client-rendered app code. Use it for genuinely browser-only surfaces like heavy Canvas/WebGL apps, not to avoid thinking about data ownership.
+
+## Agent Smells
+
+- Using `onMount` fetches for server-owned route data.
+- Reading `window` or `document` in `load`.
+- Using `browser` checks to hide hydration mismatches without fixing ownership.
+- Disabling SSR because a component imports a browser-only library.
+- Storing per-request data in module scope.
+
+## Official References
+
+- [SvelteKit docs: State management](https://svelte.dev/docs/kit/state-management)
+- [SvelteKit docs: $app/environment](https://svelte.dev/docs/kit/$app-environment)

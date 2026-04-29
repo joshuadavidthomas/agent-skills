@@ -275,3 +275,9 @@ Extract plain JavaScript values from proxies:
 	}
 </script>
 ```
+
+## Official References
+
+- [Svelte docs: $state](https://svelte.dev/docs/svelte/$state)
+- [Svelte docs: $derived](https://svelte.dev/docs/svelte/$derived)
+- [Svelte docs: $effect](https://svelte.dev/docs/svelte/$effect)

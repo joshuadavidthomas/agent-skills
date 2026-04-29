@@ -234,3 +234,8 @@ execSync(`wrangler d1 execute my-app-db ${dbFlag} --command "INSERT INTO account
 | D1 not available locally | No migrations | `wrangler d1 migrations apply --local` |
 | Session lost on preview | Hardcoded URL | Use `event.url.origin` |
 | Cookies not shared | No cross-subdomain | Add `crossSubDomainCookies` |
+
+## Official References
+
+- [SvelteKit docs: Cloudflare adapter](https://svelte.dev/docs/kit/adapter-cloudflare)
+- [Cloudflare docs: D1](https://developers.cloudflare.com/d1/)
