@@ -130,9 +130,9 @@ Design-focused frontend skill for producing intentional, non-generic interfaces.
 
 ### [grug-brained-dev](./grug-brained-dev/)
 
-Brutal simplification and naming skill for code that got too fancy, too big, or too hard for a tired human to understand. Grug asks plain questions: what thing, thing do what, where meat, why helper, why folder?
+Brutal simplification skill for code that got too fancy, too big, or too hard for a tired human to understand. Grug fights complexity demon with plain questions: what thing, thing do what, where meat, what can say no to?
 
-Uses cave-painting names, helper-rent tests, future-rock checks, and Chesterton's Fence to turn smart-looking architecture into boring code that tells the truth.
+Uses cave-painting names, helper-rent tests, future-rock checks, Chesterton's Fence, locality of behavior, real-seam testing, and near-shore refactoring to turn smart-looking architecture into boring code that tells the truth.
 
 ### [jj](./jj/)
 
@@ -218,7 +218,7 @@ Adapted from:
 
 ### grug-brained-dev
 
-Inspired by [The Grug Brained Developer](https://grugbrain.dev/), a funny-looking but painfully useful guide to fighting complexity demons with plain names, small refactors, and suspicion of premature abstraction.
+Inspired by [The Grug Brained Developer](https://grugbrain.dev/), a funny-looking but painfully useful guide to fighting complexity demons with plain names, saying no, delayed factoring, real cut points, small refactors, and suspicion of premature abstraction.
 
 ### improving-prompts
 
