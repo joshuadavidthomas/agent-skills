@@ -128,6 +128,12 @@ Apply the Diátaxis framework for documentation structure and writing. Helps cla
 
 Design-focused frontend skill for producing intentional, non-generic interfaces. Includes required discovery gates, signature-definition workflow, and self-review checks before presenting UI output.
 
+### [grug-brained-dev](./grug-brained-dev/)
+
+Brutal simplification and naming skill for code that got too fancy, too big, or too hard for a tired human to understand. Grug asks plain questions: what thing, thing do what, where meat, why helper, why folder?
+
+Uses cave-painting names, helper-rent tests, future-rock checks, and Chesterton's Fence to turn smart-looking architecture into boring code that tells the truth.
+
 ### [jj](./jj/)
 
 Jujutsu (jj) version control for Git-compatible repos. Covers the mental model (working copy as commit, change IDs, mutable history), agent-specific rules (always `-m`, no interactive commands), daily workflows, and progressive deep dives into revsets/filesets/templates, bookmarks and sharing, history rewriting, workspaces for parallel agents, and configuration.
@@ -209,6 +215,10 @@ Adapted from:
 - The [frontend-design](https://github.com/anthropics/skills/tree/main/frontend-design) skill in [anthropics/skills](https://github.com/anthropics/skills) (Apache 2.0)
 - [Dammyjay93/interface-design](https://github.com/Dammyjay93/interface-design) (MIT, Damola Akinleye)
 - [Teaching Claude to Design Better: Improving Anthropic's Frontend Design Skill](https://www.justinwetch.com/blog/improvingclaudefrontend) ([relevant PR](https://github.com/anthropics/skills/pull/210)) by Justin Wetch
+
+### grug-brained-dev
+
+Inspired by [The Grug Brained Developer](https://grugbrain.dev/), a funny-looking but painfully useful guide to fighting complexity demons with plain names, small refactors, and suspicion of premature abstraction.
 
 ### improving-prompts
 
