@@ -14,7 +14,7 @@ This file records where the current `skill-authoring` skill came from and what e
 | `sources/obra/` | Medium | TDD-style skill testing, pressure scenarios, persuasion/rationalization handling | Strongest for discipline-enforcing skills; can be too heavy for reference skills |
 | `sources/pproenca/` | Medium | Granular authoring rules organized by impact | Curated guidance; verify against current spec when rules conflict |
 | `sources/pytorch/` | Medium | Simple single-file skill-writing approach | Project-specific Claude conventions may not generalize |
-| Craig Hockenberry, "Skill Synthesis" (`https://cra.mr/skill-synthesis`) | Medium | Source-backed synthesis loop, use of project history, false-positive/false-negative refinement | Blog/article source; adapt principles rather than copying implementation details |
+| David Cramer, "Skill Synthesis" (`https://cra.mr/skill-synthesis`) | Medium | Source-backed synthesis loop, use of project history, false-positive/false-negative refinement | Blog/article source; adapt principles rather than copying implementation details |
 | `getsentry/skills` `skill-writer` | Medium | `SOURCES.md` provenance convention, precision-before-addition, mode selection, holdout examples, `SKILL.md` as router | Sentry workflow is heavier and more Claude-specific than this repository should adopt wholesale |
 
 ## Synthesis Decisions
@@ -47,4 +47,4 @@ This file records where the current `skill-authoring` skill came from and what e
 
 ## Change Log
 
-- 2026-05-08: Added Sentry/Craig Hockenberry skill synthesis practices: source-backed synthesis workflow, provenance convention, precision-before-addition, and holdout examples.
+- 2026-05-08: Added Sentry/David Cramer skill synthesis practices: source-backed synthesis workflow, provenance convention, precision-before-addition, and holdout examples.
