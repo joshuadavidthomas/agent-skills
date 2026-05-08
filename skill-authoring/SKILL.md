@@ -123,6 +123,8 @@ Structure your skill in layers:
 | Critical instructions in first 100 lines | Content can be truncated |
 | SKILL.md under 500 lines | Context is precious |
 | One excellent example > many mediocre | Quality over quantity |
+| Source-backed guidance beats vibes | Real docs, history, fixes, and failures make skills accurate |
+| Precision before addition | Narrow or replace existing guidance before adding more files |
 | Test activation before deployment | A skill that works but never triggers = zero value |
 | Use agent-agnostic language | Skills work with any LLM, not just one |
 
@@ -149,6 +151,7 @@ skills-ref validate path/to/skill
 | Task | Resource |
 |------|----------|
 | Create a new skill from scratch | [workflows/create.md](workflows/create.md) |
+| Synthesize a skill from source material, project history, or examples | [workflows/synthesize.md](workflows/synthesize.md) |
 | Test activation and behavior | [workflows/test.md](workflows/test.md) |
 | Debug a skill that isn't working | [workflows/debug.md](workflows/debug.md) |
 | Refine a skill from session learnings | [workflows/refine.md](workflows/refine.md) |
@@ -182,13 +185,16 @@ The `sources/` directory contains complete skill-authoring approaches from diffe
 | `sources/pproenca/` | 46 granular rules organized by impact level |
 | `sources/pytorch/` | Simple single-file approach |
 
+For material synthesis work, keep a `SOURCES.md` in the skill root with source inventory, trust level, contribution, constraints, decisions, gaps, and change log. Provenance belongs there unless the agent needs it at runtime.
+
 ## The Bottom Line
 
 A skill is a teaching document. Its job is to make an agent smarter about something specific.
 
 Write the description for discovery — use the words users say.
 Write the body for understanding — orient, instruct, show, warn.
+Synthesize from evidence — trusted docs, project history, real fixes, and failure cases.
 Structure for efficiency — keep the main file lean, push details to references.
-Test for activation — a skill that never triggers provides zero value.
+Test for activation and behavior — a skill that never triggers or produces noisy results provides little value.
 
 The best skills don't just tell the agent what to do. They give it enough understanding to adapt when the situation doesn't match the template exactly.

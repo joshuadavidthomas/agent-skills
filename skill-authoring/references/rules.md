@@ -161,6 +161,32 @@ SKILL.md → references/examples.md
 SKILL.md → advanced.md → details.md → examples.md
 ```
 
+### synth-source-backed
+For domain-specific or high-impact skills, base guidance on trustworthy source material rather than generic intuition.
+
+High-signal sources include official docs, project runbooks, prior fixes, regressions, incidents, PR review comments, tests, failed agent outputs, and positive/negative examples.
+
+### synth-provenance
+Material synthesis work should have a `SOURCES.md` maintainer artifact with source inventory, trust level, contribution, constraints, decisions, gaps, and change log.
+
+Do not load provenance into `SKILL.md` unless the agent needs it at runtime.
+
+### struct-precision-before-addition
+Before adding a section, reference, script, or rule, identify whether existing guidance should be narrowed, replaced, or deleted.
+
+```
+# ✓ Good
+Tighten the existing "Validation" section with the missing failure case.
+
+# ✗ Bad
+Add references/more-validation-notes.md because the skill feels incomplete.
+```
+
+### test-holdout-examples
+For behavior-sensitive skills, keep reusable positive, negative, and holdout examples.
+
+Use positive examples to preserve desired behavior, negative examples to reduce false positives, and holdout examples to check whether changes generalize instead of overfitting.
+
 ### trigger-file-type-patterns
 Include file extensions users work with.
 
