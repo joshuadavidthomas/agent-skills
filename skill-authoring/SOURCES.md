@@ -15,7 +15,7 @@ This file records where the current `skill-authoring` skill came from and what e
 | `sources/pproenca/` | Medium | Granular authoring rules organized by impact | Curated guidance; verify against current spec when rules conflict |
 | `sources/pytorch/` | Medium | Simple single-file skill-writing approach | Project-specific Claude conventions may not generalize |
 | David Cramer, "Skill Synthesis" (`https://cra.mr/skill-synthesis`) | Medium | Source-backed synthesis loop, use of project history, false-positive/false-negative refinement | Blog/article source; adapt principles rather than copying implementation details |
-| `getsentry/skills` `skill-writer` | Medium | `SOURCES.md` provenance convention, precision-before-addition, mode selection, holdout examples, `SKILL.md` as router | Sentry workflow is heavier and more Claude-specific than this repository should adopt wholesale |
+| `sources/getsentry/` | Medium | `SOURCES.md` provenance convention, precision-before-addition, mode selection, holdout examples, `SKILL.md` as router | Sentry workflow is heavier and more Claude-specific than this repository should adopt wholesale |
 
 ## Synthesis Decisions
 
@@ -48,3 +48,4 @@ This file records where the current `skill-authoring` skill came from and what e
 ## Change Log
 
 - 2026-05-08: Added Sentry/David Cramer skill synthesis practices: source-backed synthesis workflow, provenance convention, precision-before-addition, and holdout examples.
+- 2026-05-08: Vendored `getsentry/skills` `skill-writer` under `sources/getsentry/` and added update-script provenance.

@@ -184,6 +184,7 @@ The `sources/` directory contains complete skill-authoring approaches from diffe
 | `sources/everyinc/` | Router patterns and workflow templates |
 | `sources/pproenca/` | 46 granular rules organized by impact level |
 | `sources/pytorch/` | Simple single-file approach |
+| `sources/getsentry/` | Source-backed skill synthesis, provenance, precision passes, and router-style skill-writer patterns |
 
 For material synthesis work, keep a `SOURCES.md` in the skill root with source inventory, trust level, contribution, constraints, decisions, gaps, and change log. Provenance belongs there unless the agent needs it at runtime.
 
