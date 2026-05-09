@@ -170,7 +170,7 @@ Includes:
 
 ### [skill-authoring](./skill-authoring/)
 
-Create and refine agent skills. Covers SKILL.md structure, high-signal descriptions, trigger design, progressive disclosure, and activation/testing practices.
+Create, synthesize, test, debug, review, and refine agent skills. Uses a job-selection table to route agents to the right workflow, covers high-signal descriptions, progressive disclosure, source-backed synthesis, provenance, activation testing, and failure-driven refinement.
 
 ### [svelte5](./svelte5/)
 
@@ -247,7 +247,18 @@ Adapted from the [commands and agents](https://github.com/humanlayer/humanlayer/
 
 ### skill-authoring
 
-Includes best practices from Anthropic's Claude and Agent Skills documentation.
+Synthesizes skill-authoring guidance from:
+
+- [Agent Skills specification](https://agentskills.io/specification) and docs
+- [anthropics/skills](https://github.com/anthropics/skills) `skill-creator` (Apache 2.0)
+- [EveryInc/compound-engineering-plugin](https://github.com/EveryInc/compound-engineering-plugin) `create-agent-skills`
+- [obra/superpowers](https://github.com/obra/superpowers) `writing-skills`
+- [pproenca/dot-skills](https://github.com/pproenca/dot-skills) `skill-authoring`
+- [pytorch/pytorch](https://github.com/pytorch/pytorch) `.claude/skills/skill-writer`
+- [getsentry/skills](https://github.com/getsentry/skills) `skill-writer` (Apache 2.0)
+- David Cramer's [Skill Synthesis](https://cra.mr/skill-synthesis)
+
+See [`skill-authoring/README.md`](skill-authoring/README.md) for the detailed source inventory and synthesis decisions.
 
 ### svelte5 and sveltekit
 
@@ -257,7 +268,6 @@ Reference and guidance adapted from:
 - [Svelte documentation](https://svelte.dev/docs) (MIT)
 - [Modern SvelteKit Tutorial](https://github.com/stolinski/Modern-Svelte-Kit-Tutorial) by Scott Tolinski
 - [Svelte Stores Streams Effect](https://github.com/bmdavis419/Svelte-Stores-Streams-Effect) by Ben Davis ([video](https://www.youtube.com/watch?v=kMBDsyozllk))
-
 
 ### writing-clearly-and-concisely
 
