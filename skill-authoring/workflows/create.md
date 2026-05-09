@@ -4,15 +4,15 @@ Step-by-step workflow for building a skill from scratch.
 
 ## Quick Start with Scripts
 
-Scaffold a new skill instantly:
+Scaffold a new skill instantly. Script paths are relative to the `skill-authoring/` skill directory.
 
 ```bash
 python scripts/init.py my-skill-name
 python scripts/init.py my-skill-name --path ~/.claude/skills  # custom location
-python scripts/init.py my-skill-name --router                  # router pattern
+python scripts/init.py my-skill-name --router                  # skill routes between sub-workflows
 ```
 
-This creates the directory structure with a template SKILL.md. Then customize from there.
+This creates the directory structure with a template SKILL.md. For manual starts, use [templates/simple.md](../templates/simple.md) or [templates/router.md](../templates/router.md). Then customize from there.
 
 To validate your skill before deployment:
 

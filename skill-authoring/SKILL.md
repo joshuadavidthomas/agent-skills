@@ -15,13 +15,13 @@ Agents see `name` and `description` before they see the body. The body loads onl
 
 | Job | Read first | Then use when needed |
 |-----|------------|----------------------|
-| Create a small skill from scratch | [workflows/create.md](workflows/create.md) | [references/patterns.md](references/patterns.md), [references/examples.md](references/examples.md) |
-| Build or update a skill from docs, project history, examples, failures, or multiple sources | [workflows/synthesize.md](workflows/synthesize.md) | [SOURCES.md](SOURCES.md), [references/rules.md](references/rules.md) |
-| Gut-check or review an existing skill | [references/rules.md](references/rules.md) | [references/examples.md](references/examples.md), [spec/specification.md](spec/specification.md) |
-| Check whether a skill activates and behaves correctly | [workflows/test.md](workflows/test.md) | [references/rules.md](references/rules.md) |
-| Diagnose a skill that will not trigger or is ignored | [workflows/debug.md](workflows/debug.md) | [spec/specification.md](spec/specification.md) |
-| Improve a skill from a concrete session failure | [workflows/refine.md](workflows/refine.md) | [workflows/test.md](workflows/test.md) |
-| Verify format constraints | [spec/specification.md](spec/specification.md) | `./scripts/validate.sh path/to/skill` |
+| Create a small skill from scratch | [workflows/create.md](workflows/create.md) | [templates/simple.md](templates/simple.md), [templates/router.md](templates/router.md), [references/patterns.md](references/patterns.md) |
+| Build or update a skill from docs, project history, examples, failures, or multiple sources | [workflows/synthesize.md](workflows/synthesize.md) | [SOURCES.md](SOURCES.md), [references/examples.md](references/examples.md) |
+| Review or audit an existing skill | [references/rules.md](references/rules.md) | [references/examples.md](references/examples.md), [spec/specification.md](spec/specification.md) |
+| Check whether a skill activates and behaves correctly | [workflows/test.md](workflows/test.md) | [workflows/debug.md](workflows/debug.md) when activation fails |
+| Diagnose a skill that will not trigger or is ignored | [workflows/debug.md](workflows/debug.md) | [spec/specification.md](spec/specification.md), [references/rules.md](references/rules.md) |
+| Improve a skill from a concrete session failure | [workflows/refine.md](workflows/refine.md) | [references/rules.md](references/rules.md), [workflows/test.md](workflows/test.md) |
+| Verify format constraints | [spec/specification.md](spec/specification.md) | [Tooling](#tooling) |
 
 ## Fast Path
 
@@ -49,6 +49,8 @@ Use the workflow files for new skills, source synthesis, debugging, testing, or 
 | Precision before addition | More files and prose often reduce reliability |
 | Test activation before deployment | A skill that works but never triggers has zero value |
 | Use agent-agnostic language by default | Skills should port across LLM agents unless intentionally provider-specific |
+
+For the full impact-ranked rule list, read [references/rules.md](references/rules.md) when reviewing, auditing, or tightening a skill.
 
 ## Skill Shape
 
@@ -143,11 +145,13 @@ Do not split content just to look organized.
 
 ## Tooling
 
+Script paths are relative to this skill directory.
+
 Scaffold a skill:
 
 ```bash
 python scripts/init.py my-skill
-python scripts/init.py my-skill --router
+python scripts/init.py my-skill --router  # for skills that route between sub-workflows
 ```
 
 Validate a skill:
@@ -167,19 +171,13 @@ Validation checks structure. It does not prove description quality, source cover
 
 ## Source Material
 
-The `sources/` directory contains complete skill-authoring approaches from different authors, preserved for deeper study:
+Vendored authoring approaches live under `sources/` for deeper study. For this skill's source inventory, synthesis decisions, and gaps, read [SOURCES.md](SOURCES.md).
 
-| Source | Approach |
-|--------|----------|
-| `sources/anthropic/` | Official Anthropic skill-creator with init/package scripts |
-| `sources/obra/` | TDD-based methodology with pressure testing |
-| `sources/everyinc/` | Router patterns and workflow templates |
-| `sources/pproenca/` | Granular rules organized by impact level |
-| `sources/pytorch/` | Simple single-file approach |
-| `sources/getsentry/` | Source-backed skill synthesis, provenance, precision passes, and router-style skill-writer patterns |
+## Report Back
 
-For this skill's own provenance and synthesis decisions, read [SOURCES.md](SOURCES.md).
+When modifying or reviewing a skill, report:
 
-## Output Format
-
-When modifying or reviewing a skill, return a summary, changes made or findings, validation results, and any open gaps.
+1. Summary
+2. Changes made or findings
+3. Validation results
+4. Open gaps

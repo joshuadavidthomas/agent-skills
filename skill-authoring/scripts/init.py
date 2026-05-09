@@ -214,7 +214,7 @@ def main():
         print()
         print("Next steps:")
         print("  1. Edit SKILL.md - fill in description and instructions")
-        print("  2. Run validate.py to check structure")
+        print("  2. Run scripts/validate.sh to check structure")
         print("  3. Test activation with real user phrases")
         
     except ValueError as e:
