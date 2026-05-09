@@ -5,38 +5,34 @@ description: Use when authoring, creating, refining, or troubleshooting agent sk
 
 # Skill Authoring
 
-Use this skill when creating, synthesizing, testing, debugging, or refining agent skills. Route to the matching workflow file below; handle trivial edits inline.
+Use this as the working playbook for skill creation and maintenance. Start by choosing the job below. Load only the files needed for that job.
 
-Primary success condition: the resulting skill triggers reliably, gives the agent only the guidance it needs, and is backed by evidence where domain accuracy matters.
+Done means the skill loads for the right requests, gives clear instructions without bloating context, and records source evidence when domain accuracy matters.
 
-Agents discover skills from frontmatter first: `name` and `description` are visible before the body loads. The body loads only after the description matches the task. References, scripts, and assets load only when needed. Write for that loading order.
+Agents see `name` and `description` before they see the body. The body loads only after the description matches the task. References, scripts, and assets load only when needed. Write for that loading order.
 
-## Choose the Path
+## Choose the Job
 
-| If the task is... | Do this |
-|-------------------|---------|
-| Create a small skill from scratch | Read [workflows/create.md](workflows/create.md) |
-| Build from docs, project history, examples, failures, or multiple sources | Read [workflows/synthesize.md](workflows/synthesize.md) |
-| Check whether a skill activates and behaves correctly | Read [workflows/test.md](workflows/test.md) |
-| Diagnose a skill that will not trigger or is ignored | Read [workflows/debug.md](workflows/debug.md) |
-| Improve a skill from a concrete session failure | Read [workflows/refine.md](workflows/refine.md) |
-| Look up authoring patterns | Read [references/patterns.md](references/patterns.md) |
-| Compare good and bad examples | Read [references/examples.md](references/examples.md) |
-| Check detailed rules by impact | Read [references/rules.md](references/rules.md) |
-| Verify format constraints | Read [spec/specification.md](spec/specification.md) |
+| Job | Read first | Then use when needed |
+|-----|------------|----------------------|
+| Create a small skill from scratch | [workflows/create.md](workflows/create.md) | [references/patterns.md](references/patterns.md), [references/examples.md](references/examples.md) |
+| Build or update a skill from docs, project history, examples, failures, or multiple sources | [workflows/synthesize.md](workflows/synthesize.md) | [SOURCES.md](SOURCES.md), [references/rules.md](references/rules.md) |
+| Gut-check or review an existing skill | [references/rules.md](references/rules.md) | [references/examples.md](references/examples.md), [spec/specification.md](spec/specification.md) |
+| Check whether a skill activates and behaves correctly | [workflows/test.md](workflows/test.md) | [references/rules.md](references/rules.md) |
+| Diagnose a skill that will not trigger or is ignored | [workflows/debug.md](workflows/debug.md) | [spec/specification.md](spec/specification.md) |
+| Improve a skill from a concrete session failure | [workflows/refine.md](workflows/refine.md) | [workflows/test.md](workflows/test.md) |
+| Verify format constraints | [spec/specification.md](spec/specification.md) | `./scripts/validate.sh path/to/skill` |
 
-Load only the files needed for the current path. Do not read every reference by default.
+## Fast Path
 
-## Inline Fallback
+For a localized edit, do not ritualize it:
 
-For small edits that do not need a workflow file:
-
-1. Inspect the existing skill and repository conventions.
-2. Make the smallest change that fixes the issue.
+1. Inspect the skill and nearby conventions.
+2. Edit the smallest thing that fixes the issue.
 3. Validate structure and, when relevant, activation behavior.
-4. Report what changed and any open gaps.
+4. Report what changed and what remains uncertain.
 
-Use a workflow file for anything broader than a localized edit.
+Use the workflow files for new skills, source synthesis, debugging, testing, or any change that touches the skill's shape.
 
 ## Cardinal Rules
 
@@ -114,17 +110,17 @@ Exclude:
 - first-person language
 - generic claims like "helps with documents"
 
-## Runtime Body Requirements
+## Writing SKILL.md Bodies
 
-Write for an agent that can already reason. Do not teach basics. Provide constraints and examples.
+Write for an agent that can already reason. Do not teach basics. Provide the facts, constraints, examples, and checks that change behavior.
 
-Use this structure by default:
+Use this shape by default:
 
-1. **Route**: choose path or mode quickly.
-2. **Instruct**: imperative steps and decision points.
-3. **Show**: one excellent concrete example or template.
-4. **Warn**: common mistakes, rationalizations, false positives, or edge cases.
-5. **Validate**: exact checks or expected evidence.
+1. **Choose**: identify the mode, path, or workflow quickly.
+2. **Do**: give imperative steps and decision points.
+3. **Show**: include one excellent concrete example or template.
+4. **Guard**: call out common mistakes, rationalizations, false positives, or edge cases.
+5. **Check**: name the validation command, evidence, or expected result.
 
 Prefer tables, checklists, templates, and input/output examples over explanatory prose.
 

@@ -50,3 +50,4 @@ This file records where the current `skill-authoring` skill came from and what e
 - 2026-05-08: Added Sentry/David Cramer skill synthesis practices: source-backed synthesis workflow, provenance convention, precision-before-addition, and holdout examples.
 - 2026-05-08: Vendored `getsentry/skills` `skill-writer` under `sources/getsentry/` and added update-script provenance.
 - 2026-05-08: Reworked `SKILL.md` from a teaching document into an agent-facing workflow guide with path selection, inline fallback, cardinal rules, placement rules, and output format.
+- 2026-05-08: Tightened `SKILL.md` language around actual use: job selection, fast path, and body shape, without importing Sentry-specific jargon wholesale.
