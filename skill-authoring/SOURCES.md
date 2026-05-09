@@ -19,9 +19,9 @@ This file records where the current `skill-authoring` skill came from and what e
 
 ## Synthesis Decisions
 
-- Decision: Keep `SKILL.md` concise and use direct workflow/reference links.
+- Decision: Keep `SKILL.md` concise and use it as a runtime router rather than a teaching essay.
   - Supported by: Agent Skills spec, Anthropic source, EveryInc source, Sentry `skill-writer`.
-  - Reason: Preserves progressive disclosure and avoids runtime context bloat.
+  - Reason: The audience is an LLM agent that needs operational routing, constraints, examples, and validation steps more than conceptual explanation.
 
 - Decision: Add `workflows/synthesize.md` rather than folding synthesis guidance into `create.md`.
   - Supported by: Skill Synthesis article and Sentry `skill-writer` synthesis path.
@@ -49,3 +49,4 @@ This file records where the current `skill-authoring` skill came from and what e
 
 - 2026-05-08: Added Sentry/David Cramer skill synthesis practices: source-backed synthesis workflow, provenance convention, precision-before-addition, and holdout examples.
 - 2026-05-08: Vendored `getsentry/skills` `skill-writer` under `sources/getsentry/` and added update-script provenance.
+- 2026-05-08: Reworked `SKILL.md` from a teaching document into an agent-facing runtime router with path selection, default workflow, non-negotiables, placement rules, and output format.
