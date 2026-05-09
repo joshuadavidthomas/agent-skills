@@ -4,15 +4,15 @@ Step-by-step workflow for building a skill from scratch.
 
 ## Quick Start with Scripts
 
-Scaffold a new skill instantly:
+Scaffold a new skill instantly. Script paths are relative to the `skill-authoring/` skill directory.
 
 ```bash
 python scripts/init.py my-skill-name
 python scripts/init.py my-skill-name --path ~/.claude/skills  # custom location
-python scripts/init.py my-skill-name --router                  # router pattern
+python scripts/init.py my-skill-name --router                  # skill routes between sub-workflows
 ```
 
-This creates the directory structure with a template SKILL.md. Then customize from there.
+This creates the directory structure with a template SKILL.md. For manual starts, use [templates/simple.md](../templates/simple.md) or [templates/router.md](../templates/router.md). Then customize from there.
 
 To validate your skill before deployment:
 
@@ -37,6 +37,8 @@ Answer these questions:
 3. **Does this already exist?** Check if another skill covers this. Overlapping skills create activation conflicts.
 
 4. **Is this reusable?** If it's a one-off solution or project-specific convention, put it in CLAUDE.md instead.
+
+5. **What evidence should shape it?** For domain-specific skills, collect trustworthy sources before authoring: official docs, project docs, prior fixes, PR comments, incidents, failed agent outputs, and positive/negative examples. If source collection is substantial, use [synthesize.md](synthesize.md).
 
 ## Step 1: Scaffold the Structure
 
@@ -86,6 +88,13 @@ description: Use when working with PDF files — extracts text, fills forms, mer
 
 ## Step 3: Write the Body
 
+Before adding content, run a precision check:
+
+- Can an existing rule or section be narrowed instead of adding a new one?
+- Does this instruction come from source evidence or a real observed failure?
+- Does each reference file have a clear "open when..." reason?
+- Is this maintainer context rather than runtime guidance? Put it in `README.md`.
+
 Follow the Orient → Instruct → Show → Warn pattern:
 
 ```markdown
@@ -134,6 +143,8 @@ python scripts/extract.py input.pdf
 ```
 
 **assets/** — Templates, images for output (not loaded into context)
+
+**README.md** — Maintainer context for synthesized or complex skills. Use when the skill was built from substantial source material, project history, or evaluation examples. Record source, trust level, contribution, constraints, decisions, gaps, and change log.
 
 ## Step 5: Test Activation
 
@@ -191,6 +202,9 @@ Before considering the skill complete:
 - [ ] Description has trigger keywords users actually say
 - [ ] Description does NOT summarize workflow
 - [ ] Body follows Orient → Instruct → Show → Warn
+- [ ] Guidance is source-backed or tied to observed failures
+- [ ] Existing guidance was narrowed before adding new sections/files
+- [ ] README.md exists when synthesis/provenance matters
 - [ ] SKILL.md is under 500 lines
 - [ ] References are one level deep (no nested links)
 - [ ] Tested activation with 5+ trigger phrases

@@ -23,6 +23,7 @@ SOURCES=(
   "obra|https://github.com/obra/superpowers|main|skills/writing-skills"
   "pproenca|https://github.com/pproenca/dot-skills|master|skills/.curated/skill-authoring"
   "pytorch|https://github.com/pytorch/pytorch|main|.claude/skills/skill-writer"
+  "getsentry|https://github.com/getsentry/skills|main|skills/skill-writer"
 )
 
 # Spec docs from agentskills.io - fetched directly with Accept: text/markdown
