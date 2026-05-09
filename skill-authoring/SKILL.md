@@ -5,9 +5,11 @@ description: Use when authoring, creating, refining, or troubleshooting agent sk
 
 # Skill Authoring
 
-Use this as the runtime router for creating, synthesizing, testing, debugging, and refining agent skills.
+Use this skill when creating, synthesizing, testing, debugging, or refining agent skills. Route to the matching workflow file below; handle trivial edits inline.
 
-Primary success condition: the resulting skill triggers reliably, gives the agent the minimum necessary runtime guidance, and is backed by evidence where domain accuracy matters.
+Primary success condition: the resulting skill triggers reliably, gives the agent only the guidance it needs, and is backed by evidence where domain accuracy matters.
+
+Agents discover skills from frontmatter first: `name` and `description` are visible before the body loads. The body loads only after the description matches the task. References, scripts, and assets load only when needed. Write for that loading order.
 
 ## Choose the Path
 
@@ -25,21 +27,18 @@ Primary success condition: the resulting skill triggers reliably, gives the agen
 
 Load only the files needed for the current path. Do not read every reference by default.
 
-## Default Workflow
+## Inline Fallback
 
-Follow these steps unless the user requested a narrower operation:
+For small edits that do not need a workflow file:
 
-1. **Resolve the operation**: create, synthesize, test, debug, or refine.
-2. **Inspect prior art**: check existing skill files and repository conventions before choosing a shape.
-3. **Choose the smallest adequate shape**: inline skill first; references, scripts, assets, and provider-specific mechanics only when justified.
-4. **Gather evidence when accuracy matters**: use official docs, project history, prior fixes, PR comments, incidents, failed agent outputs, and positive/negative examples.
-5. **Run precision before addition**: narrow, replace, or delete existing guidance before adding sections or files.
-6. **Author runtime guidance**: concise imperative instructions, concrete examples, and common failure counters.
-7. **Optimize description**: include user trigger words, file types, symptoms, and synonyms; avoid step-by-step workflow summaries.
-8. **Validate**: run structural validation and test activation/behavior.
-9. **Report gaps**: state unverified assumptions, missing sources, and any known false-positive/false-negative risk.
+1. Inspect the existing skill and repository conventions.
+2. Make the smallest change that fixes the issue.
+3. Validate structure and, when relevant, activation behavior.
+4. Report what changed and any open gaps.
 
-## Non-Negotiables
+Use a workflow file for anything broader than a localized edit.
+
+## Cardinal Rules
 
 | Rule | Why It Matters |
 |------|----------------|
@@ -47,7 +46,7 @@ Follow these steps unless the user requested a narrower operation:
 | Description names capabilities and activation conditions, not steps | Agents may follow description shortcuts instead of loading the body |
 | Description uses third person | It is injected as metadata, not spoken by the agent |
 | Name matches directory | Required for skill loading |
-| Critical runtime instructions appear early | Long content may be skipped or deemphasized |
+| Critical instructions appear early | Long content may be skipped or deemphasized |
 | `SKILL.md` stays lean | Runtime context is limited |
 | References are directly linked from `SKILL.md` | Hidden chains are easy to miss |
 | Source-backed guidance beats vibes | Real docs, history, fixes, and failures improve accuracy |
@@ -59,7 +58,7 @@ Follow these steps unless the user requested a narrower operation:
 
 ```
 skill-name/
-├── SKILL.md              # Required runtime entry point
+├── SKILL.md              # Required entry point
 ├── SOURCES.md            # Optional maintainer provenance for synthesized skills
 ├── references/           # Optional focused docs loaded on demand
 ├── scripts/              # Optional executable helpers
@@ -70,7 +69,7 @@ Use this placement model:
 
 | Content | Put it in |
 |---------|-----------|
-| Activation metadata and required runtime instructions | `SKILL.md` |
+| Frontmatter and core instructions | `SKILL.md` |
 | Detailed optional guidance the agent may need | `references/*.md` |
 | Deterministic repeatable operations | `scripts/*` |
 | Templates, schemas, static examples | `assets/*` |
@@ -80,7 +79,7 @@ Provenance belongs in `SOURCES.md` unless the agent needs it to perform the task
 
 ## Description Requirements
 
-The description is the activation surface. Write it for discovery.
+The description decides whether the skill ever loads. Write it for discovery.
 
 Use this formula:
 
@@ -117,7 +116,7 @@ Exclude:
 
 ## Runtime Body Requirements
 
-Write for an agent that can already reason. Do not teach basics. Provide operational constraints and examples.
+Write for an agent that can already reason. Do not teach basics. Provide constraints and examples.
 
 Use this structure by default:
 
@@ -134,7 +133,7 @@ Prefer tables, checklists, templates, and input/output examples over explanatory
 | Layer | What | When Loaded | Target |
 |-------|------|-------------|--------|
 | 1 | `name` + `description` | Always | Trigger-rich, concise |
-| 2 | `SKILL.md` body | When skill triggers | Runtime router + core rules |
+| 2 | `SKILL.md` body | When skill triggers | Path choice + core rules |
 | 3 | `references/`, `scripts/`, `assets/` | On demand | Focused leaves with direct reasons |
 
 Split content when:
@@ -187,9 +186,4 @@ For this skill's own provenance and synthesis decisions, read [SOURCES.md](SOURC
 
 ## Output Format
 
-When modifying or reviewing a skill, return:
-
-1. `Summary`
-2. `Changes Made` or `Findings`
-3. `Validation Results`
-4. `Open Gaps`
+When modifying or reviewing a skill, return a summary, changes made or findings, validation results, and any open gaps.
