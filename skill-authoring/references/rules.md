@@ -167,7 +167,7 @@ For domain-specific or high-impact skills, base guidance on trustworthy source m
 High-signal sources include official docs, project runbooks, prior fixes, regressions, incidents, PR review comments, tests, failed agent outputs, and positive/negative examples.
 
 ### synth-provenance
-Material synthesis work should have a `SOURCES.md` maintainer artifact with source inventory, trust level, contribution, constraints, decisions, gaps, and change log.
+Material synthesis work should have a `README.md` maintainer artifact with source inventory, trust level, contribution, constraints, decisions, gaps, and change log.
 
 Do not load provenance into `SKILL.md` unless the agent needs it at runtime.
 

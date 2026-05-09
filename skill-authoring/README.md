@@ -1,6 +1,6 @@
-# Sources
+# Skill Authoring
 
-This file records where the current `skill-authoring` skill came from and what each source contributed. It is maintainer provenance, not runtime instruction.
+This file records where the current `skill-authoring` skill came from, what each source contributed, and what maintenance decisions shaped it. It is maintainer context, not runtime instruction.
 
 ## Source Inventory
 
@@ -15,7 +15,7 @@ This file records where the current `skill-authoring` skill came from and what e
 | `sources/pproenca/` | Medium | Granular authoring rules organized by impact | Curated guidance; verify against current spec when rules conflict |
 | `sources/pytorch/` | Medium | Simple single-file skill-writing approach | Project-specific Claude conventions may not generalize |
 | David Cramer, "Skill Synthesis" (`https://cra.mr/skill-synthesis`) | Medium | Source-backed synthesis loop, use of project history, false-positive/false-negative refinement | Blog/article source; adapt principles rather than copying implementation details |
-| `sources/getsentry/` | Medium | `SOURCES.md` provenance convention, precision-before-addition, mode selection, holdout examples, `SKILL.md` as router | Sentry workflow is heavier and more Claude-specific than this repository should adopt wholesale |
+| `sources/getsentry/` | Medium | Provenance convention, precision-before-addition, mode selection, holdout examples, `SKILL.md` as router | Sentry workflow is heavier and more Claude-specific than this repository should adopt wholesale |
 
 ## Synthesis Decisions
 
@@ -27,8 +27,8 @@ This file records where the current `skill-authoring` skill came from and what e
   - Supported by: Skill Synthesis article and Sentry `skill-writer` synthesis path.
   - Reason: Source-backed synthesis is important but not required for every small skill.
 
-- Decision: Use `SOURCES.md` as an optional maintainer artifact for material synthesis work.
-  - Supported by: Sentry `skill-writer`.
+- Decision: Use `README.md` as the maintainer artifact for material synthesis work in this repository.
+  - Supported by: repository convention and Sentry `skill-writer`'s separate provenance artifact.
   - Reason: Provenance, trust, decisions, and gaps matter for maintainers but usually should not consume runtime context.
 
 - Decision: Add precision-before-addition as a rule.
@@ -43,7 +43,7 @@ This file records where the current `skill-authoring` skill came from and what e
 
 - Covered: Agent Skills format, trigger-focused descriptions, progressive disclosure, creation, testing, debugging, refinement, source-backed synthesis, provenance, precision passes.
 - Gaps: Per-source commit provenance for `sources/*` is missing because `.source` files are not present. `update-sources.sh` can regenerate them later.
-- Needs validation: Whether `SOURCES.md` should become a recommended convention for all complex skills in this repository or only for skill-authoring and synthesis-heavy skills.
+- Needs validation: Whether `README.md` should become a recommended maintainer-context convention for all complex skills in this repository or only for synthesis-heavy skills.
 
 ## Change Log
 

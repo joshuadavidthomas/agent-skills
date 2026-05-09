@@ -93,7 +93,7 @@ Before adding content, run a precision check:
 - Can an existing rule or section be narrowed instead of adding a new one?
 - Does this instruction come from source evidence or a real observed failure?
 - Does each reference file have a clear "open when..." reason?
-- Is this maintainer provenance rather than runtime guidance? Put it in `SOURCES.md`.
+- Is this maintainer context rather than runtime guidance? Put it in `README.md`.
 
 Follow the Orient → Instruct → Show → Warn pattern:
 
@@ -144,7 +144,7 @@ python scripts/extract.py input.pdf
 
 **assets/** — Templates, images for output (not loaded into context)
 
-**SOURCES.md** — Maintainer provenance for synthesized skills. Use when the skill was built from substantial source material, project history, or evaluation examples. Record source, trust level, contribution, constraints, decisions, gaps, and change log.
+**README.md** — Maintainer context for synthesized or complex skills. Use when the skill was built from substantial source material, project history, or evaluation examples. Record source, trust level, contribution, constraints, decisions, gaps, and change log.
 
 ## Step 5: Test Activation
 
@@ -204,7 +204,7 @@ Before considering the skill complete:
 - [ ] Body follows Orient → Instruct → Show → Warn
 - [ ] Guidance is source-backed or tied to observed failures
 - [ ] Existing guidance was narrowed before adding new sections/files
-- [ ] SOURCES.md exists when synthesis/provenance matters
+- [ ] README.md exists when synthesis/provenance matters
 - [ ] SKILL.md is under 500 lines
 - [ ] References are one level deep (no nested links)
 - [ ] Tested activation with 5+ trigger phrases

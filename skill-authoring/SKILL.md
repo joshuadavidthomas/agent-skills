@@ -16,7 +16,7 @@ Agents see `name` and `description` before they see the body. The body loads onl
 | Job | Read first | Then use when needed |
 |-----|------------|----------------------|
 | Create a small skill from scratch | [workflows/create.md](workflows/create.md) | [templates/simple.md](templates/simple.md), [templates/router.md](templates/router.md), [references/patterns.md](references/patterns.md) |
-| Build or update a skill from docs, project history, examples, failures, or multiple sources | [workflows/synthesize.md](workflows/synthesize.md) | [SOURCES.md](SOURCES.md), [references/examples.md](references/examples.md) |
+| Build or update a skill from docs, project history, examples, failures, or multiple sources | [workflows/synthesize.md](workflows/synthesize.md) | [README.md](README.md), [references/examples.md](references/examples.md) |
 | Review or audit an existing skill | [references/rules.md](references/rules.md) | [references/examples.md](references/examples.md), [spec/specification.md](spec/specification.md) |
 | Check whether a skill activates and behaves correctly | [workflows/test.md](workflows/test.md) | [workflows/debug.md](workflows/debug.md) when activation fails |
 | Diagnose a skill that will not trigger or is ignored | [workflows/debug.md](workflows/debug.md) | [spec/specification.md](spec/specification.md), [references/rules.md](references/rules.md) |
@@ -57,7 +57,7 @@ For the full impact-ranked rule list, read [references/rules.md](references/rule
 ```
 skill-name/
 ├── SKILL.md              # Required entry point
-├── SOURCES.md            # Optional maintainer provenance for synthesized skills
+├── README.md             # Optional maintainer context for synthesized or complex skills
 ├── references/           # Optional focused docs loaded on demand
 ├── scripts/              # Optional executable helpers
 └── assets/               # Optional templates, schemas, images, static files
@@ -71,9 +71,9 @@ Use this placement model:
 | Detailed optional guidance the agent may need | `references/*.md` |
 | Deterministic repeatable operations | `scripts/*` |
 | Templates, schemas, static examples | `assets/*` |
-| Source inventory, trust level, decisions, gaps, changelog | `SOURCES.md` |
+| Source inventory, trust level, decisions, gaps, changelog | `README.md` |
 
-Provenance belongs in `SOURCES.md` unless the agent needs it to perform the task.
+Provenance belongs in `README.md` unless the agent needs it to perform the task.
 
 ## Description Requirements
 
@@ -171,7 +171,7 @@ Validation checks structure. It does not prove description quality, source cover
 
 ## Source Material
 
-Vendored authoring approaches live under `sources/` for deeper study. For this skill's source inventory, synthesis decisions, and gaps, read [SOURCES.md](SOURCES.md).
+Vendored authoring approaches live under `sources/` for deeper study. For this skill's source inventory, synthesis decisions, and gaps, read [README.md](README.md).
 
 ## Report Back
 

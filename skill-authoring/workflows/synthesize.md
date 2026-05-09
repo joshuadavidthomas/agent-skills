@@ -43,7 +43,7 @@ Do not treat all sources equally. A real project fix usually beats a generic blo
 
 ## Step 3: Record Provenance
 
-For material skill work, create or update `SOURCES.md` at the skill root.
+For material skill work, create or update `README.md` at the skill root.
 
 Use this shape:
 
@@ -74,7 +74,7 @@ Use this shape:
 - YYYY-MM-DD: [what changed and why]
 ```
 
-Keep provenance out of runtime prose unless the agent needs it during execution. `SOURCES.md` is for maintainers.
+Keep provenance out of runtime prose unless the agent needs it during execution. `README.md` is for maintainers.
 
 ## Step 4: Extract Patterns Before Writing
 
@@ -97,7 +97,7 @@ Before adding content, run a precision check:
 1. What is the smallest instruction that changes behavior?
 2. Can an existing section be narrowed instead of adding a new one?
 3. Does each reference file have a direct "open when..." reason from `SKILL.md`?
-4. Is any content only background for maintainers? Put it in `SOURCES.md`, not `SKILL.md`.
+4. Is any content only background for maintainers? Put it in `README.md`, not `SKILL.md`.
 5. Is provider-specific machinery necessary? If yes, document the portability cost.
 
 Prefer tightening existing guidance over adding another section.
@@ -114,7 +114,7 @@ Use three slices:
 | Negative examples | The skill should avoid flagging or producing this behavior |
 | Holdout examples | Do not tune directly against these; use them to check generalization |
 
-Store persistent examples under `references/evidence/` only when they are reusable and safe to keep. Otherwise, summarize anonymized patterns in `SOURCES.md`.
+Store persistent examples under `references/evidence/` only when they are reusable and safe to keep. Otherwise, summarize anonymized patterns in `README.md`.
 
 ## Step 7: Run and Classify Results
 
