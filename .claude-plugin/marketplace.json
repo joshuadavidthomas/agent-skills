@@ -85,6 +85,13 @@
       "strict": false
     },
     {
+      "name": "writing-error-messages",
+      "source": "./",
+      "description": "Write specific, actionable, safe error messages",
+      "skills": "./writing-error-messages",
+      "strict": false
+    },
+    {
       "name": "writing-cli-skills",
       "source": "./",
       "description": "Guide for building high-quality CLI tool skills",
