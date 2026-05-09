@@ -188,6 +188,12 @@ Includes the full *Elements of Style* (1918) split into loadable sections coveri
 
 Also includes a comprehensive guide to AI writing patterns Wikipedia editors developed to detect generated submissions—covering puffery (*pivotal*, *testament*), overused vocabulary (*delve*, *leverage*, *multifaceted*), and formatting tells.
 
+### [writing-error-messages](./writing-error-messages/)
+
+Write and review human-facing software error messages: UI failures, form validation, auth and account-recovery copy, retry/support paths, CLI errors, and API errors humans will read.
+
+Focuses on making errors specific, actionable, non-blaming, accessible, and safe. Includes the important security exception for authentication and recovery flows, where generic messages may be required to avoid account enumeration.
+
 ### [writing-cli-skills](./writing-cli-skills/)
 
 Guide for building high-quality skills around CLI tools. Emphasizes hands-on tool usage, practical command organization, progressive disclosure, and review checklists.
@@ -272,6 +278,10 @@ Reference and guidance adapted from:
 ### writing-clearly-and-concisely
 
 Adapted from [obra/the-elements-of-style](https://github.com/obra/the-elements-of-style). The 1918 *Elements of Style* text is in the public domain via [Project Gutenberg](https://www.gutenberg.org/files/37134/37134-h/37134-h.htm). The AI writing patterns guide is adapted from Wikipedia's [Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) ([CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)).
+
+### writing-error-messages
+
+Synthesizes product writing and UX guidance from [Wix UX](https://wix-ux.com/when-life-gives-you-lemons-write-better-error-messages-46c5223e1a2f), [GOV.UK Design System](https://design-system.service.gov.uk/components/error-message/), [Nielsen Norman Group](https://www.nngroup.com/articles/error-message-guidelines/), [Atlassian Design](https://atlassian.design/content/designing-messages/writing-error-messages), [Microsoft Learn](https://learn.microsoft.com/en-us/windows/apps/design/style/writing-style), [Shopify Polaris](https://polaris.shopify.com/content/error-messages), and [OWASP Authentication Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet).
 
 ## License
 
