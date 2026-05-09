@@ -55,6 +55,11 @@ Use only the pieces the situation needs.
 
 Keep UI body copy to 1-2 sentences when possible. Put longer diagnostic details in expandable text, logs, or support context.
 
+## References
+
+- Open `references/source-backed-patterns.md` when auditing many messages, resolving wording tradeoffs, or checking source-backed rationale.
+- Open `references/rewrite-examples.md` when rewriting multiple messages or testing whether the skill is producing the right shape.
+
 ## Validation and Form Errors
 
 For field-level errors:
