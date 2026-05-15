@@ -24,6 +24,8 @@ Do not recommend Svelte 5-only syntax for a Svelte 4 project unless the task is 
 Look for:
 
 - `$effect` used to compute state that should be `$derived`
+- `$effect` used to react to user input that should be handled by the input/callback event
+- `$effect` used to convert a bound UI value that should use a function binding
 - stale local copies of props
 - destructuring that loses reactivity outside `$props()` patterns
 - async race conditions in effects or event handlers
@@ -97,6 +99,7 @@ When a review finding needs detail, load the matching reference before proposing
 - Stores: [stores.md](stores.md)
 - TypeScript: [typescript.md](typescript.md)
 - Tests: [testing.md](testing.md)
+- Effects used as synchronization: [effect-driven-state.md](effect-driven-state.md)
 - Debugging reactivity: [debugging.md](debugging.md)
 
 ## 6. Maintainability
@@ -108,7 +111,7 @@ Look for:
 - unclear prop names such as `data`, `item`, `flag`
 - broad `any` types
 - unkeyed `{#each}` blocks where identity matters
-- overuse of `$effect` as lifecycle glue
+- overuse of `$effect` as lifecycle glue instead of derived values, events, actions, or attachments
 
 Prefer extracting small components or `.svelte.ts` state only when it reduces duplication or clarifies ownership.
 

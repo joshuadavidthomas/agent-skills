@@ -9,7 +9,7 @@
 | Complex computation  | `$derived.by()`        | Use function body for multi-line logic |
 | Large immutable data | `$state.raw()`         | Skip deep reactivity for performance   |
 | Read-only snapshot   | `$state.snapshot()`    | Get plain JS value, no proxy           |
-| Side effect          | `$effect()`            | Run code when dependencies change      |
+| Outside-world side effect | `$effect()`       | Synchronize with non-Svelte systems    |
 | Pre-DOM effect       | `$effect.pre()`        | Run before DOM updates                 |
 | Accept props         | `$props()`             | Declare component props                |
 | Bindable prop        | `$bindable()`          | Allow parent to bind to prop           |
@@ -62,16 +62,15 @@
 - Use `$derived.by()` for multi-line logic
 - Lazy - only computes when accessed
 
-## $effect - Side Effects
+## $effect - Outside-World Side Effects
 
-**Use when:** You need to run code in response to state changes
+**Use when:** You must synchronize with something outside Svelte's reactive graph. Do not use `$effect` as a default way to compute values or react to user input; prefer `$derived`, event handlers, or function bindings first.
 
 ```svelte
 <script>
 	let count = $state(0);
 
 	$effect(() => {
-		console.log(`Count changed to ${count}`);
 		document.title = `Count: ${count}`;
 	});
 </script>
@@ -80,9 +79,9 @@
 **Use cases:**
 
 - Logging/analytics
-- Updating external state (localStorage, DOM)
-- Fetching data
-- Setting up/tearing down subscriptions
+- Updating external state such as `localStorage` or `document.title`
+- Setting up/tearing down subscriptions, timers, observers, or imperative libraries
+- Browser-only synchronization that cannot be expressed in markup, an action, or an attachment
 
 **Key points:**
 
@@ -90,6 +89,7 @@
 - Auto-tracks dependencies (any $state accessed)
 - Return cleanup function: `return () => cleanup()`
 - Don't update state that effect depends on (infinite loop!)
+- If the work follows a click/input/select change, put it in that event handler instead
 
 ## $effect.pre - Pre-DOM Effects
 
@@ -155,7 +155,7 @@
 
 ## Common Anti-Patterns
 
-### ❌ Using $effect for derived state
+### ❌ Using $effect for derived state or local event reactions
 
 ```svelte
 <!-- WRONG -->
@@ -174,6 +174,8 @@
   let doubled = $derived(count * 2);  // GOOD
 </script>
 ```
+
+If an effect only calls app logic after a control changes, move the call to the control's event handler instead.
 
 ### ⚠️ Reassigning $derived (Svelte 5.25+)
 

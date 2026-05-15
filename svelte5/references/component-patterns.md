@@ -91,7 +91,7 @@ Svelte 5 uses snippets instead of slots.
 
 ## Events
 
-Use event attributes for DOM events and callback props for component events.
+Use event attributes for DOM events and callback props for component events. If app logic should happen because the user changed something, call that logic from the event instead of watching the resulting state with `$effect`.
 
 ```svelte
 <button type="button" onclick={save}>Save</button>
@@ -107,6 +107,10 @@ Use event attributes for DOM events and callback props for component events.
 </script>
 
 <button type="button" onclick={() => onselect?.(id)}>Select</button>
+```
+
+```svelte
+<Select bind:value={page} onValueChange={(page) => navUpdate({ page })} />
 ```
 
 Avoid `createEventDispatcher` in new Svelte 5 code unless maintaining an old API.

@@ -17,7 +17,7 @@ description: >
 
 You already know Svelte syntax. This skill changes your **defaults** — what you reach for first when designing a component, placing state, modeling reactivity, and reviewing UI code.
 
-The core failure mode: writing Svelte that compiles but thinks like React, Vue, or Svelte 4. Effects that synchronize derived state. Props copied into local state. Global stores for everything. Two-way binding as the default API. Clickable `div`s. `on:click`, `export let`, `<slot>`, and `createEventDispatcher` in new Svelte 5 code. Components that are really DOM actions. Actions that are really components. These work until they don't.
+The core failure mode: writing Svelte that compiles but thinks like React, Vue, or Svelte 4. Effects that synchronize derived state or react to state changes that had a clear event. Props copied into local state. Global stores for everything. Two-way binding as the default API. Clickable `div`s. `on:click`, `export let`, `<slot>`, and `createEventDispatcher` in new Svelte 5 code. Components that are really DOM actions. Actions that are really components. These work until they don't.
 
 Svelte's strength is that the component is a small reactive program whose dependencies are visible. Write code that lets the compiler and the DOM do the work. Keep dataflow direct, state ownership obvious, and markup semantic.
 
@@ -33,7 +33,7 @@ Treat these as strong defaults, not rigid laws: when unsure, choose the approach
 
 **2. Derived state is `$derived`, not `$effect`.** If a value is a pure function of other state, derive it. Effects are for side effects, not keeping variables in sync. See [references/effect-driven-state.md](references/effect-driven-state.md).
 
-**3. Effects are escape hatches.** Reach for `$effect` when you touch the outside world: subscriptions, timers, observers, imperative APIs, logging, analytics. Return cleanup.
+**3. Effects are escape hatches.** Before writing `$effect`, check whether the code is actually a derived value, an event handler, or a `bind:` getter/setter transform. Reach for `$effect` when you touch the outside world: subscriptions, timers, observers, imperative APIs, logging, analytics. Return cleanup.
 
 **4. Runes are statically analyzable.** They are compiler syntax, not hook-like runtime functions. This is why reusable state often becomes `.svelte.ts` classes and factories instead of custom hooks. See [references/static-runes.md](references/static-runes.md).
 
@@ -71,7 +71,9 @@ Treat these as strong defaults, not rigid laws: when unsure, choose the approach
 
 ## Common Mistakes (Agent Failure Modes)
 
-- **Using `$effect` to compute state** → Use `$derived`; reserve effects for the outside world.
+- **Using `$effect` to compute state** → Use `$derived` / `$derived.by`; reserve effects for the outside world.
+- **Using `$effect` to react to user input state** → React to the event itself with `oninput`, `onchange`, `onclick`, or a component callback like `onValueChange`.
+- **Using `$effect` for binding type conversion** → Use function bindings with getter/setter pairs.
 - **Reading broad objects in effects** → Read the specific dependencies you intend.
 - **Calling runes like hooks/composables** → Move runes to component top level or `.svelte.ts` class fields.
 - **Mirroring props into `$state`** → Derive from props or name the local state as a draft with commit/reset behavior.
@@ -93,7 +95,9 @@ Treat these as strong defaults, not rigid laws: when unsure, choose the approach
 | Code smell | Svelte default move | Reference |
 |---|---|---|
 | Effect reruns mysteriously | Inspect reactive reads | [read-tracked-reactivity](references/read-tracked-reactivity.md) |
-| Effect assigns derived value | `$derived` | [effect-driven-state](references/effect-driven-state.md) |
+| Effect assigns derived value | `$derived` / `$derived.by` | [effect-driven-state](references/effect-driven-state.md) |
+| Effect responds to a control changing | Event handler or callback prop | [effect-driven-state](references/effect-driven-state.md) |
+| Effect converts a bound value | `bind:` getter/setter pair | [bindings-and-directives](references/bindings-and-directives.md) |
 | Rune inside helper/hook | Top-level rune or class field | [static-runes](references/static-runes.md) |
 | Immutable update ceremony | Direct deep `$state` mutation | [deep-state-without-immutable-ceremony](references/deep-state-without-immutable-ceremony.md) |
 | Prop copied into local state | Derive or explicit draft | [prop-mirroring](references/prop-mirroring.md) |
@@ -118,19 +122,21 @@ Treat these as strong defaults, not rigid laws: when unsure, choose the approach
 ## Review Checklist
 
 1. **Project is Svelte 5?** → Use Svelte 5 syntax consistently.
-2. **`$effect` writes state?** → Ask if it should be `$derived`.
-3. **Effect reruns unexpectedly?** → Inspect what it reads.
-4. **Rune called like a hook?** → Move to top-level or `.svelte.ts` class field.
-5. **Props copied to state?** → Derive or make an explicit draft.
-6. **State owner unclear?** → Move state to component/class/context/store according to ownership.
-7. **Store used by habit?** → Check whether the store contract is actually needed.
-8. **Module-level mutable state in SvelteKit?** → Treat as SSR leak risk.
-9. **`$bindable` prop?** → Confirm two-way mutation is intended.
-10. **Dispatcher or old event syntax?** → Prefer callback props and event attributes in Svelte 5.
-11. **Slot-style API?** → Prefer typed snippets.
-12. **Nonsemantic interactive markup?** → Use native elements first.
-13. **Wrapper component?** → Preserve native attributes, events, and semantics.
-14. **List identity matters?** → Key the each block.
-15. **Reusable DOM behavior?** → Action/attachment, with cleanup.
-16. **Raw HTML?** → Sanitize or avoid.
-17. **Performance concern?** → Fix dataflow first, measure before cleverness.
+2. **`$effect` writes state?** → Ask if it should be `$derived` / `$derived.by`.
+3. **`$effect` reacts to a user-controlled value?** → Move the work to the event that changed it.
+4. **`$effect` only converts a bound value?** → Use a `bind:` getter/setter pair.
+5. **Effect reruns unexpectedly?** → Inspect what it reads.
+6. **Rune called like a hook?** → Move to top-level or `.svelte.ts` class field.
+7. **Props copied to state?** → Derive or make an explicit draft.
+8. **State owner unclear?** → Move state to component/class/context/store according to ownership.
+9. **Store used by habit?** → Check whether the store contract is actually needed.
+10. **Module-level mutable state in SvelteKit?** → Treat as SSR leak risk.
+11. **`$bindable` prop?** → Confirm two-way mutation is intended.
+12. **Dispatcher or old event syntax?** → Prefer callback props and event attributes in Svelte 5.
+13. **Slot-style API?** → Prefer typed snippets.
+14. **Nonsemantic interactive markup?** → Use native elements first.
+15. **Wrapper component?** → Preserve native attributes, events, and semantics.
+16. **List identity matters?** → Key the each block.
+17. **Reusable DOM behavior?** → Action/attachment, with cleanup.
+18. **Raw HTML?** → Sanitize or avoid.
+19. **Performance concern?** → Fix dataflow first, measure before cleverness.
