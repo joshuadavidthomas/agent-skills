@@ -12,7 +12,7 @@ This is not a replacement for the Svelte docs. It is a mental-model reset in the
 
 Focused references are organized around recurring smells and better defaults. Use these first; reach for supporting references only when implementing the recommendation needs concrete API detail.
 
-- `references/effect-driven-state.md` — effects used to compute state
+- `references/effect-driven-state.md` — effects used to compute state, react to local events, or convert bindings
 - `references/read-tracked-reactivity.md` — dependency tracking by reactive reads
 - `references/static-runes.md` — runes as compiler syntax, not hooks/composables
 - `references/deep-state-without-immutable-ceremony.md` — local `$state` mutation vs React-style updates
@@ -66,3 +66,4 @@ This skill synthesizes guidance from:
 - [Svelte documentation](https://svelte.dev/docs) (MIT)
 - [Modern SvelteKit Tutorial](https://github.com/stolinski/Modern-Svelte-Kit-Tutorial) by Scott Tolinski
 - [Svelte Stores Streams Effect](https://github.com/bmdavis419/Svelte-Stores-Streams-Effect) by Ben Davis ([video](https://www.youtube.com/watch?v=kMBDsyozllk))
+- [A plead to stop using `$effect`](https://aidanbleser.com/blog/posts/dont-use-effect) by Aidan Bleser

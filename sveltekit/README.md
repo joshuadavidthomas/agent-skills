@@ -16,7 +16,7 @@ All supporting material lives under `references/`:
 
 - `references/file-naming.md` — route files as runtime boundaries
 - `references/layout-patterns.md` — route groups, layout nesting, shared layout data
-- `references/load-functions.md` — server vs universal load ownership
+- `references/load-functions.md` — server vs universal load ownership, route-query control dataflow
 - `references/form-actions.md` — form action mechanics and progressive enhancement
 - `references/forms-validation.md` — `extractFormData`, `FormErrors`, cross-field validation
 - `references/auth.md` — hooks, locals, route protection, endpoint protection
@@ -39,3 +39,4 @@ This skill synthesizes guidance from:
 - [Svelte documentation](https://svelte.dev/docs) (MIT)
 - [SvelteKit documentation](https://svelte.dev/docs/kit) (MIT)
 - [Modern SvelteKit Tutorial](https://github.com/stolinski/Modern-Svelte-Kit-Tutorial) by Scott Tolinski
+- [A plead to stop using `$effect`](https://aidanbleser.com/blog/posts/dont-use-effect) by Aidan Bleser

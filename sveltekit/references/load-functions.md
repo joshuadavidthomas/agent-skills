@@ -78,6 +78,41 @@ export const load = async ({ data, fetch }) => {
 <h1>{data.user.name}</h1>
 ```
 
+## Page controls update route state from events
+
+When page controls reflect URL/query state, derive display values from `data` and update the route from the event that changed the control. Do not watch local state with `$effect` just to call `goto`, `invalidate`, or a navigation helper.
+
+Smell:
+
+```svelte
+<script lang="ts">
+	let { data } = $props();
+	let currentPage = $state(data.query.page);
+
+	$effect(() => {
+		updateQuery({ page: currentPage });
+	});
+</script>
+
+<Select bind:value={currentPage} />
+```
+
+Better:
+
+```svelte
+<script lang="ts">
+	let { data } = $props();
+	let currentPage = $derived(data.query.page);
+</script>
+
+<Select
+	value={currentPage}
+	onValueChange={(page) => updateQuery({ page })}
+/>
+```
+
+If the control is form-shaped, prefer a native form/action or GET form before inventing client-only synchronization.
+
 ## The React-shaped smell
 
 Smell:

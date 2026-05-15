@@ -2,7 +2,7 @@
 
 ## Top 10 Svelte 5 Mistakes
 
-### 1. Using $effect for Derived State ❌
+### 1. Using $effect for Derived State or Local Event Reactions ❌
 
 **WRONG:**
 
@@ -26,8 +26,10 @@
 </script>
 ```
 
-**Why:** `$effect` runs after DOM updates and is for side effects.
+**Why:** `$effect` runs after DOM updates and is for outside-world side effects.
 `$derived` is optimized for computed values.
+
+If the effect only calls app logic after an input/select/button changes, move that logic to the event handler. If the effect only converts a bound string to a number or similar, use a `bind:` getter/setter pair.
 
 ---
 

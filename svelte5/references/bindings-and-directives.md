@@ -32,6 +32,30 @@ For component bindings, the child prop must use `$bindable()`.
 | `bind:this` | DOM/component reference; only valid after mount/effect |
 | dimension bindings | Read-only layout measurements; beware layout work |
 
+## Function Bindings
+
+Use function bindings when the UI value type differs from the domain value type. This keeps conversion at the boundary instead of adding mirrored state plus `$effect`.
+
+```svelte
+<script lang="ts">
+  let query = $state({ rowsPerPage: 10 });
+</script>
+
+<select
+  bind:value={
+    () => query.rowsPerPage.toString(),
+    (value) => {
+      query.rowsPerPage = Number.parseInt(value, 10);
+    }
+  }
+>
+  <option value="10">10</option>
+  <option value="25">25</option>
+</select>
+```
+
+If a binding only needs a setter, use `null` for the getter where Svelte supports read-only function bindings.
+
 ## Class and Style
 
 Use class directives for simple booleans.
@@ -55,6 +79,7 @@ Use `style:` for dynamic individual properties.
 ## Review Checklist
 
 - Is two-way binding necessary, or would a callback prop be clearer?
+- Is an effect only converting a bound value? Use a function binding getter/setter instead.
 - Does a component prop use `$bindable()` before parent code binds to it?
 - Is `bind:this` read only after mount, not during initialization?
 - Are file inputs handled without assuming paths or persistent File objects?
@@ -66,6 +91,7 @@ Use `style:` for dynamic individual properties.
 | Mistake | Fix |
 |---|---|
 | Binding to child prop not marked `$bindable` | Add `$bindable` or use callback prop |
+| Mirrored string/number state synchronized by `$effect` | Use a function binding getter/setter |
 | Reading `bind:this` immediately | Read in `$effect` or event handler |
 | Binding everything by default | Use one-way props plus callbacks unless mutation is intended |
 | Complex class ternaries in markup | Extract derived class value or use class composition helper |

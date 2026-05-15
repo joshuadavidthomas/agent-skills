@@ -71,6 +71,7 @@ Use this skill for app-level SvelteKit decisions. Use **svelte5** for component 
 ## Common Mistakes (Agent Failure Modes)
 
 - **Fetching server-owned data in `onMount`** → use server `load`.
+- **Using `$effect` to push query/page state into navigation** → update the URL in the control's event handler or form submission; derive display values from `data` when needed.
 - **Using universal load for secrets** → move to `+page.server.ts` or `+layout.server.ts`.
 - **Returning classes/functions from load** → return serializable plain data.
 - **Calling `redirect()` / `error()` without `throw`** → throw them.
@@ -92,6 +93,7 @@ Use this skill for app-level SvelteKit decisions. Use **svelte5** for component 
 | Protected page group | `+layout.server.ts` auth check | [auth](references/auth.md) |
 | Protected endpoint | auth check inside `+server.ts` | [auth](references/auth.md) |
 | DB/secrets in browser code | server load/action/endpoint | [load-functions](references/load-functions.md) |
+| Query/page control updates via `$effect` | event handler or form submission | [load-functions](references/load-functions.md) |
 | Form-shaped mutation | form action | [form-actions](references/form-actions.md) |
 | Field validation errors | `fail(400, { errors })` | [forms-validation](references/forms-validation.md) |
 | Bare `redirect()` or `error()` | `throw redirect(...)` / `throw error(...)` | [errors-and-redirects](references/errors-and-redirects.md) |
