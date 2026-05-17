@@ -49,6 +49,11 @@ Factories are fine when they construct classes or plain objects whose rune field
 - **Vue** — composables return refs/reactive objects from functions
 - **Svelte 4** — stores could be created freely in ordinary functions
 
+## Related References
+
+- [runes-reactivity-patterns.md](runes-reactivity-patterns.md) — when to reach for each rune
+- [runes-common-mistakes.md](runes-common-mistakes.md) — rune anti-patterns and fixes
+
 ## Official References
 
 - [Svelte docs: What are runes?](https://svelte.dev/docs/svelte/what-are-runes)

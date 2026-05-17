@@ -41,7 +41,6 @@ Feature-oriented references are flat under `references/` so paths are predictabl
 - `references/class-state-common-mistakes.md` — class-state anti-patterns and fixes
 - `references/context-vs-scoped-state.md` — context vs component-scoped state
 - `references/class-state-ssr-safety.md` — SSR safety for class-based state
-- `references/component-review.md` — review checklist for Svelte components
 - `references/component-patterns.md` — props, snippets, events, bindings, markup patterns
 - `references/actions.md` — `use:` actions and DOM behavior
 - `references/attachments.md` — Svelte 5 attachments

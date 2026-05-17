@@ -54,6 +54,10 @@ The component owns iteration/layout. The parent owns how each item renders.
 - **Vue** — scoped slots, but often without strong typing
 - **React** — `children` as arbitrary nested content or render props
 
+## Related References
+
+- [snippets-vs-slots.md](snippets-vs-slots.md) — full snippet vs Svelte 4 slot mapping
+
 ## Official References
 
 - [Svelte docs: Snippets](https://svelte.dev/docs/svelte/snippet)

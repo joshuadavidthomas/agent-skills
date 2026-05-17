@@ -192,6 +192,11 @@ For plain Svelte forms:
 
 For SvelteKit form actions, remote functions, progressive enhancement, or server validation, load the `sveltekit` skill.
 
+## Related References
+
+- [runes-component-api.md](runes-component-api.md) — `$props` and `$bindable` shapes and typing in depth
+- [imperative-api.md](imperative-api.md) — mounting components and calling exported functions
+
 ## Official References
 
 - [Svelte docs: $props](https://svelte.dev/docs/svelte/$props)
