@@ -24,7 +24,7 @@ Update the status table at the bottom as you go.
 6. **Ship.** Separate branch off `main`, one commit, push, open a PR scoped to
    that single skill. Then move to the next.
 
-## Learnings (from the svelte5 + sveltekit passes)
+## Learnings (from the svelte5 + sveltekit + jj passes)
 
 - **The `tessl` judge is content-deterministic.** Identical content → byte-identical
   output. Re-running the same file proves nothing about robustness. To prove a
@@ -57,6 +57,21 @@ Update the status table at the bottom as you go.
   Applying the svelte5 treatment blindly would damage intentionally-designed
   skills. svelte5 was a true fix because it used per-file links *and* had a
   genuinely orphaned hub.
+- **Reachability ≠ link validity.** The refined audit's "13/13 refs clean" for
+  jj was *correct* — every reference file was reachable via the bottom Reference
+  Index — yet the SKILL.md still had 12 broken links: the Topics table and every
+  inline "→ Deep dive" pointer linked a fictional hub layout (`git.md`,
+  `sharing.md`, `history.md`, `workspaces.md`, `config.md`, bare `revsets.md`)
+  that never existed. A file being reachable from *somewhere* does not mean the
+  *primary navigation links resolve*. Always also run `tessl`'s `relative_links`
+  check (or grep every `](...)` target against the bundle) — do not infer link
+  health from a reachability count.
+- **Unknown frontmatter keys may be load-bearing.** jj's `requires-path` looked
+  like dead decoration (redundant with `compatibility` + description) but is
+  consumed by the `skill-requires-path` pi extension in agentkit. Do not clean-
+  break an unknown key; move it under `metadata:` (and add `metadata.version`,
+  which tessl then requires). Confirm with the owner before assuming a key is
+  inert.
 - **`dcg` commit guard gotcha.** It substring-matches dangerous tokens in the
   whole command. Avoid the word "restore" in commit messages; use repeated
   `-m` flags or a message file, never a heredoc that contains trigger words.
@@ -71,7 +86,7 @@ directory-pointer detection). `tessl` column is the last recorded review score;
 |---|---|---|---|
 | svelte5 | 100% | 36/36 | **Done** — consolidated + full coverage. PR #15 merged. |
 | sveltekit | 100% | 12/12 | **Done** — inline patterns + workflows. PR #16 open. |
-| jj | — | 13/13 | Refs clean. Review pending. |
+| jj | 100% | 13/13, 12 links fixed | **Done** — Topics table + deep-dive pointers linked a fictional hub layout (12 broken links); repointed to real refs. `requires-path` moved to `metadata` (pi extension consumes it) + `metadata.version` added. PR #18 open. |
 | skill-authoring | — | 3/3 | Refs clean. Review pending. |
 | frontend-design-principles | — | 1/1 | Refs clean. Review pending. |
 | improving-prompts | — | 1/1 | Refs clean. Review pending. |
@@ -94,8 +109,10 @@ directory-pointer detection). `tessl` column is the last recorded review score;
 1. **Quick wins** — no-refs and tiny-refs skills likely already strong:
    grug-brained-dev, researching-codebases, writing-clearly-and-concisely,
    frontend-design-principles, improving-prompts, writing-error-messages,
-   writing-cli-skills, skill-authoring, jj. Review, apply levers only if a
-   sub-criterion is below 3/3.
+   writing-cli-skills, skill-authoring. Review, apply levers only if a
+   sub-criterion is below 3/3. (jj was on this list and was *not* a quick win —
+   it had 12 broken navigation links behind a clean reachability count. Treat
+   "likely strong" as unverified until `tessl` + a real link check say so.)
 2. **One genuine fix** — coolify-compose (wire or drop `official-docs.md`),
    plus its review.
 3. **Soft gap** — crafting-effective-readmes (`using-references.md` wiring) +
