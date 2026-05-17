@@ -65,6 +65,21 @@ Update the status table at the bottom as you go.
   is the real win even though it barely moves the score (90→94). Clean-break
   the version-pinned artifact too: renamed `claude-4.5-best-practices.md` →
   `anthropic-best-practices.md` rather than keeping a stale filename.
+- **Cross-vendor guidance: harvest vendor-neutral *principles*, reject
+  vendor-specific *tuning*, and re-evaluate per artifact.** "No cross-model
+  section" stays correct, but the right granularity is per-artifact, not
+  per-vendor: a *generic* OpenAI prompt page added nothing, yet OpenAI's GPT-5
+  *Codex* guide (an agentic-coding guide; `AGENTS.md` is a cross-agent file)
+  did contain one genuinely transferable idea — layered instruction files
+  (repo-root global → deeper module-specific, more-specific overrides). Folded
+  into the improving-prompts reference, but framed in *our* Anthropic-grounded
+  terms (`.claude/rules/ paths:`, subdir `CLAUDE.md`), not as "OpenAI says".
+  Reject the vendor-specific tuning: Codex preamble-cadence numbers and the
+  `phase` param directly *conflict* with Claude 4.7 (which has built-in
+  progress updates you should remove scaffolding for) — proof that a blended
+  cross-model section would mislead. Test: would this still be true with no
+  brand attached, and do our own upstream docs corroborate it? If yes, take
+  the principle; if it's a number/param/cadence, leave it.
 - **Two reliable levers when Content is low:**
   - actionability < 3 → add 1–3 minimal inline `❌/✅` snippets on the most
     critical principles.
@@ -128,7 +143,7 @@ directory-pointer detection). `tessl` column is the last recorded review score;
 | jj | 100% | 13/13, 12 links fixed | **Done** — Topics table + deep-dive pointers linked a fictional hub layout (12 broken links); repointed to real refs. `requires-path` moved to `metadata` (pi extension consumes it) + `metadata.version` added. PR #18 open. |
 | skill-authoring | 99% | 3/3 | **Done** — sharpened description specificity (2/3→3/3); Content already 100%. Remaining `relative_links` warning is a tessl false-positive (router-table example links inside patterns.md code fences); left intact per owner decision, 0 errors. PR #19 open. |
 | frontend-design-principles | 94% | 1/1 | **Done** — full SKILL.md rewrite 209→116 lines (cut redundant rationale, added ❌/✅ token example, sharpened description). 74%→94%: Description 100%, Content 85% (actionability/workflow/PD 3/3). conciseness 2/3 is the intentional manifesto ceiling; shipped per owner decision. PR #20 open. |
-| improving-prompts | 94% | 1/1 | **Done** — **source refresh** (the real fix): de-pinned from Claude 4.5, renamed reference → `anthropic-best-practices.md`, replaced stale extended-thinking/`avoid think` + migration content with adaptive-thinking/effort + 4.6/4.7 realities + CLAUDE.md/skill rules; no cross-model section (research: not warranted). Also tessl levers (merged Rationalizations+Red Flags, 3→2 trim, de-dup). 90%→94%: Description 100%, Content 85% (actionability/workflow/PD 3/3). conciseness 2/3 = intentional discipline ceiling, per owner. PR #21 open. |
+| improving-prompts | 94% | 1/1 | **Done** — **source refresh** (the real fix): de-pinned from Claude 4.5, renamed reference → `anthropic-best-practices.md`, replaced stale extended-thinking/`avoid think` + migration content with adaptive-thinking/effort + 4.6/4.7 realities + CLAUDE.md/skill rules; no cross-model section (research: not warranted). Also tessl levers (merged Rationalizations+Red Flags, 3→2 trim, de-dup). 90%→94%: Description 100%, Content 85% (actionability/workflow/PD 3/3). conciseness 2/3 = intentional discipline ceiling, per owner. Follow-up commit folds in the one vendor-neutral idea from OpenAI's GPT-5 Codex guide (layered instruction files), Anthropic-framed. PR #21 open. |
 | writing-error-messages | — | 2/2 | Refs clean. Review pending. |
 | writing-cli-skills | — | 1/1 | Dir-pointer; effectively clean. Review pending. |
 | grug-brained-dev | — | n/a | No references dir. Review pending. |
