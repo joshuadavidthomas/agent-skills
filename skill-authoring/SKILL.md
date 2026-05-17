@@ -1,6 +1,6 @@
 ---
 name: skill-authoring
-description: Use when authoring, creating, refining, or troubleshooting agent skills — covers SKILL.md structure, frontmatter syntax, description optimization, and activation testing. Also when building a new skill from scratch, when a skill won't trigger, loads incorrectly, or the agent ignores it entirely. Use when a skill misbehaved in the current session and needs adjustment based on learnings.
+description: Use when authoring, creating, refining, or troubleshooting agent skills — scaffold SKILL.md and frontmatter, write and optimize the trigger description, structure the body with progressive disclosure, validate structure, and test or debug activation. Also when building a new skill from scratch, when a skill won't trigger, loads incorrectly, or the agent ignores it entirely. Use when a skill misbehaved in the current session and needs adjustment based on learnings.
 ---
 
 # Skill Authoring
