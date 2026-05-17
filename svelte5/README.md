@@ -25,6 +25,7 @@ Focused references are organized around recurring smells and better defaults. Us
 - `references/semantic-html-first.md` — native elements before custom behavior
 - `references/actions-vs-components.md` — markup belongs to components; DOM behavior belongs to actions/attachments
 - `references/wrapper-components-preserve-html.md` — wrapper components must preserve native element contracts
+- `references/shadcn-svelte-forms.md` — shadcn-svelte and bits-ui `Field.*` form structure
 - `references/svelte5-syntax-discipline.md` — avoiding half-migrated Svelte 4/Svelte 5 syntax
 
 ## Supporting references

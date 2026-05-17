@@ -18,7 +18,7 @@ All supporting material lives under `references/`:
 - `references/layout-patterns.md` — route groups, layout nesting, shared layout data
 - `references/load-functions.md` — server vs universal load ownership, route-query control dataflow
 - `references/form-actions.md` — form action mechanics and progressive enhancement
-- `references/forms-validation.md` — `extractFormData`, `FormErrors`, cross-field validation
+- `references/forms-validation.md` — `extractFormData`, `FormErrors`, cross-field validation, and shadcn-svelte `Field.*` validation display
 - `references/auth.md` — hooks, locals, route protection, endpoint protection
 - `references/errors-and-redirects.md` — `fail()`, `redirect()`, `error()`, `+error.svelte`
 - `references/serialization.md` — load/action serialization rules
