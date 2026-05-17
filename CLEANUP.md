@@ -24,7 +24,7 @@ Update the status table at the bottom as you go.
 6. **Ship.** Separate branch off `main`, one commit, push, open a PR scoped to
    that single skill. Then move to the next.
 
-## Learnings (from the svelte5 + sveltekit + jj + skill-authoring + frontend-design-principles passes)
+## Learnings (from the svelte5 + sveltekit + jj + skill-authoring + frontend-design-principles + improving-prompts passes)
 
 - **The `tessl` judge is content-deterministic.** Identical content → byte-identical
   output. Re-running the same file proves nothing about robustness. To prove a
@@ -49,7 +49,22 @@ Update the status table at the bottom as you go.
   reduction is into the vivid framing, that is the ceiling — surface it to the
   owner and ship at the honest score. Precedents now: skill-authoring 99%
   (code-fence false-positive), frontend-design-principles 94% (manifesto voice),
-  both by owner decision. Do not chase 100% by degrading intentional content.
+  improving-prompts 94% (anti-rationalization discipline mechanism + actionable
+  inline summary — cutting either regresses a 3/3 sub-score). All by owner
+  decision. Do not chase 100% by degrading intentional content. When the
+  ceiling call is identical to a prior owner decision, apply it and surface in
+  the PR — do not re-ask the same question every skill.
+- **tessl cannot see content staleness — it scores structure and writing, not
+  currency.** improving-prompts scored 90% while its entire premise ("apply
+  *documented* Anthropic best practices") rested on Claude-4.5-era source: a
+  stale "avoid the word *think*" extended-thinking section, 4.5 migration
+  notes, no adaptive-thinking/effort, no current CLAUDE.md/skill rules. The
+  judge is blind to this. For any "applies documented X" / "follows the spec"
+  skill, independently verify the source against current upstream docs (web
+  research) — a high score is not evidence the content is current. Fixing it
+  is the real win even though it barely moves the score (90→94). Clean-break
+  the version-pinned artifact too: renamed `claude-4.5-best-practices.md` →
+  `anthropic-best-practices.md` rather than keeping a stale filename.
 - **Two reliable levers when Content is low:**
   - actionability < 3 → add 1–3 minimal inline `❌/✅` snippets on the most
     critical principles.
@@ -113,7 +128,7 @@ directory-pointer detection). `tessl` column is the last recorded review score;
 | jj | 100% | 13/13, 12 links fixed | **Done** — Topics table + deep-dive pointers linked a fictional hub layout (12 broken links); repointed to real refs. `requires-path` moved to `metadata` (pi extension consumes it) + `metadata.version` added. PR #18 open. |
 | skill-authoring | 99% | 3/3 | **Done** — sharpened description specificity (2/3→3/3); Content already 100%. Remaining `relative_links` warning is a tessl false-positive (router-table example links inside patterns.md code fences); left intact per owner decision, 0 errors. PR #19 open. |
 | frontend-design-principles | 94% | 1/1 | **Done** — full SKILL.md rewrite 209→116 lines (cut redundant rationale, added ❌/✅ token example, sharpened description). 74%→94%: Description 100%, Content 85% (actionability/workflow/PD 3/3). conciseness 2/3 is the intentional manifesto ceiling; shipped per owner decision. PR #20 open. |
-| improving-prompts | — | 1/1 | Refs clean. Review pending. |
+| improving-prompts | 94% | 1/1 | **Done** — **source refresh** (the real fix): de-pinned from Claude 4.5, renamed reference → `anthropic-best-practices.md`, replaced stale extended-thinking/`avoid think` + migration content with adaptive-thinking/effort + 4.6/4.7 realities + CLAUDE.md/skill rules; no cross-model section (research: not warranted). Also tessl levers (merged Rationalizations+Red Flags, 3→2 trim, de-dup). 90%→94%: Description 100%, Content 85% (actionability/workflow/PD 3/3). conciseness 2/3 = intentional discipline ceiling, per owner. PR #21 open. |
 | writing-error-messages | — | 2/2 | Refs clean. Review pending. |
 | writing-cli-skills | — | 1/1 | Dir-pointer; effectively clean. Review pending. |
 | grug-brained-dev | — | n/a | No references dir. Review pending. |
@@ -130,15 +145,15 @@ directory-pointer detection). `tessl` column is the last recorded review score;
 
 ## Suggested order
 
-1. **Quick wins** — no-refs and tiny-refs skills likely already strong:
+1. **"Quick wins" — there are none; treat each as unverified:**
    grug-brained-dev, researching-codebases, writing-clearly-and-concisely,
-   improving-prompts, writing-error-messages, writing-cli-skills. Review, apply
-   levers only if a sub-criterion is below 3/3. ("Likely strong" keeps being
-   wrong — treat every skill as unverified until `tessl` + a real link check
-   say so. jj had 12 genuine broken nav links; skill-authoring had a 2/3
-   description + a code-fence false-positive; frontend-design-principles was
-   74% needing a full 209→116-line rewrite. None were pure quick wins. The
-   "tiny-refs ⇒ easy" heuristic has a 0% hit rate so far.)
+   writing-error-messages, writing-cli-skills. Review; apply levers only if a
+   sub-criterion is below 3/3 — but also check source currency (tessl can't
+   see staleness) and run a real link check. Track record: jj had 12 genuine
+   broken nav links; skill-authoring had a 2/3 description + a code-fence
+   false-positive; frontend-design-principles was 74% needing a full
+   209→116-line rewrite; improving-prompts was 4.5-stale and needed a source
+   refresh. The "tiny-refs ⇒ easy" heuristic is **0/4**. Assume real work.
 2. **One genuine fix** — coolify-compose (wire or drop `official-docs.md`),
    plus its review.
 3. **Soft gap** — crafting-effective-readmes (`using-references.md` wiring) +
