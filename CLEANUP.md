@@ -24,7 +24,7 @@ Update the status table at the bottom as you go.
 6. **Ship.** Separate branch off `main`, one commit, push, open a PR scoped to
    that single skill. Then move to the next.
 
-## Learnings (from the svelte5 + sveltekit + jj + skill-authoring passes)
+## Learnings (from the svelte5 + sveltekit + jj + skill-authoring + frontend-design-principles passes)
 
 - **The `tessl` judge is content-deterministic.** Identical content → byte-identical
   output. Re-running the same file proves nothing about robustness. To prove a
@@ -38,6 +38,18 @@ Update the status table at the bottom as you go.
 - **Preserve evocative framing.** A `Code smell` / `Common mistake` column is the
   asset; flattening it for a marginal token saving is a regression. Consolidate
   duplicated *artifacts*, not the vivid language.
+- **Some skills have a conciseness ceiling at 2/3 by design — that is the honest
+  score, not a TODO.** frontend-design-principles is a behavior-change craft
+  *manifesto*; its persuasive repetition ("Where Defaults Hide", "Sameness is
+  failure") is the mechanism. The rewrite cut every redundant rationale and
+  belabored restatement (209→116 lines), lifting Content 55→85% (actionability
+  2/3→3/3, conciseness 1/3→2/3) and Description 82→100%. The judge then kept
+  asking to compress the evocative core to reach conciseness 3/3. Stop there.
+  Procedure: cut all duplicated/explanatory prose first; once the only remaining
+  reduction is into the vivid framing, that is the ceiling — surface it to the
+  owner and ship at the honest score. Precedents now: skill-authoring 99%
+  (code-fence false-positive), frontend-design-principles 94% (manifesto voice),
+  both by owner decision. Do not chase 100% by degrading intentional content.
 - **Two reliable levers when Content is low:**
   - actionability < 3 → add 1–3 minimal inline `❌/✅` snippets on the most
     critical principles.
@@ -100,7 +112,7 @@ directory-pointer detection). `tessl` column is the last recorded review score;
 | sveltekit | 100% | 12/12 | **Done** — inline patterns + workflows. PR #16 open. |
 | jj | 100% | 13/13, 12 links fixed | **Done** — Topics table + deep-dive pointers linked a fictional hub layout (12 broken links); repointed to real refs. `requires-path` moved to `metadata` (pi extension consumes it) + `metadata.version` added. PR #18 open. |
 | skill-authoring | 99% | 3/3 | **Done** — sharpened description specificity (2/3→3/3); Content already 100%. Remaining `relative_links` warning is a tessl false-positive (router-table example links inside patterns.md code fences); left intact per owner decision, 0 errors. PR #19 open. |
-| frontend-design-principles | — | 1/1 | Refs clean. Review pending. |
+| frontend-design-principles | 94% | 1/1 | **Done** — full SKILL.md rewrite 209→116 lines (cut redundant rationale, added ❌/✅ token example, sharpened description). 74%→94%: Description 100%, Content 85% (actionability/workflow/PD 3/3). conciseness 2/3 is the intentional manifesto ceiling; shipped per owner decision. PR #20 open. |
 | improving-prompts | — | 1/1 | Refs clean. Review pending. |
 | writing-error-messages | — | 2/2 | Refs clean. Review pending. |
 | writing-cli-skills | — | 1/1 | Dir-pointer; effectively clean. Review pending. |
@@ -120,12 +132,13 @@ directory-pointer detection). `tessl` column is the last recorded review score;
 
 1. **Quick wins** — no-refs and tiny-refs skills likely already strong:
    grug-brained-dev, researching-codebases, writing-clearly-and-concisely,
-   frontend-design-principles, improving-prompts, writing-error-messages,
-   writing-cli-skills. Review, apply levers only if a sub-criterion is below
-   3/3. ("Likely strong" is unverified until `tessl` + a real link check say
-   so: jj was on this list and had 12 genuine broken navigation links;
-   skill-authoring had a 2/3 description plus a code-fence false-positive that
-   needed an owner decision. Neither was a pure quick win.)
+   improving-prompts, writing-error-messages, writing-cli-skills. Review, apply
+   levers only if a sub-criterion is below 3/3. ("Likely strong" keeps being
+   wrong — treat every skill as unverified until `tessl` + a real link check
+   say so. jj had 12 genuine broken nav links; skill-authoring had a 2/3
+   description + a code-fence false-positive; frontend-design-principles was
+   74% needing a full 209→116-line rewrite. None were pure quick wins. The
+   "tiny-refs ⇒ easy" heuristic has a 0% hit rate so far.)
 2. **One genuine fix** — coolify-compose (wire or drop `official-docs.md`),
    plus its review.
 3. **Soft gap** — crafting-effective-readmes (`using-references.md` wiring) +
