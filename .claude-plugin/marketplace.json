@@ -64,6 +64,20 @@
       "strict": false
     },
     {
+      "name": "rust",
+      "source": "./",
+      "description": "Idiomatic Rust API design and implementation guidance",
+      "skills": "./rust",
+      "strict": false
+    },
+    {
+      "name": "salsa",
+      "source": "./",
+      "description": "Salsa incremental computation guidance for Rust systems",
+      "skills": "./salsa",
+      "strict": false
+    },
+    {
       "name": "svelte5",
       "source": "./",
       "description": "Svelte 5 runes and migration guidance",
