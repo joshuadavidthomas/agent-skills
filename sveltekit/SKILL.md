@@ -46,7 +46,7 @@ Use this skill for app-level SvelteKit decisions. Use **svelte5** for component 
 
 **9. Progressive enhancement is enhancement.** The form should work without JavaScript; `use:enhance` improves pending states, focus, invalidation, and UX. It should not be the only way the mutation works.
 
-**10. Validation lives at the boundary.** Validate on the server, return field-shaped errors with `fail`, and let the component display them. Client validation is UX, not authority. See [references/forms-validation.md](references/forms-validation.md).
+**10. Validation lives at the boundary.** Validate on the server, return field-shaped errors with `fail`, and let the component display them. If the project uses shadcn-svelte or bits-ui, render those errors through `Field.*` components rather than ad hoc wrappers. See [references/forms-validation.md](references/forms-validation.md).
 
 ### Auth is explicit and boring
 
@@ -81,6 +81,7 @@ Use this skill for app-level SvelteKit decisions. Use **svelte5** for component 
 - **Putting login inside the protected route group** → keep auth pages outside protected layouts.
 - **Building JS-only forms** → use native forms + actions + progressive enhancement.
 - **Trusting client validation** → validate on the server boundary.
+- **Rendering shadcn-svelte validation with raw wrappers** → use `Field.Field`, `Field.Label`, and `Field.Error` in the component.
 - **Using remote functions without auth/validation** → treat them as server endpoints.
 - **Using browser APIs during SSR** → gate with effects/browser-only logic.
 - **Using svelte5 component advice for app data flow** → load the SvelteKit reference.

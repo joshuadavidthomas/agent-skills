@@ -7,10 +7,11 @@ description: >
   from React/Vue/Svelte 4 — effect assigns state, prop copied to $state, global
   store by default, $bindable everywhere, clickable div, createEventDispatcher,
   export let, on:click, slot-shaped APIs, lifecycle-driven code, imperative DOM
-  wiring, immutable-update ceremony, context value replacement, or component APIs
-  that hide ownership. This is the general-purpose entry point for Svelte component
-  review; delegates to sveltekit for routes/load/actions/server concerns and to
-  focused references for details.
+  wiring, immutable-update ceremony, context value replacement, shadcn-svelte form
+  structure, Field.* components, bits-ui form controls, or component APIs that hide
+  ownership. This is the general-purpose entry point for Svelte component review;
+  delegates to sveltekit for routes/load/actions/server concerns and to focused
+  references for details.
 ---
 
 # Think in Svelte 5
@@ -63,11 +64,13 @@ Treat these as strong defaults, not rigid laws: when unsure, choose the approach
 
 **14. Native elements before custom behavior.** A `button` already handles keyboard, focus, disabled state, and accessibility semantics. A clickable `div` asks you to rebuild the platform badly. See [references/semantic-html-first.md](references/semantic-html-first.md).
 
-**15. Components own markup; actions/attachments own DOM behavior.** If it renders UI, make a component. If it attaches reusable imperative behavior to an element, use an action or attachment. See [references/actions-vs-components.md](references/actions-vs-components.md).
+**15. Design-system fields should preserve form semantics.** In shadcn-svelte or bits-ui forms, use `Field.*` for labels, field groups, descriptions, and errors. Do not rebuild field structure with raw `div`s, separate `Label` imports, or clickable option rows. See [references/shadcn-svelte-forms.md](references/shadcn-svelte-forms.md).
 
-**16. Svelte 5 syntax should be consistent.** In new Svelte 5 code, use `$props`, event attributes like `onclick`, snippets, and callback props. Do not mix old syntax unless maintaining legacy code. See [references/svelte5-syntax-discipline.md](references/svelte5-syntax-discipline.md).
+**16. Components own markup; actions/attachments own DOM behavior.** If it renders UI, make a component. If it attaches reusable imperative behavior to an element, use an action or attachment. See [references/actions-vs-components.md](references/actions-vs-components.md).
 
-**17. Type the boundary, not every breath.** Give non-trivial components a `Props` type, type snippets and callbacks, and use `svelte/elements` for wrappers. Avoid broad `any` at component boundaries. See [references/typescript.md](references/typescript.md).
+**17. Svelte 5 syntax should be consistent.** In new Svelte 5 code, use `$props`, event attributes like `onclick`, snippets, and callback props. Do not mix old syntax unless maintaining legacy code. See [references/svelte5-syntax-discipline.md](references/svelte5-syntax-discipline.md).
+
+**18. Type the boundary, not every breath.** Give non-trivial components a `Props` type, type snippets and callbacks, and use `svelte/elements` for wrappers. Avoid broad `any` at component boundaries. See [references/typescript.md](references/typescript.md).
 
 ## Common Mistakes (Agent Failure Modes)
 
@@ -85,6 +88,8 @@ Treat these as strong defaults, not rigid laws: when unsure, choose the approach
 - **`export let`, `on:click`, `<slot>` in new Svelte 5** → Use `$props`, `onclick`, snippets/render tags.
 - **Clickable `div` / `span`** → Use native controls or implement full keyboard/ARIA semantics.
 - **Wrapper component drops native behavior** → Type and forward native attributes; preserve focus/disabled/button semantics.
+- **shadcn-svelte form built from raw `div` + imported `Label`** → Use `Field.Group`, `Field.Field`, `Field.Set`, `Field.Label`, `Field.Description`, and `Field.Error`.
+- **Checkbox/radio card uses row `onclick`** → Wrap `Field.Field` in `Field.Label` and connect it to the input id.
 - **Unkeyed list with identity, local state, or animation** → Key by stable id.
 - **`{@html}` with user content** → Sanitize or render as text.
 - **Action that owns markup/state** → Make it a component.
@@ -109,6 +114,8 @@ Treat these as strong defaults, not rigid laws: when unsure, choose the approach
 | `$bindable` by habit | Callback prop unless two-way API | [bindable-by-default](references/bindable-by-default.md) |
 | Slot-shaped API | Typed snippet render function | [snippets-as-render-functions](references/snippets-as-render-functions.md) |
 | Click handler on noninteractive element | Native control | [semantic-html-first](references/semantic-html-first.md) |
+| shadcn-svelte form structure rebuilt with raw wrappers | Use `Field.*` components | [shadcn-svelte-forms](references/shadcn-svelte-forms.md) |
+| Checkbox/radio option row has custom click handling | Label-wrap the `Field.Field` and native control | [shadcn-svelte-forms](references/shadcn-svelte-forms.md) |
 | Wrapper hides native behavior | Preserve HTML contract | [wrapper-components-preserve-html](references/wrapper-components-preserve-html.md) |
 | Component/action boundary unclear | Markup = component; DOM behavior = action | [actions-vs-components](references/actions-vs-components.md) |
 | Old Svelte syntax in new code | Migrate API and dataflow intentionally | [svelte5-syntax-discipline](references/svelte5-syntax-discipline.md) |
@@ -135,8 +142,9 @@ Treat these as strong defaults, not rigid laws: when unsure, choose the approach
 12. **Dispatcher or old event syntax?** → Prefer callback props and event attributes in Svelte 5.
 13. **Slot-style API?** → Prefer typed snippets.
 14. **Nonsemantic interactive markup?** → Use native elements first.
-15. **Wrapper component?** → Preserve native attributes, events, and semantics.
-16. **List identity matters?** → Key the each block.
-17. **Reusable DOM behavior?** → Action/attachment, with cleanup.
-18. **Raw HTML?** → Sanitize or avoid.
-19. **Performance concern?** → Fix dataflow first, measure before cleverness.
+15. **shadcn-svelte form?** → Use `Field.*` structure and label-wrapped option rows.
+16. **Wrapper component?** → Preserve native attributes, events, and semantics.
+17. **List identity matters?** → Key the each block.
+18. **Reusable DOM behavior?** → Action/attachment, with cleanup.
+19. **Raw HTML?** → Sanitize or avoid.
+20. **Performance concern?** → Fix dataflow first, measure before cleverness.

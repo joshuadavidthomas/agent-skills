@@ -2,6 +2,8 @@
 
 Server-first validation with progressive enhancement. Schema defined once, server validates, client displays errors.
 
+This reference covers the SvelteKit boundary: form actions, `fail()`, field-shaped errors, and progressive enhancement. If the component uses shadcn-svelte or bits-ui controls, pair this with the Svelte component guidance in [`../../svelte5/references/shadcn-svelte-forms.md`](../../svelte5/references/shadcn-svelte-forms.md).
+
 ## Pattern Overview
 
 1. **Define schema once** in `$lib/schemas/` 
@@ -168,7 +170,7 @@ export class FormErrors {
 }
 ```
 
-Usage:
+Usage with shadcn-svelte `Field.*` components:
 
 ```svelte
 <script lang="ts">
@@ -226,7 +228,7 @@ This gives good UX without client-side validation:
 
 ## Grouped Fields with Field.Set
 
-For related fields like password confirmation, use `Field.Set` to group them:
+For related fields like password confirmation, use `Field.Set` to group them. For checkbox/radio card rows, label wrapping, and other shadcn-svelte form structure details, use [`../../svelte5/references/shadcn-svelte-forms.md`](../../svelte5/references/shadcn-svelte-forms.md).
 
 ```svelte
 <Field.Set>
