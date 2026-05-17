@@ -24,7 +24,7 @@ Update the status table at the bottom as you go.
 6. **Ship.** Separate branch off `main`, one commit, push, open a PR scoped to
    that single skill. Then move to the next.
 
-## Learnings (from the svelte5 + sveltekit + jj + skill-authoring + frontend-design-principles + improving-prompts + writing-error-messages + writing-cli-skills passes)
+## Learnings (from the svelte5 + sveltekit + jj + skill-authoring + frontend-design-principles + improving-prompts + writing-error-messages + writing-cli-skills + grug-brained-dev passes)
 
 - **The `tessl` judge is content-deterministic.** Identical content → byte-identical
   output. Re-running the same file proves nothing about robustness. To prove a
@@ -129,6 +129,32 @@ Update the status table at the bottom as you go.
 - **`dcg` commit guard gotcha.** It substring-matches dangerous tokens in the
   whole command. Avoid the word "restore" in commit messages; use repeated
   `-m` flags or a message file, never a heredoc that contains trigger words.
+- **Structural split is the voice-safe lever for a monolithic
+  manifesto/immersion skill.** When conciseness is at its intentional ceiling
+  (2/3) *and* there is also a long-file warning + progressive_disclosure 2/3,
+  do not trim the voice to chase conciseness — instead relocate the
+  *reference-grade detail* (taxonomies, hunt criteria, lookup tables) verbatim
+  into `references/`, keeping voice priming + workflow + output format always-
+  loaded in SKILL.md. grug-brained-dev: moved the whole `## What Grug hunts`
+  block out, 86%→94%, 1 warning→0, PD 2/3→3/3, Description 90%→100%, **zero
+  prose change** — conciseness stayed 2/3 (honest, the origin story is the
+  priming mechanism) but it was no longer the *only* lever. Prove the move is
+  loss-free: `diff <(git show main:…SKILL.md | awk '/^### START/{f=1}
+  /^## END/{f=0} f' | sed 's/^### /## /') <(tail -n +N references/new.md)` —
+  expect only intended heading-depth + trailing-blank deltas.
+- **Sanctioned path for a large verbatim extraction.** A 165-line move with
+  heading normalization is too big for a safe `edit` and too transcription-
+  risky to retype via `write` when the owner needs byte-identical prose. Per
+  AGENTS.md: write a real one-shot script, inspect it, run it, validate
+  (`diff` vs `main` + read seams + tessl), then delete it deliberately. Used
+  here; script removed in the same step. Not a throwaway inline heredoc — a
+  reviewed script file with an explicit lifecycle.
+- **Owner-flagged-sensitive ≠ routine ceiling.** The standing rule is "when
+  the ceiling call matches a prior owner decision, apply it, don't re-ask."
+  But when the owner *explicitly* flags a skill ("be careful, don't impact too
+  much"), that overrides the don't-re-ask shortcut: present the analysis +
+  voice-safe options and let them choose scope. They picked the structural
+  split here; the conciseness-ceiling call itself still followed precedent.
 
 ## Status
 
@@ -146,7 +172,7 @@ directory-pointer detection). `tessl` column is the last recorded review score;
 | improving-prompts | 94% | 1/1 | **Done** — **source refresh** (the real fix): de-pinned from Claude 4.5, renamed reference → `anthropic-best-practices.md`, replaced stale extended-thinking/`avoid think` + migration content with adaptive-thinking/effort + 4.6/4.7 realities + CLAUDE.md/skill rules; no cross-model section (research: not warranted). Also tessl levers (merged Rationalizations+Red Flags, 3→2 trim, de-dup). 90%→94%: Description 100%, Content 85% (actionability/workflow/PD 3/3). conciseness 2/3 = intentional discipline ceiling, per owner. Follow-up commit folds in the one vendor-neutral idea from OpenAI's GPT-5 Codex guide (layered instruction files), Anthropic-framed. PR #21 open. |
 | writing-error-messages | 100% | 2/2 | **Done — no changes.** Perfect score on first review: 0 errors/warnings, Description 100%, Content 100% (all sub-criteria 3/3). Both refs surfaced via backtick-path "open when…" pointers (SKILL.md:60-61), genuinely reachable; no markdown links at all (no fence-FP surface). Verified, not assumed — no PR because there is nothing to change. |
 | writing-cli-skills | 100% | 1/1 | **Done** — pre-sweep "effectively clean" was wrong: baseline 90%. Content already 100% (all 3/3); whole gap was Description 75% (specificity 2/3, trigger_term_quality 2/3). One-line frontmatter rewrite, every enumerated capability grounded in an existing section (no invented scope), added natural triggers (command-line/terminal/shell-command/binary wrapper). 90%→100%, Description→100%. PR #22 open. |
-| grug-brained-dev | — | n/a | No references dir. Review pending. |
+| grug-brained-dev | 94% | 1/1 | **Done** — owner-flagged sensitive (voice *is* the mechanism). 86%, 1 warning (561 lines). Voice-safe levers only: relocated whole `## What Grug hunts` subsection set verbatim → `references/hunting.md` (proved byte-identical by `diff` vs `main`: only `###`→`##` + trailing-blank tidy), kept voice priming + output format + Grug-voice pointer in SKILL.md; sharpened description to concrete discrete ops keeping Grug flavor. 86%→94%, warning→0: Description 90%→100%, Content 77%→85% (PD 2/3→**3/3**). conciseness 2/3 = intentional voice/immersion ceiling (origin story is the priming tool), per owner — not degraded. PR #23 open. |
 | researching-codebases | — | n/a | No references dir. Review pending. |
 | writing-clearly-and-concisely | — | n/a | No references dir. Review pending. |
 | reducing-entropy | — | n/a | Dynamic `ls` discovery by design — not dead. Review pending. |
@@ -170,12 +196,15 @@ directory-pointer detection). `tessl` column is the last recorded review score;
    209→116-line rewrite; improving-prompts was 4.5-stale and needed a source
    refresh; writing-error-messages was genuinely clean (100% first pass, no
    change); writing-cli-skills was pre-judged "effectively clean" but baselined
-   at 90% (Content 100%, Description 75%) and needed a real description rewrite.
-   The "tiny-refs ⇒ easy" heuristic is now **1/6** — still assume real work:
+   at 90% (Content 100%, Description 75%) and needed a real description rewrite;
+   grug-brained-dev (no-refs, assumed simple) was 86% with a long-file warning
+   and needed a structural split into a new references/ file. The "tiny-refs ⇒
+   easy" heuristic is now **1/7** — still assume real work:
    the one clean skill was only *confirmable* by running the full audit
    (ref-reachability + link health + currency), and the pre-sweep Refs
-   annotations ("dir-pointer; effectively clean") predict reference *health*,
-   not tessl *score* — Content can be 100% while Description sits at 75%.
+   annotations ("no references dir"/"dir-pointer; effectively clean") predict
+   reference *health*, not tessl *score* — Content can be 100% while
+   Description sits at 75%, and a no-refs skill can still need a new ref file.
    "Clean" is a verified finding, never the default; a no-op skill still costs
    a real review, just no PR.
 2. **One genuine fix** — coolify-compose (wire or drop `official-docs.md`),
