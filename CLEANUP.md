@@ -24,7 +24,7 @@ Update the status table at the bottom as you go.
 6. **Ship.** Separate branch off `main`, one commit, push, open a PR scoped to
    that single skill. Then move to the next.
 
-## Learnings (from the svelte5 + sveltekit + jj + skill-authoring + frontend-design-principles + improving-prompts passes)
+## Learnings (from the svelte5 + sveltekit + jj + skill-authoring + frontend-design-principles + improving-prompts + writing-error-messages passes)
 
 - **The `tessl` judge is content-deterministic.** Identical content → byte-identical
   output. Re-running the same file proves nothing about robustness. To prove a
@@ -144,7 +144,7 @@ directory-pointer detection). `tessl` column is the last recorded review score;
 | skill-authoring | 99% | 3/3 | **Done** — sharpened description specificity (2/3→3/3); Content already 100%. Remaining `relative_links` warning is a tessl false-positive (router-table example links inside patterns.md code fences); left intact per owner decision, 0 errors. PR #19 open. |
 | frontend-design-principles | 94% | 1/1 | **Done** — full SKILL.md rewrite 209→116 lines (cut redundant rationale, added ❌/✅ token example, sharpened description). 74%→94%: Description 100%, Content 85% (actionability/workflow/PD 3/3). conciseness 2/3 is the intentional manifesto ceiling; shipped per owner decision. PR #20 open. |
 | improving-prompts | 94% | 1/1 | **Done** — **source refresh** (the real fix): de-pinned from Claude 4.5, renamed reference → `anthropic-best-practices.md`, replaced stale extended-thinking/`avoid think` + migration content with adaptive-thinking/effort + 4.6/4.7 realities + CLAUDE.md/skill rules; no cross-model section (research: not warranted). Also tessl levers (merged Rationalizations+Red Flags, 3→2 trim, de-dup). 90%→94%: Description 100%, Content 85% (actionability/workflow/PD 3/3). conciseness 2/3 = intentional discipline ceiling, per owner. Follow-up commit folds in the one vendor-neutral idea from OpenAI's GPT-5 Codex guide (layered instruction files), Anthropic-framed. PR #21 open. |
-| writing-error-messages | — | 2/2 | Refs clean. Review pending. |
+| writing-error-messages | 100% | 2/2 | **Done — no changes.** Perfect score on first review: 0 errors/warnings, Description 100%, Content 100% (all sub-criteria 3/3). Both refs surfaced via backtick-path "open when…" pointers (SKILL.md:60-61), genuinely reachable; no markdown links at all (no fence-FP surface). Verified, not assumed — no PR because there is nothing to change. |
 | writing-cli-skills | — | 1/1 | Dir-pointer; effectively clean. Review pending. |
 | grug-brained-dev | — | n/a | No references dir. Review pending. |
 | researching-codebases | — | n/a | No references dir. Review pending. |
@@ -168,7 +168,12 @@ directory-pointer detection). `tessl` column is the last recorded review score;
    broken nav links; skill-authoring had a 2/3 description + a code-fence
    false-positive; frontend-design-principles was 74% needing a full
    209→116-line rewrite; improving-prompts was 4.5-stale and needed a source
-   refresh. The "tiny-refs ⇒ easy" heuristic is **0/4**. Assume real work.
+   refresh; writing-error-messages was genuinely clean (100% first pass, no
+   change). The "tiny-refs ⇒ easy" heuristic is now **1/5** — still assume
+   real work: the one clean skill was only *confirmable* by running the full
+   audit (ref-reachability + link health + currency). "Clean" is a verified
+   finding, never the default; a no-op skill still costs a real review, just
+   no PR.
 2. **One genuine fix** — coolify-compose (wire or drop `official-docs.md`),
    plus its review.
 3. **Soft gap** — crafting-effective-readmes (`using-references.md` wiring) +
