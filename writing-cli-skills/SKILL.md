@@ -1,6 +1,6 @@
 ---
 name: writing-cli-skills
-description: Guide for writing skills that wrap CLI tools. Use when creating a new CLI skill. For review, run through the Checklist section.
+description: Use when authoring an agent skill that wraps a command-line tool — covers hands-on tool exploration, required vs. recommended sections, installation/usage structure, trigger-rich descriptions, task-grouped commands, progressive disclosure, and a pre-publish checklist. Triggers for CLI / command-line / terminal / shell-command tools and binary wrappers; for review, run the Checklist section.
 ---
 
 # Writing CLI Skills
