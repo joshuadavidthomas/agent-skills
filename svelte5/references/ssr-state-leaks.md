@@ -47,6 +47,10 @@ Then create it in the appropriate component/request context and pass it through 
 - **Svelte 4** — exported stores were a standard shared-state pattern
 - **Node server code** — module caching is normal but dangerous for per-user data
 
+## Related References
+
+- [class-state-ssr-safety.md](class-state-ssr-safety.md) — request-safe class state in SvelteKit
+
 ## Official References
 
 - [SvelteKit docs: State management](https://svelte.dev/docs/kit/state-management)

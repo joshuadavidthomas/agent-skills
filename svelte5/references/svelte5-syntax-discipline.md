@@ -70,6 +70,10 @@ Use Svelte 4 syntax deliberately only when maintaining legacy code or public API
 - **Migration tools** — syntax conversion without design review
 - **React/Vue habits** — event emitters and slot-like APIs mapped mechanically into Svelte
 
+## Related References
+
+- [svelte4-to-5-migration.md](svelte4-to-5-migration.md) — Svelte 4 → 5 migration gotchas
+
 ## Official References
 
 - [Svelte docs: Svelte 5 migration guide](https://svelte.dev/docs/svelte/v5-migration-guide)

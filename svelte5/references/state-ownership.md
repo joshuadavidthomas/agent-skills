@@ -81,6 +81,12 @@ export const getModalState = () => getContext<ModalState>(KEY);
 - **React** — context/Redux/Zustand often become default before local ownership is tested
 - **Vue** — Pinia/global composables can become the first reach
 
+## Related References
+
+- [class-state-patterns.md](class-state-patterns.md) — interface-first `.svelte.ts` class design
+- [class-state-common-mistakes.md](class-state-common-mistakes.md) — class-state anti-patterns and fixes
+- [stores.md](stores.md) — when a store contract is still the right tool
+
 ## Official References
 
 - [Svelte docs: $state](https://svelte.dev/docs/svelte/$state)

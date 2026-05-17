@@ -58,6 +58,11 @@ Use an action when the abstraction modifies one DOM node's behavior:
 - **jQuery** — imperative DOM behavior as the default abstraction
 - **Vue directives** — directive habits map more closely to Svelte actions
 
+## Related References
+
+- [actions.md](actions.md) — `use:` action signature, parameters, and lifecycle
+- [attachments.md](attachments.md) — `@attach` attachments, the modern element-behavior primitive
+
 ## Official References
 
 - [Svelte docs: use: actions](https://svelte.dev/docs/svelte/use)

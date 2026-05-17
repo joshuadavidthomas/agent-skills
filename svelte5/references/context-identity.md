@@ -55,6 +55,10 @@ Consumers all hold the same reactive object.
 - **Svelte 4** — stores in context were common because stores carried reactivity
 - **Vue** — provide/inject patterns can mix snapshots and reactive refs
 
+## Related References
+
+- [context-vs-scoped-state.md](context-vs-scoped-state.md) — choosing context vs component-scoped state
+
 ## Official References
 
 - [Svelte docs: Context](https://svelte.dev/docs/svelte/context)

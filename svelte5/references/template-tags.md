@@ -62,6 +62,10 @@ Use `{#await}` for promise state in component markup. In SvelteKit, prefer `load
 | Promise UI has no catch branch | Add error state |
 | Debug tags committed accidentally | Remove or guard |
 
+## Related References
+
+- [special-elements.md](special-elements.md) — `<svelte:*>` special elements
+
 ## Official References
 
 - [Svelte docs: @html](https://svelte.dev/docs/svelte/@html)

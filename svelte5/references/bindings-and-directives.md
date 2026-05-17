@@ -97,6 +97,10 @@ Use `style:` for dynamic individual properties.
 | Complex class ternaries in markup | Extract derived class value or use class composition helper |
 | Style string concatenation for many dynamic props | Use `style:` directives or CSS variables |
 
+## Related References
+
+- [transitions-animations.md](transitions-animations.md) — `transition:`, `in:`, `out:`, `animate:` directives
+
 ## Official References
 
 - [Svelte docs: bind:](https://svelte.dev/docs/svelte/bind)
