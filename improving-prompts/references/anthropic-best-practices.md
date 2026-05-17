@@ -155,6 +155,12 @@ The skill's actual job is optimizing these — apply the documented rules.
   adherence; use sparingly so they keep their force.
 - Claude Code reads `CLAUDE.md`, not `AGENTS.md`. To reuse an existing
   `AGENTS.md`, import it with `@AGENTS.md` and add Claude-specific notes below.
+- Layer instructions by specificity. Instruction files load root → working
+  directory; put repo-wide norms at the root and module/team rules in
+  deeper-directory files (`.claude/rules/` with `paths:`, or subdirectory
+  `CLAUDE.md`). More-specific files override broader ones and load only when
+  relevant, which keeps any single file short — the same convention `AGENTS.md`
+  uses across agents.
 
 **Skill files**
 - `SKILL.md` is the entrypoint; keep it under 500 lines.
