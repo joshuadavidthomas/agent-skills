@@ -2,7 +2,9 @@
 name: jj
 description: "Jujutsu (jj) — the Git-compatible version control system. Activate ONLY when a .jj/ directory is present in the project or when jj/jujutsu is explicitly mentioned. Do NOT activate for plain git repos without .jj/. Use for any VCS operations in jj-managed projects: commit, push, pull, branch, bookmark, rebase, squash, merge, diff, log, status, working copy, change ID, revset, fileset, template, configuration, workspaces."
 compatibility: "Requires a jj-managed repository (.jj/ directory present in project root)"
-requires-path: ".jj/"
+metadata:
+  version: "1.0.0"
+  requires-path: ".jj/"
 ---
 
 # Jujutsu (jj) Version Control
@@ -15,12 +17,12 @@ Jujutsu is a Git-compatible VCS with mutable commits, automatic change tracking,
 
 | I need to... | Deep dive |
 |--------------|-----------|
-| Understand how jj relates to Git, or use raw git in a jj repo | [git.md](git.md) |
-| Write revset, fileset, or template expressions | [revsets.md](revsets.md) |
-| Push, pull, manage bookmarks, or work with GitHub | [sharing.md](sharing.md) |
-| Split, rebase, squash, or resolve conflicts | [history.md](history.md) |
-| Run parallel agents with isolated working copies | [workspaces.md](workspaces.md) |
-| Configure jj, set up aliases, or customize diffs | [config.md](config.md) |
+| Understand how jj relates to Git, or use raw git in a jj repo | [git-compatibility.md](references/git-compatibility.md) |
+| Write revset, fileset, or template expressions | [revsets.md](references/revsets.md) |
+| Push, pull, manage bookmarks, or work with GitHub | [bookmarks.md](references/bookmarks.md) |
+| Split, rebase, squash, or resolve conflicts | [conflicts.md](references/conflicts.md) |
+| Run parallel agents with isolated working copies | [parallel-agents.md](references/parallel-agents.md) |
+| Configure jj, set up aliases, or customize diffs | [config-reference.md](references/config-reference.md) |
 
 ## Mental Model
 
@@ -33,10 +35,10 @@ Jujutsu is a Git-compatible VCS with mutable commits, automatic change tracking,
 **History is mutable.** Commits can be freely rewritten. Descendants auto-rebase. Old versions stay in the operation log.
 
 **Bookmarks are not branches.** Bookmarks don't advance when new commits are created. They follow rewrites but must be explicitly set before pushing.
-→ Deep dive: [sharing.md](sharing.md)
+→ Deep dive: [bookmarks.md](references/bookmarks.md)
 
 **Conflicts don't block.** jj allows committing conflicted files. Resolve at your convenience by editing conflict markers directly, then verify with `jj st`.
-→ Deep dive: [history.md](history.md)
+→ Deep dive: [conflicts.md](references/conflicts.md)
 
 ## Agent Rules
 
@@ -63,7 +65,7 @@ paginate = "never"
 ```
 
 Launch with: `JJ_CONFIG=/path/to/agent-jj-config.toml <agent-harness>`
-→ Deep dive: [config.md](config.md)
+→ Deep dive: [config-reference.md](references/config-reference.md)
 
 ## Core Workflow
 
@@ -83,7 +85,7 @@ jj squash -m "feat: final clean message"   # fold working copy into parent
 jj absorb                                   # auto-distribute hunks to right ancestor
 jj abandon @                               # drop a failed experiment
 ```
-→ Deep dive: [history.md](history.md)
+→ Deep dive: [command-gotchas.md](references/command-gotchas.md)
 
 ### Non-Linear Work
 
@@ -110,7 +112,7 @@ jj git push -b feat
 ```
 
 Bookmarks must be set before pushing — they don't auto-advance.
-→ Deep dive: [sharing.md](sharing.md)
+→ Deep dive: [bookmarks.md](references/bookmarks.md)
 
 ## Essential Commands
 
@@ -154,7 +156,7 @@ jj evolog -r <change-id>     # see how a change evolved
 | Forgetting to set bookmark before push | `jj bookmark set <name> -r @` first |
 | Using commit IDs instead of change IDs | Change IDs (letters k–z) survive rewrites |
 | Unquoted revset expressions | Always single-quote: `'mine() & ::@'` |
-| Confusing `::` vs `..` operators | `::` = ancestry path, `..` = range (see [revsets.md](revsets.md)) |
+| Confusing `::` vs `..` operators | `::` = ancestry path, `..` = range (see [revsets.md](references/revsets.md)) |
 | Creating workspaces as subdirectories | Must be sibling dirs, not children |
 
 ## Reference Index
