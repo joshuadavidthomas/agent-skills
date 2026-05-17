@@ -34,11 +34,27 @@ Use this skill for app-level SvelteKit decisions. Use **svelte5** for component 
 
 **4. Server-owned data loads on the server.** Database queries, secrets, private APIs, and session-derived data belong in `+page.server.ts` / `+layout.server.ts`, not in component `onMount` or browser fetches. See [references/load-functions.md](references/load-functions.md).
 
+```ts
+// ❌ component fetches server-owned data after mount
+onMount(async () => { user = await (await fetch('/api/me')).json(); });
+
+// ✅ +page.server.ts — server owns it, page receives data
+export const load = async ({ locals }) => ({ user: await locals.getUser() });
+```
+
 **5. Universal load is for universal work.** Use `+page.ts` only when the code can safely run in both browser and server. If it needs secrets or trusted auth, it is not universal.
 
 **6. Load returns data, not behavior.** Return serializable data from server load. Do not return class instances, functions, database handles, or rich objects that depend on identity. See [references/serialization.md](references/serialization.md).
 
 **7. Redirects and errors are thrown control flow.** In SvelteKit 2, `redirect()` and `error()` return objects; throw them. Bare calls are bugs. See [references/errors-and-redirects.md](references/errors-and-redirects.md).
+
+```ts
+// ❌ bare call — execution continues, the redirect never happens
+if (!locals.user) redirect(303, '/login');
+
+// ✅ throw it
+if (!locals.user) throw redirect(303, '/login');
+```
 
 ### Forms are server-first
 
@@ -47,6 +63,11 @@ Use this skill for app-level SvelteKit decisions. Use **svelte5** for component 
 **9. Progressive enhancement is enhancement.** The form should work without JavaScript; `use:enhance` improves pending states, focus, invalidation, and UX. It should not be the only way the mutation works.
 
 **10. Validation lives at the boundary.** Validate on the server, return field-shaped errors with `fail`, and let the component display them. If the project uses shadcn-svelte or bits-ui, render those errors through `Field.*` components rather than ad hoc wrappers. See [references/forms-validation.md](references/forms-validation.md).
+
+```ts
+// +page.server.ts action — validate server-side, return field-shaped errors
+if (!email) return fail(400, { errors: { email: 'Email is required' } });
+```
 
 ### Auth is explicit and boring
 
@@ -67,6 +88,33 @@ Use this skill for app-level SvelteKit decisions. Use **svelte5** for component 
 **16. Browser APIs are conditional.** `window`, `document`, `localStorage`, media APIs, and DOM measurement do not exist during SSR. Use component effects, `browser`, or client-only boundaries deliberately. See [references/ssr-hydration.md](references/ssr-hydration.md).
 
 **17. Hydration mismatches are design feedback.** If server and client render different initial markup, fix the data boundary or defer browser-only rendering intentionally. Do not paper over mismatches with random client checks.
+
+## Working Through a Change
+
+Work outside-in — settle each boundary before the next:
+
+1. **Runtime & route boundary.** Identify which `+` files exist and where each runs (server / universal / endpoint). → Confirm secrets and DB access never reach `+page.ts` or components.
+2. **Data ownership.** Server-owned data in `+*.server.ts`; `load` returns serializable data. → Confirm no class instances or functions cross `load`.
+3. **Mutations.** Form-shaped data goes through a native form + `+page.server.ts` action. → Confirm it works with JavaScript disabled before `use:enhance` is added.
+4. **Auth.** Hooks populate `locals`; every page load *and* every `+server.ts` enforces policy and fails closed. → Test a direct HTTP call to each endpoint, not just the page.
+5. **SSR.** Browser APIs gated; initial markup matches. → Render with JS off and confirm no hydration mismatch.
+6. **Order findings:** security/correctness first (auth, serialization, thrown control flow), then progressive-enhancement gaps, then ergonomics.
+
+### Form action flow
+
+1. Native `<form method="POST">` with real inputs and labels.
+2. `+page.server.ts` `actions` validates server-side; `return fail(400, { errors })` on bad input, `throw redirect(...)` on success.
+3. Component renders `form?.errors` (through `Field.*` if the project uses shadcn-svelte / bits-ui).
+4. Add `use:enhance` last — for pending state, focus, and invalidation only.
+5. **Check:** submit with JavaScript disabled; the mutation still works.
+
+### Protecting routes
+
+1. Protected routes under a group with a protected `+layout.server.ts`; login/signup stay outside it.
+2. `hooks.server.ts` parses the session into `locals`.
+3. The protected `+layout.server.ts` does `throw redirect(...)` for unauthenticated users.
+4. Each `+server.ts` under protection re-checks auth itself.
+5. **Check:** a direct request to a protected endpoint with no session is rejected.
 
 ## Common Mistakes (Agent Failure Modes)
 
