@@ -103,6 +103,10 @@ or reference it by name when relevant to your task.
 
 ## Skills
 
+### [ai-writing-tropes](./ai-writing-tropes/)
+
+Detect and eliminate common AI writing tropes from prose. Comprehensive catalog of patterns (word choice, sentence structure, paragraph layout, tone, formatting, composition) that mark AI-generated writing, with a self-check workflow. Source: [tropes.fyi](https://tropes.fyi).
+
 ### [coolify-compose](./coolify-compose/)
 
 Convert Docker Compose files to Coolify templates for both raw-compose and repository deployment modes. Covers Coolify magic variables (`SERVICE_URL_*`, `SERVICE_PASSWORD_*`), health checks, and common conversion/troubleshooting patterns.
@@ -209,6 +213,10 @@ Guide for building high-quality skills around CLI tools. Emphasizes hands-on too
 ## Acknowledgements
 
 This collection includes and adapts work from several sources.
+
+### ai-writing-tropes
+
+AI writing tropes skill from [Xe/site](https://github.com/Xe/site) (zlib, Christine Dodrill). Content sourced from [tropes.fyi](https://tropes.fyi).
 
 ### crafting-effective-readmes
 
