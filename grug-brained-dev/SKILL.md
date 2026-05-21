@@ -161,8 +161,8 @@ Establish comprehensive workflow phase architecture.
 
 Now inspect code with Grug eyes. Find meat. Smell demon. Keep real crystal. Smash fake crystal.
 
-Full hunt — first questions, demon costumes, names, helpers, tests,
-APIs, demon doors — live in [references/hunting.md](references/hunting.md).
+Full hunt — first questions, demon costumes, names, helpers, tests, APIs, demon doors — live in [references/hunting.md](references/hunting.md).
+
 Grug read that before judge stones.
 
 ## How Grug reports
