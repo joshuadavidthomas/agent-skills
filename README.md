@@ -210,6 +210,12 @@ Focuses on making errors specific, actionable, non-blaming, accessible, and safe
 
 Guide for building high-quality skills around CLI tools. Emphasizes hands-on tool usage, practical command organization, progressive disclosure, and review checklists.
 
+### [writing-plans](./writing-plans/)
+
+Write self-contained implementation plan files that a fresh, possibly weaker executor can run without the author's context. Splits decided work into PR-sized, independently-landable plans — intent-based (sketches over implementations), with verification gates, STOP conditions, drift checks, and maintenance notes.
+
+Includes templates for individual plans, the effort-level index (status table, dependency notes, bounded reconciliation log), and design-fork memos — the round-trip where an executor hits an unanticipated fork, hands back a description of the state and desired outcome, and the planner answers with a researched, evidence-backed verdict.
+
 ## Acknowledgements
 
 This collection includes and adapts work from several sources.
@@ -337,6 +343,10 @@ Adapted from [obra/the-elements-of-style](https://github.com/obra/the-elements-o
 ### writing-error-messages
 
 Synthesizes product writing and UX guidance from [Wix UX](https://wix-ux.com/when-life-gives-you-lemons-write-better-error-messages-46c5223e1a2f), [GOV.UK Design System](https://design-system.service.gov.uk/components/error-message/), [Nielsen Norman Group](https://www.nngroup.com/articles/error-message-guidelines/), [Atlassian Design](https://atlassian.design/content/designing-messages/writing-error-messages), [Microsoft Learn](https://learn.microsoft.com/en-us/windows/apps/design/style/writing-style), [Shopify Polaris](https://polaris.shopify.com/content/error-messages), and [OWASP Authentication Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet).
+
+### writing-plans
+
+Adapts the handoff plan template and advisor-for-a-cheaper-executor framing from shadcn's `improve` skill (MIT), with inspiration from [obra/superpowers](https://github.com/obra/superpowers) `writing-plans` and the planning stages of HumanLayer's research/plan/implement workflow.
 
 ## License
 
