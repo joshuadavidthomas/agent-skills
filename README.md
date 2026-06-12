@@ -152,6 +152,11 @@ Rust guidance for idiomatic API design and implementation across ownership, erro
 
 Salsa guidance for building incremental Rust systems: databases, tracked functions, input/tracked/interned structs, query pipelines, accumulators, cancellation, LSP integration, memory management, cycles, durability, and production architecture.
 
+### [roadmap](./roadmap/)
+
+Build evidence-backed software/product roadmaps from repo state, tickets, ideas, audit findings, design docs, and user goals. Gives a high-level view of what's coming up, sequences work into Now/Next/Later, explains dependencies and tradeoffs, avoids fake dates, and routes each item to the next artifact owner (`brainstorm`, `questions`/`research`, `design-discussion`, `writing-plans`, or a user decision).
+
+Defaults roadmap items to outcomes/capabilities/features, using epics, milestones, and phases only when they clarify sequencing or match project vocabulary. Writes the canonical project artifact as root `ROADMAP.md`, using `docs/roadmaps/` only for scoped or alternate roadmaps, and stays above PR-level implementation planning.
 ### [improving-prompts](./improving-prompts/)
 
 Apply Anthropic's documented Claude 4.5 best practices to CLAUDE.md, AGENTS.md, custom commands, and skill files. Uses actual guidance from Anthropic instead of inventing improvements.
