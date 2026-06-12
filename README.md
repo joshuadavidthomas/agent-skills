@@ -157,6 +157,13 @@ Salsa guidance for building incremental Rust systems: databases, tracked functio
 Build evidence-backed software/product roadmaps from repo state, tickets, ideas, audit findings, design docs, and user goals. Gives a high-level view of what's coming up, sequences work into Now/Next/Later, explains dependencies and tradeoffs, avoids fake dates, and routes each item to the next artifact owner (`brainstorm`, `questions`/`research`, `design-discussion`, `writing-plans`, or a user decision).
 
 Defaults roadmap items to outcomes/capabilities/features, using epics, milestones, and phases only when they clarify sequencing or match project vocabulary. Writes the canonical project artifact as root `ROADMAP.md`, using `docs/roadmaps/` only for scoped or alternate roadmaps, and stays above PR-level implementation planning.
+
+### [improve](./improve/)
+
+Survey a codebase as a senior advisor — strictly read-only — and turn the highest-value findings into implementation plans for other agents to execute. Four phases: recon (including the project's domain docs and ADRs), parallel category audits from a playbook, vetting every finding against the actual code, then handing the selected findings to the [writing-plans](./writing-plans/) skill for the plan artifacts.
+
+Supports effort levels (`quick`/`standard`/`deep`), single-category focus, branch-scoped audits, and a roadmap/direction mode. Findings are evidence-backed (`file:line`), ordered by leverage, and "not worth doing" is a recorded verdict.
+
 ### [improving-prompts](./improving-prompts/)
 
 Apply Anthropic's documented Claude 4.5 best practices to CLAUDE.md, AGENTS.md, custom commands, and skill files. Uses actual guidance from Anthropic instead of inventing improvements.
@@ -252,6 +259,10 @@ Adapted from:
 ### grug-brained-dev
 
 Inspired by [The Grug Brained Developer](https://grugbrain.dev/), a funny-looking but painfully useful guide to fighting complexity demons with smol brain humility, plain names, saying no, delayed factoring, real cut points, small refactors, and suspicion of premature abstraction. This adaptation aims to make coding agents inhabit the Grug posture, not just summarize the article.
+
+### improve
+
+Adapts the advisor workflow and audit playbook from [shadcn's `improve` skill](https://github.com/shadcn/improve) (MIT), with the domain-docs/ADR awareness and module-depth framing (deletion test, shallow vs. deep modules) of Matt Pocock's `improve-codebase-architecture`. The depth vocabulary traces to John Ousterhout's *A Philosophy of Software Design*.
 
 ### improving-prompts
 
@@ -351,7 +362,7 @@ Synthesizes product writing and UX guidance from [Wix UX](https://wix-ux.com/whe
 
 ### writing-plans
 
-Adapts the handoff plan template and advisor-for-a-cheaper-executor framing from shadcn's `improve` skill (MIT), with inspiration from [obra/superpowers](https://github.com/obra/superpowers) `writing-plans` and the planning stages of HumanLayer's research/plan/implement workflow.
+Adapts the handoff plan template and advisor-for-a-cheaper-executor framing from [shadcn's `improve` skill](https://github.com/shadcn/improve) (MIT), with inspiration from [obra/superpowers](https://github.com/obra/superpowers) `writing-plans` and the planning stages of HumanLayer's research/plan/implement workflow.
 
 ## License
 
