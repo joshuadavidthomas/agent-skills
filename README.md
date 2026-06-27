@@ -107,6 +107,10 @@ or reference it by name when relevant to your task.
 
 Detect and eliminate common AI writing tropes from prose. Comprehensive catalog of patterns (word choice, sentence structure, paragraph layout, tone, formatting, composition) that mark AI-generated writing, with a self-check workflow. Source: [tropes.fyi](https://tropes.fyi).
 
+### [coding-standards](./coding-standards/)
+
+Language-agnostic coding standards for design-level code review and implementation judgment. Covers domain modeling, state, modules, boundaries, effects, error handling, verification, complexity, and maintainability.
+
 ### [coolify-compose](./coolify-compose/)
 
 Convert Docker Compose files to Coolify templates for both raw-compose and repository deployment modes. Covers Coolify magic variables (`SERVICE_URL_*`, `SERVICE_PASSWORD_*`), health checks, and common conversion/troubleshooting patterns.
@@ -157,6 +161,18 @@ Salsa guidance for building incremental Rust systems: databases, tracked functio
 Build evidence-backed software/product roadmaps from repo state, tickets, ideas, audit findings, design docs, and user goals. Gives a high-level view of what's coming up, sequences work into Now/Next/Later, explains dependencies and tradeoffs, avoids fake dates, and routes each item to the next artifact owner (`brainstorm`, `questions`/`research`, `design-discussion`, `writing-plans`, or a user decision).
 
 Defaults roadmap items to outcomes/capabilities/features, using epics, milestones, and phases only when they clarify sequencing or match project vocabulary. Writes the canonical project artifact as root `ROADMAP.md`, using `docs/roadmaps/` only for scoped or alternate roadmaps, and stays above PR-level implementation planning.
+
+### [strategic-roadmap](./strategic-roadmap/)
+
+Generate and sequence high-leverage work inside one repository from user seed ideas, repo mining, old plans, branches/bookmarks, and architecture scans. Produces a strategic roadmap with generated opportunities, Now/Next/Later sequencing, architecture/deepening candidates, success criteria, rejected/not-now items, and next-artifact recommendations. Use this for repo-grounded opportunity discovery before plan banks or feature planning artifacts.
+
+### [roadmap-to-improve-plans](./roadmap-to-improve-plans/)
+
+Turn selected roadmap opportunities into numbered NNN-style implementation plan banks. Writes effort indexes, numbered plans, optional memos, verification gates, evals/regression checks, autonomy boundaries, drift checks, STOP conditions, rejected approaches, and executor handoff notes for this pipeline.
+
+### [feature-planning-artifacts](./feature-planning-artifacts/)
+
+Deepen a high-value roadmap item, architecture candidate, or NNN plan into HumanLayer-style planning artifacts: research questions, research, design discussion, structure outline, and final executor plan with success criteria, evals, and autonomy boundaries.
 
 ### [improve](./improve/)
 
