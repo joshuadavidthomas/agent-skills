@@ -1,40 +1,37 @@
 # Memo Template
 
-Use a memo when execution exposes a design fork that should not be improvised inside an implementation plan.
+Use a memo when execution or planning exposes an audit or architecture fork that should not be improvised inside an implementation plan. A memo should answer the fork, preserve the evidence, and update the affected plans.
 
 ```markdown
 # Memo: <Decision/Fork Title>
 
+**Verdict:** <decision first, in one or two sentences>
 **Related plan:** <NNN-title>
+**Audit category:** <category>
 **Date:** <date>
 **Status:** Proposed | Accepted | Rejected | Superseded
 
-## Context
+## Fork
 
-<What the executor discovered and why the original plan is insufficient.>
+<What the executor or planner discovered and why the original plan is insufficient.>
 
 ## Evidence
 
 - `path:line-line` — <fact>
 - `<command>` — <result>
 
-## Options
+## Architecture Diagnosis
 
-### Option A — <title>
+Include for architecture forks; otherwise use “N/A”.
 
-- Pros:
-- Cons:
-- Consequences:
+- **Current friction:** <what is costly now>
+- **Deepening direction:** <module/interface/depth/seam/adapter/leverage/locality direction>
+- **Deletion test:** <result>
+- **Recommendation strength:** Strong / Worth exploring / Speculative
 
-### Option B — <title>
+## Rejected Alternatives
 
-- Pros:
-- Cons:
-- Consequences:
-
-## Decision
-
-<Chosen option and rationale. If undecided, state what human input is needed.>
+- <alternative> — <why rejected, with evidence>
 
 ## Plan Updates Required
 

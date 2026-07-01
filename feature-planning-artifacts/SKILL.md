@@ -16,7 +16,7 @@ Open and resolved questions live in the design discussion. Plan iteration update
 Before writing or updating planning artifacts, load what applies:
 
 - The selected strategic-roadmap item, opportunity card, architecture candidate, or `NNN-*.md` plan.
-- `coding-standards` and matching references for design claims.
+- The `coding-standards` skill as the canonical source for design claims. Load the matching references; do not copy the standards into this skill or artifact.
 - Project docs: `AGENTS.md`, `README.md`, `CONTEXT.md`, architecture docs, ADRs, verification config, current VCS state, and relevant existing plans.
 
 The artifact rules in this skill are canonical. Also read the HumanLayer v2 planning skills at `/home/josh/projects/joshuadavidthomas/qrspi/references/humanlayer-riptide-v2-skills/` and use `improve-codebase-architecture` to preserve their current wording and examples.
@@ -60,7 +60,7 @@ When working inside `.humanlayer/tasks/<task>/`, use `ls -La` to inspect the dir
 4. **Design discussion artifact**
    - Require completed research unless the user explicitly provides enough current-state context.
    - Present current state, desired end state, explicit non-goals, proposed architecture, design questions, options, recommendations, and resolved decisions.
-   - Use coding-standards vocabulary for the actual design pressure.
+   - Cite the selected `coding-standards` skill concern/reference for the actual design pressure.
    - Use architecture/deepening vocabulary for module/interface/depth/seam/adapter/leverage/locality.
    - Include patterns to follow with file references and concise snippets when they materially guide implementation.
    - Identify recurring decisions that should become a standing policy, ADR, repo instruction, template, or eval.

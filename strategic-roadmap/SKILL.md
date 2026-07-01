@@ -16,7 +16,7 @@ Use the ordinary `roadmap` skill for standard product/release roadmaps. Use this
 Before producing the roadmap, load the sources that match the scope:
 
 - `improve` for read-only senior-advisor discovery, audit categories, evidence, vetting, leverage ranking, and “not worth doing” verdicts.
-- `coding-standards` for standards areas and review vocabulary.
+- The `coding-standards` skill as the canonical source for standards areas and review vocabulary. Load the matching reference files when a code-shaped opportunity needs that lens; do not restate the standards here.
 - `improve-codebase-architecture` when architecture/deepening opportunities are in scope.
 - Architecture vocabulary: module, interface, depth, seam, adapter, leverage, locality.
 - Project docs: `AGENTS.md`, `README.md`, `CONTEXT.md`, architecture docs, ADRs, old plans, roadmap files, active branches/bookmarks, and relevant issue/ticket notes.
@@ -42,7 +42,7 @@ Before producing the roadmap, load the sources that match the scope:
    - Audit like `improve`: correctness, security, performance, test coverage, tech debt and architecture, dependencies and migrations, DX and tooling, docs, and direction.
    - Include repo-discovered ideas, architecture/deepening candidates, product/workflow ideas, plan salvage opportunities, obsolete work to retire, and system upgrades that improve future work.
    - Look for decisions the user or agents keep re-litigating; propose standing policies, ADRs, evals, or plan templates when they would compound.
-   - Apply `coding-standards` areas when evaluating code-shaped opportunities: domain model, state, modules, boundaries, effects, errors, verification, complexity, maintainability.
+   - For code-shaped opportunities, choose the Standards area from the `coding-standards` skill and load only the matching reference when the ranking or routing depends on it.
    - For architecture candidates, use `improve-codebase-architecture` framing: current friction, files/modules, deepening direction, locality/leverage, testability, and recommendation strength.
    - Use architecture audit probes: where understanding requires bouncing between modules, where the interface is nearly as complex as the implementation, where test-only extraction lost locality, where seams leak, and where the deletion test shows a module is shallow.
    - Do not propose final interfaces at roadmap stage. Name the friction, direction, and next artifact instead.

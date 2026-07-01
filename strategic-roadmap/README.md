@@ -11,4 +11,4 @@ This is not the ordinary `roadmap` skill for standard product/release roadmaps. 
 
 ## Source notes
 
-Synthesized from this repository's `improve` audit posture, `coding-standards`, the `improve-codebase-architecture` workflow, and HumanLayer-style staged planning discussions.
+Synthesized from this repository's `improve` skill audit posture, the `coding-standards` skill, the `improve-codebase-architecture` skill, and HumanLayer-style staged planning discussions.

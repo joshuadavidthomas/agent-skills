@@ -32,13 +32,13 @@
 
 | Opportunity | Audit category | Why now | Impact / leverage | Standards area | Evidence | First strategic slice | Risk / uncertainty | Autonomy boundary | Confidence | Next artifact |
 |---|---|---|---|---|---|---|---|---|---|---|
-| <title> | <tests / architecture / direction / etc.> | <why this belongs first> | <payoff relative to effort and risk> | <Domain Modeling / Modules / Boundaries / Verification / etc., or N/A> | <paths/artifacts/user seed> | <first coherent planning target> | <unknowns or decision points> | <routine execution, design review, or human approval> | High/Medium/Low | `roadmap-to-improve-plans` / `feature-planning-artifacts` / `research/spike` / `user decision` |
+| <title> | <tests / architecture / direction / etc.> | <why this belongs first> | <payoff relative to effort and risk> | <from the `coding-standards` skill concern map, or N/A> | <paths/artifacts/user seed> | <first coherent planning target> | <unknowns or decision points> | <routine execution, design review, or human approval> | High/Medium/Low | `roadmap-to-improve-plans` / `feature-planning-artifacts` / `research/spike` / `user decision` |
 
 ## Next
 
 | Opportunity | Audit category | Why next | Impact / leverage | Standards area | Evidence | Prerequisite | Autonomy boundary | Confidence | Likely next artifact |
 |---|---|---|---|---|---|---|---|---|---|
-| <title> | <category> | <why it matters after Now> | <payoff relative to effort and risk> | <standards area or N/A> | <paths/artifacts/user seed> | <what must happen first> | <routine execution, design review, or human approval> | High/Medium/Low | <artifact or defer> |
+| <title> | <category> | <why it matters after Now> | <payoff relative to effort and risk> | <from the `coding-standards` skill concern map, or N/A> | <paths/artifacts/user seed> | <what must happen first> | <routine execution, design review, or human approval> | High/Medium/Low | <artifact or defer> |
 
 ## Later
 

@@ -24,11 +24,17 @@
 
 <What will be true after all plans land.>
 
+## Source Audit Summary
+
+| Opportunity | Audit category | Standards concern | Impact | Effort | Risk | Confidence | Source evidence |
+|---|---|---|---|---|---|---|---|
+| <title> | <category> | <from the `coding-standards` skill, or N/A> | <payoff> | S/M/L | LOW/MED/HIGH | HIGH/MED/LOW | <paths/artifacts> |
+
 ## Plan Order
 
-| Plan | Status | Depends on | Ready for routine execution? | Needs feature planning artifacts? | Autonomy boundary | Notes |
-|---|---|---|---|---|---|---|
-| [001-title](001-title.md) | Not started | None | Yes/No | Yes/No | <routine execution / design review / human approval> | ... |
+| Plan | Status | Audit category | Standards concern | Depends on | Ready for routine execution? | Needs deeper planning? | Autonomy boundary | Notes |
+|---|---|---|---|---|---|---|---|---|
+| [001-title](001-title.md) | Not started | <category> | <from the `coding-standards` skill, or N/A> | None | Yes/No | Yes/No | <routine execution / design review / human approval> | ... |
 
 ## Dependency Notes
 
@@ -59,9 +65,11 @@ If no reliable command exists, say so and point to the plan that establishes one
 - Re-open files named by the plan before editing.
 - Stop if architecture, APIs, or validation commands have changed materially.
 
-## Feature Planning Artifact Candidates
+## Deeper Planning Candidates
 
-| Plan/opportunity | Why it needs depth | Suggested artifact destination |
+Use this for low-confidence audit items, unsettled architecture, speculative recommendations, or user decisions that should not be buried inside an implementation plan.
+
+| Plan/opportunity | Why it needs depth | Suggested next artifact |
 |---|---|---|
 
 ## Standing Policies / Decisions
@@ -71,8 +79,8 @@ If no reliable command exists, say so and point to the plan that establishes one
 
 ## Considered and Rejected
 
-| Idea | Reason rejected | Revisit if |
-|---|---|---|
+| Idea | Audit category | Reason rejected | Revisit if |
+|---|---|---|---|
 
 ## Deferred
 

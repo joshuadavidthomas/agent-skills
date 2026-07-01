@@ -11,4 +11,4 @@ The artifact sequence is fixed: research questions, research, design discussion,
 
 ## Source notes
 
-Synthesized from HumanLayer Riptide v2 planning skills, this repository's `coding-standards` skill, and `improve-codebase-architecture`.
+Synthesized from HumanLayer Riptide v2 planning skills, this repository's `coding-standards` skill, and the `improve-codebase-architecture` skill.

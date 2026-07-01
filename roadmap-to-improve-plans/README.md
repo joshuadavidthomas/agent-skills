@@ -2,7 +2,7 @@
 
 Turns selected roadmap opportunities into a numbered implementation plan bank. Use it after repo-level opportunity discovery has identified what is worth planning.
 
-The skill writes effort indexes, `NNN-*.md` plans, and occasional memos. Its plans are designed for fresh executors: drift checks, exact verification commands, evals/regression checks, autonomy boundaries, STOP conditions, rejected approaches, and handoff notes are mandatory.
+The skill writes effort indexes, `NNN-*.md` plans, and occasional memos. Its plans preserve the audit frame behind each opportunity — category, impact, effort, risk, confidence, evidence, and fix/deepening direction — then make execution safe with drift checks, exact verification commands, evals/regression checks, autonomy boundaries, STOP conditions, rejected approaches, and handoff notes.
 
 ## References
 
@@ -12,4 +12,4 @@ The skill writes effort indexes, `NNN-*.md` plans, and occasional memos. Its pla
 
 ## Source notes
 
-Synthesized from the successful DLS plan-bank style, this repository's `improve` and `coding-standards` skills, `improve-codebase-architecture`, and HumanLayer-style staged planning.
+Synthesized from the successful DLS plan-bank style, this repository's `improve` skill audit posture, the `coding-standards` skill, and the `improve-codebase-architecture` skill. HumanLayer-style feature artifacts are treated as the deeper-planning route, not the primary template for this skill.

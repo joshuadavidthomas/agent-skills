@@ -1,4 +1,4 @@
-# Deep Planning Packet Templates
+# Feature Planning Artifact Templates
 
 ## Research Questions
 
@@ -91,6 +91,10 @@ sha: <current revision>
 ## What Better Means
 
 <Concrete success criteria and what would count as regression.>
+
+## Standards / Design Pressure
+
+<Selected `coding-standards` skill concern and reference, if applicable. Do not restate the whole standard; explain how it applies to this design.>
 
 ## Current State
 
@@ -226,6 +230,10 @@ sha: <current revision>
 ## Overview
 
 <What will be implemented and why.>
+
+## Standards Concern
+
+<Selected `coding-standards` skill concern/reference, or N/A.>
 
 ## What Better Means
 

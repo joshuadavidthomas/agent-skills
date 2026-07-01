@@ -10,6 +10,13 @@
 **Planned at:** <date, VCS revision/bookmark/branch>
 **Depends on:** <none | NNN-title>
 **Executor target:** <routine execution ready? yes/no>
+**Audit category:** <correctness / security / performance / tests / architecture / dependencies / DX / docs / direction>
+**Standards concern:** <from the `coding-standards` skill, or N/A>
+**Impact:** <concrete cost removed or value unlocked>
+**Effort:** <S/M/L or concise estimate>
+**Risk:** <LOW/MED/HIGH and why>
+**Confidence:** <HIGH/MED/LOW and why>
+**Source direction:** <fix sketch, deepening direction, or spike goal carried from roadmap/audit>
 
 ## Purpose
 
@@ -40,7 +47,18 @@
 
 ## Design Claim
 
-<The coding-standards or architecture claim this plan protects: clearer module, better seam, parsed boundary, explicit state, reliable verification, etc.>
+<The specific claim from the `coding-standards` skill or `improve-codebase-architecture` skill this plan protects. Reference the source skill/reference rather than restating the whole standard.>
+
+## Architecture Diagnosis
+
+Include this section for architecture or tech-debt plans. Use “N/A” for non-architecture plans.
+
+- **Current friction:** <caller burden, shallow module, leaky seam, low locality, etc.>
+- **Deepening direction:** <what complexity moves behind a better module/interface/seam>
+- **Deletion test:** <would deleting the current module remove complexity or merely move it elsewhere?>
+- **Locality / leverage claim:** <why this change makes future work easier or tests stronger>
+- **Recommendation strength:** Strong / Worth exploring / Speculative
+- **ADR conflicts:** <none, or ADR plus why reopening is justified>
 
 ## Implementation Sequence
 
@@ -98,6 +116,7 @@ Stop and hand back if:
 - cited files or APIs no longer match the plan;
 - validation commands are missing or fail before changes;
 - a design decision is required that this plan does not answer;
+- an architecture plan lacks a clear seam, deletion-test answer, or locality/leverage claim;
 - implementing this plan requires compatibility/migration work not listed here;
 - the change grows beyond one independently reviewable PR;
 - the work crosses the autonomy boundary above.
