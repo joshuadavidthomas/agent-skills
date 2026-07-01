@@ -58,14 +58,16 @@ Research is descriptive. Recommendations start in the design discussion.
 
 ## Artifact Sequence and Location
 
-Use the canonical structures in [references/artifact-templates.md](references/artifact-templates.md). Prefer `.agents/plans/<effort-slug>/artifacts/<topic-slug>/` for these artifacts. When working inside an existing HumanLayer task, use `.humanlayer/tasks/<task>/` instead. Write artifacts in chronological order with the next available numeric prefix:
+Use the canonical structures in [references/artifact-templates.md](references/artifact-templates.md). Prefer one plain folder per effort: `.agents/plans/<effort-slug>/`.
+
+When working inside an existing HumanLayer task, use `.humanlayer/tasks/<task>/` instead. Write artifacts in chronological order with the next available numeric prefix:
 
 ```txt
-01-research-questions-<slug>.md
-02-research-<slug>.md
-03-design-discussion-<slug>.md
-04-structure-outline-<slug>.md
-05-plan-<slug>.md
+.agents/plans/<effort-slug>/01-research-questions-<topic-slug>.md
+.agents/plans/<effort-slug>/02-research-<topic-slug>.md
+.agents/plans/<effort-slug>/03-design-discussion-<topic-slug>.md
+.agents/plans/<effort-slug>/04-structure-outline-<topic-slug>.md
+.agents/plans/<effort-slug>/05-plan-<topic-slug>.md
 ```
 
 Create or update exactly one **primary** artifact per invocation unless the user explicitly asks for a full sequence. A reconnaissance note or research artifact may be created first only when the design would otherwise rest on unverified current-state claims; if you create it, stop there.
@@ -80,7 +82,7 @@ When working inside `.humanlayer/tasks/<task>/`, use `ls -La` to inspect the dir
    - If a design discussion exists but is not accepted, iterate that document rather than writing an outline.
    - If an outline exists but is not accepted, iterate that outline rather than writing a final plan.
    - Define what “better” means for this artifact before writing: user outcome, architecture leverage, verification strength, executor readiness, reliability, or another concrete standard.
-   - Choose the artifact destination, defaulting to `.agents/plans/<effort-slug>/artifacts/<topic-slug>/` when no project convention exists.
+   - Choose the artifact destination, defaulting to `.agents/plans/<effort-slug>/` when no project convention exists.
    - Inspect existing artifact files and continue numbering; do not overwrite existing artifacts unless iterating them deliberately.
 
 2. **Research questions stage**
