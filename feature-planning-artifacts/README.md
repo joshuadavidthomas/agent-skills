@@ -1,8 +1,10 @@
 # feature-planning-artifacts
 
-Creates HumanLayer-style planning artifacts for high-value opportunities or NNN plans. Use it when a broad plan needs real research, design choices, vertical slicing, and a final executor-safe plan before implementation.
+Creates staged HumanLayer-style planning artifacts for high-value opportunities or NNN plans. Use it when a broad plan needs reconnaissance, design choices, vertical slicing, and a final executor-safe plan before implementation.
 
-The artifact sequence is fixed: research questions, research, design discussion, structure outline, final plan. Open and resolved questions are handled inside the design discussion. Artifacts should define success, evals/regression checks, autonomy boundaries, and standing-policy recommendations when useful.
+The skill is intentionally gated: write or update the current-stage artifact, stop for review, then continue only after acceptance or explicit instruction. The usual path is design discussion → review/iteration → structure outline → review/iteration → final plan, with research questions and research used when current-state uncertainty is high enough to deserve durable artifacts.
+
+Open and resolved questions are handled inside the design discussion. Artifacts should define success, evals/regression checks, autonomy boundaries, and standing-policy recommendations when useful.
 
 ## References
 
@@ -11,4 +13,4 @@ The artifact sequence is fixed: research questions, research, design discussion,
 
 ## Source notes
 
-Synthesized from HumanLayer Riptide v2 planning skills, this repository's `coding-standards` skill, and the `improve-codebase-architecture` skill.
+Synthesized from the vendored HumanLayer Riptide v2 planning skills in `reference/humanlayer-riptide-v2-skills/`, this repository's `coding-standards` skill, and the `improve-codebase-architecture` skill.

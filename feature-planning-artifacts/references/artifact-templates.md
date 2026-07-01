@@ -3,6 +3,14 @@
 ## Research Questions
 
 ```markdown
+---
+type: research-questions
+repo: <repo name>
+branch: <current branch/bookmark>
+sha: <current revision>
+status: complete
+---
+
 # Research Questions: <topic>
 
 ## Source Request
@@ -20,6 +28,10 @@
 - Recommendations
 - Proposed implementation
 - Future design
+
+## Stop Gate
+
+Stop here. The next artifact is research, unless the user supplies enough verified context to move directly to design discussion.
 ```
 
 ## Research
@@ -33,6 +45,7 @@ repository: <repo name>
 topic: <topic>
 type: research
 status: complete
+source_questions: <path or N/A>
 ---
 
 # Research: <topic>
@@ -70,6 +83,10 @@ This document describes current behavior only. It does not recommend implementat
 ## Open Questions
 
 <Genuine unknowns about current behavior, or “None.”>
+
+## Stop Gate
+
+Stop here. Recommendations belong in the design discussion, not this research document.
 ```
 
 ## Design Discussion
@@ -80,6 +97,8 @@ type: design-discussion
 repo: <repo name>
 branch: <current branch/bookmark>
 sha: <current revision>
+status: in-review
+source_research: <path(s) or reconnaissance summary>
 ---
 
 # Design Discussion: <topic>
@@ -88,6 +107,12 @@ sha: <current revision>
 
 <What is being designed and why.>
 
+## Review Status
+
+- **Status:** In review / Accepted / Superseded
+- **Review needed:** <specific decisions, risks, or open questions the user should inspect>
+- **Next artifact after acceptance:** Structure outline
+
 ## What Better Means
 
 <Concrete success criteria and what would count as regression.>
@@ -95,6 +120,10 @@ sha: <current revision>
 ## Standards / Design Pressure
 
 <Selected `coding-standards` skill concern and reference, if applicable. Do not restate the whole standard; explain how it applies to this design.>
+
+## Reconnaissance Summary
+
+- <Thread or subagent/scout: current implementation, tests, patterns, docs, external dependency, standards. Include only load-bearing findings.>
 
 ## Current State
 
@@ -159,6 +188,10 @@ After:
 ## Standing Policy / Eval Recommendations
 
 <Recurring decisions, repo instructions, ADRs, templates, or evals this design should create or update. Use “None” if not applicable.>
+
+## Stop Gate
+
+Stop here for design review. Do not write the structure outline until this document is accepted or the user explicitly asks to proceed.
 ```
 
 ## Structure Outline
@@ -169,9 +202,17 @@ type: structure-outline
 repo: <repo name>
 branch: <current branch/bookmark>
 sha: <current revision>
+status: in-review
+source_design_discussion: <path>
 ---
 
 # Structure Outline: <topic>
+
+## Review Status
+
+- **Status:** In review / Accepted / Superseded
+- **Review needed:** <phase boundaries, validation, risky slices, or open questions>
+- **Next artifact after acceptance:** Final plan
 
 ## Desired End State
 
@@ -211,6 +252,10 @@ sha: <current revision>
 ## Open Questions
 
 - <Questions about outline structure, or “None.”>
+
+## Stop Gate
+
+Stop here for outline review. Do not write the final plan until this outline is accepted or the user explicitly asks to proceed.
 ```
 
 ## Final Plan
@@ -221,11 +266,19 @@ type: plan
 repo: <repo name>
 branch: <current branch/bookmark>
 sha: <current revision>
+status: ready-for-execution
+source_structure_outline: <path>
 ---
 
 # Implementation Plan: <topic>
 
 > **Executor instructions:** Follow this plan with no hidden session context. You can assume the executor is competent at explicit instructions and weak at filling gaps, resolving ambiguity, or knowing when to stop. If a STOP condition occurs, write a handback instead of improvising.
+
+## Planning Sources
+
+- **Design discussion:** <path>
+- **Structure outline:** <path>
+- **Research:** <path(s) or N/A>
 
 ## Overview
 
