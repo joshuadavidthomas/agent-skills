@@ -1,8 +1,8 @@
 # roadmap-to-improve-plans
 
-Turns selected roadmap opportunities into a numbered implementation plan bank. Use it after repo-level opportunity discovery has identified what is worth planning.
+Turns selected roadmap opportunities or accepted feature slices into grouped improvement plan batches. Use it after repo-level opportunity discovery has identified clear landable improvements, or after feature planning has produced slices that need PR-sized executor packaging.
 
-The skill writes effort indexes, `NNN-*.md` plans, and occasional memos. Its plans preserve the audit frame behind each opportunity — category, impact, effort, risk, confidence, evidence, and fix/deepening direction — then make execution safe with drift checks, exact verification commands, evals/regression checks, autonomy boundaries, STOP conditions, rejected approaches, and handoff notes.
+The skill writes effort indexes, `NNN-*.md` plans, and occasional memos. Its plans preserve the source frame behind each item — audit category, impact, effort, risk, confidence, evidence, fix/deepening direction, or accepted feature decision — then make execution safe with drift checks, exact verification commands, evals/regression checks, autonomy boundaries, STOP conditions, rejected approaches, and handoff notes.
 
 ## References
 

@@ -3,7 +3,8 @@
 ```markdown
 # <Effort Title>
 
-**Source roadmap:** <path>
+**Source roadmap:** <path or N/A>
+**Source feature artifacts:** <path(s) or N/A>
 **Planned at:** <date, VCS revision/bookmark/branch>
 **Scope:** <project/feature area>
 **Planner:** <name/session, if relevant>
@@ -24,11 +25,11 @@
 
 <What will be true after all plans land.>
 
-## Source Audit Summary
+## Source Summary
 
-| Opportunity | Audit category | Standards concern | Impact | Effort | Risk | Confidence | Source evidence |
-|---|---|---|---|---|---|---|---|
-| <title> | <category> | <from the `coding-standards` skill, or N/A> | <payoff> | S/M/L | LOW/MED/HIGH | HIGH/MED/LOW | <paths/artifacts> |
+| Opportunity or slice | Source type | Audit category | Standards concern | Impact | Effort | Risk | Confidence | Source evidence |
+|---|---|---|---|---|---|---|---|---|
+| <title> | Roadmap / audit / feature artifact | <category or N/A> | <from the `coding-standards` skill, or N/A> | <payoff> | S/M/L | LOW/MED/HIGH | HIGH/MED/LOW | <paths/artifacts> |
 
 ## Plan Order
 

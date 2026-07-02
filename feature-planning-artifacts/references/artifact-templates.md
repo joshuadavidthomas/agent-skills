@@ -1,5 +1,52 @@
 # Feature Planning Artifact Templates
 
+## Feature Bundle README
+
+```markdown
+# <Feature Title>
+
+**Source roadmap item:** <path/title or N/A>
+**Source improvement plan:** <path/title or N/A>
+**Planned at:** <date, VCS revision/bookmark/branch>
+**Status:** <designing / design accepted / outlining / outline accepted / ready for execution / superseded>
+**Current gate:** <what needs review or approval next>
+
+## Purpose
+
+<Why this feature/design effort exists and what it unlocks.>
+
+## What Better Means
+
+<Success criteria for the whole effort, plus what would count as regression.>
+
+## Artifact Index
+
+| Artifact | Status | Purpose | Notes |
+|---|---|---|---|
+| [001-design-discussion](001-design-discussion.md) | In review | Decide the shape | <key review point> |
+
+## Current Shape
+
+<The current accepted or recommended shape in a few bullets. Keep detailed rationale in the design discussion.>
+
+## Accepted Decisions
+
+- <Decision> — <why it stands>
+
+## Open Gates
+
+- <Decision, review, evidence, or approval still needed>
+
+## Implementation Routing
+
+<Direct execution from the outline/plan, split into an improvement plan batch, or pending decision.>
+
+## Rejected or Deferred
+
+| Item | Reason | Revisit if |
+|---|---|---|
+```
+
 ## Research Questions
 
 ```markdown
@@ -311,6 +358,10 @@ source_structure_outline: <path>
 ## Implementation Approach
 
 <Chosen approach and rationale. Do not reopen resolved design questions.>
+
+## Implementation Routing
+
+<State whether this plan is intended for direct execution or should be split into an improvement plan batch first. If splitting, name the slices and dependencies.>
 
 ## Phases
 

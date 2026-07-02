@@ -5,18 +5,19 @@
 
 > **Executor instructions:** Follow this plan with no hidden session context. You can assume the executor is competent at explicit instructions and weak at filling gaps, resolving ambiguity, or knowing when to stop. If a STOP condition occurs, write a handback instead of improvising.
 
-**Source roadmap item:** <path or title>
+**Source item:** <roadmap item, audit finding, or feature artifact path/title>
 **Effort index:** <README path>
 **Planned at:** <date, VCS revision/bookmark/branch>
 **Depends on:** <none | NNN-title>
 **Executor target:** <routine execution ready? yes/no>
-**Audit category:** <correctness / security / performance / tests / architecture / dependencies / DX / docs / direction>
+**Source type:** <roadmap / audit / feature artifact>
+**Audit category:** <correctness / security / performance / tests / architecture / dependencies / DX / docs / direction / N/A>
 **Standards concern:** <from the `coding-standards` skill, or N/A>
 **Impact:** <concrete cost removed or value unlocked>
 **Effort:** <S/M/L or concise estimate>
 **Risk:** <LOW/MED/HIGH and why>
 **Confidence:** <HIGH/MED/LOW and why>
-**Source direction:** <fix sketch, deepening direction, or spike goal carried from roadmap/audit>
+**Source direction:** <fix sketch, deepening direction, spike goal, or feature slice carried from the source artifact>
 
 ## Purpose
 

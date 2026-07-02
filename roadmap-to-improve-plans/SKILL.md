@@ -1,11 +1,11 @@
 ---
 name: roadmap-to-improve-plans
-description: Use when turning a roadmap, repo priorities, architecture priorities, chosen opportunities, or “roadmap to plans” request into implementation plans or a plan bank for future executors. Writes README.md indexes, 001-*.md/NNN-style plans, optional memo-*.md files, verification gates, drift checks, STOP conditions, rejected approaches, and executor handoff notes.
+description: Use when turning a roadmap, repo priorities, architecture priorities, chosen opportunities, accepted feature outlines/plans, or “roadmap to plans” request into grouped improvement plan batches for future executors. Writes README.md indexes, 001-*.md/NNN-style plans, optional memo-*.md files, verification gates, drift checks, STOP conditions, rejected approaches, and executor handoff notes.
 ---
 
 # Roadmap to Improve Plans
 
-Turn selected strategic-roadmap opportunities into a broad bank of numbered implementation plans. This is the wide planning stage: preserve the audit judgment and architecture diagnosis behind each selected opportunity, then turn it into enough detail for future executors to work safely.
+Turn selected strategic-roadmap opportunities or accepted feature slices into grouped batches of numbered improvement plans. This is the wide planning stage: preserve the audit judgment, feature decisions, and architecture diagnosis behind each selected item, then turn it into enough detail for future executors to work safely.
 
 Treat plan writing as meta-work: the output should improve future execution loops by carrying forward impact, risk, confidence, design claims, regression checks, approval boundaries, and STOP conditions.
 
@@ -16,6 +16,7 @@ This owns this pipeline's NNN plan-bank contract directly.
 Before writing plans, load what applies:
 
 - The selected `.agents/ROADMAP.md` or equivalent roadmap/opportunity artifact.
+- Accepted feature-planning artifacts when splitting a feature outline or final plan into PR-sized improvement plans.
 - `improve` for the original audit posture: category, evidence, impact, effort, risk, confidence, fix sketch, and “not worth doing” verdicts.
 - The `coding-standards` skill as the canonical source for standards concerns. Load only the reference files matching the selected work; do not copy the standards into this skill or the plan.
 - `improve-codebase-architecture` for architecture/deepening candidates: current friction, shallow-module diagnosis, deletion test, locality/leverage, and recommendation strength.
@@ -25,9 +26,10 @@ Before writing plans, load what applies:
 ## Workflow
 
 1. **Select plan scope**
-   - Start from selected roadmap items or ask the user which items to plan.
-   - Keep one effort directory coherent. Split unrelated projects or unrelated outcomes into separate efforts.
-   - Preserve dependency order from the roadmap; do not flatten everything into parallel tasks.
+   - Start from selected roadmap items, accepted feature artifacts, or ask the user which items to plan.
+   - Treat one effort directory as one improvement batch: one theme, one outcome, one README index.
+   - Split unrelated projects, features, or outcomes into separate batches.
+   - Preserve dependency order from the roadmap or feature outline; do not flatten everything into parallel tasks.
 
 2. **Reconcile current state**
    - Read current project instructions and existing plans.
@@ -39,7 +41,8 @@ Before writing plans, load what applies:
 
 3. **Decompose into numbered plans**
    - Each `NNN-*.md` should be independently landable or have an explicit dependency on an earlier plan.
-   - Preserve the source audit frame for every selected opportunity: audit category, impact, effort, risk, confidence, evidence, and fix sketch or direction.
+   - Preserve the source audit frame for roadmap/audit opportunities: audit category, impact, effort, risk, confidence, evidence, and fix sketch or direction.
+   - Preserve the source feature frame for accepted feature artifacts: source design/outline, accepted decisions, phase/slice, dependencies, verification, and implementation routing.
    - Prefer vertical slices over layer-by-layer rewrites.
    - Include architecture/deepening language when relevant: module, interface, depth, seam, adapter, leverage, locality.
    - For architecture plans, carry forward the diagnosis: current friction, deletion test result, locality/leverage claim, recommendation strength, and ADR conflicts if any.
@@ -47,7 +50,7 @@ Before writing plans, load what applies:
    - Use the `coding-standards` skill to name the standards concern and design claim each plan protects.
 
 4. **Write the effort index and plans**
-   - Prefer `.agents/plans/<effort-slug>/` unless the repo already has an established planning convention.
+   - Prefer `.agents/plans/improvements/<effort-slug>/` unless the repo already has an established planning convention.
    - Use [references/index-template.md](references/index-template.md) for `README.md`.
    - Use [references/plan-template.md](references/plan-template.md) for each numbered plan.
    - Use [references/memo-template.md](references/memo-template.md) only when a design fork or handback needs a durable answer.
@@ -61,7 +64,7 @@ Before writing plans, load what applies:
 
 Every numbered plan must be self-contained for an executor with no planning-session context. Assume competence at following explicit instructions and weakness at filling gaps. Each plan must include:
 
-- source audit frame: category, impact, effort, risk, confidence, and fix sketch or direction;
+- source frame: roadmap/audit category, impact, effort, risk, confidence, and fix sketch or direction when available; feature artifact, accepted decision, and slice dependency when splitting a feature;
 - standards concern from the `coding-standards` skill, when the plan changes code shape;
 - purpose and payoff;
 - definition of “better” for this plan;

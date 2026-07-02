@@ -168,11 +168,11 @@ Generate and sequence high-leverage work inside one repository from user seed id
 
 ### [roadmap-to-improve-plans](./roadmap-to-improve-plans/)
 
-Turn selected roadmap opportunities into numbered NNN-style implementation plan banks. Writes effort indexes, numbered plans, optional memos, verification gates, evals/regression checks, autonomy boundaries, drift checks, STOP conditions, rejected approaches, and executor handoff notes for this pipeline.
+Turn selected roadmap opportunities or accepted feature slices into grouped NNN-style improvement plan batches. Writes effort indexes, numbered plans, optional memos, verification gates, evals/regression checks, autonomy boundaries, drift checks, STOP conditions, rejected approaches, and executor handoff notes for this pipeline.
 
 ### [feature-planning-artifacts](./feature-planning-artifacts/)
 
-Deepen a high-value roadmap item, architecture candidate, or NNN plan into HumanLayer-style planning artifacts: research questions, research, design discussion, structure outline, and final executor plan with success criteria, evals, and autonomy boundaries.
+Deepen a high-value feature, architecture candidate, or NNN plan into a feature planning bundle: README index, gated design discussion, structure outline, optional research, and final executor plan with success criteria, evals, and autonomy boundaries.
 
 ### [improve](./improve/)
 

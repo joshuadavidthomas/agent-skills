@@ -56,21 +56,30 @@ For design discussion work, do not make the main artifact carry all discovery la
 
 Research is descriptive. Recommendations start in the design discussion.
 
-## Artifact Sequence and Location
+## Artifact Bundle and Location
 
-Use the canonical structures in [references/artifact-templates.md](references/artifact-templates.md). Prefer one plain folder per effort: `.agents/plans/<effort-slug>/`.
+Use the canonical structures in [references/artifact-templates.md](references/artifact-templates.md). Prefer a feature bundle for each coherent feature or design effort: `.agents/plans/features/<feature-slug>/`.
 
-When working inside an existing HumanLayer task, use `.humanlayer/tasks/<task>/` instead. Write artifacts in chronological order with the next available numeric prefix:
+Each bundle has a concise `README.md` index plus chronological `NNN-` artifacts. The number tracks artifact order rather than a fixed stage ID, so a design-first flow starts at `001-design-discussion.md`:
 
 ```txt
-.agents/plans/<effort-slug>/01-research-questions-<topic-slug>.md
-.agents/plans/<effort-slug>/02-research-<topic-slug>.md
-.agents/plans/<effort-slug>/03-design-discussion-<topic-slug>.md
-.agents/plans/<effort-slug>/04-structure-outline-<topic-slug>.md
-.agents/plans/<effort-slug>/05-plan-<topic-slug>.md
+.agents/plans/features/<feature-slug>/README.md
+.agents/plans/features/<feature-slug>/001-design-discussion.md
+.agents/plans/features/<feature-slug>/002-structure-outline.md
+.agents/plans/features/<feature-slug>/003-plan.md
 ```
 
-Create or update exactly one **primary** artifact per invocation unless the user explicitly asks for a full sequence. A reconnaissance note or research artifact may be created first only when the design would otherwise rest on unverified current-state claims; if you create it, stop there.
+When durable current-state discovery needs its own artifacts, place it before the design discussion and continue numbering:
+
+```txt
+.agents/plans/features/<feature-slug>/001-research-questions.md
+.agents/plans/features/<feature-slug>/002-research.md
+.agents/plans/features/<feature-slug>/003-design-discussion.md
+```
+
+When working inside an existing HumanLayer task, use `.humanlayer/tasks/<task>/` instead.
+
+Create or update exactly one **primary** artifact per invocation unless the user explicitly asks for a full sequence. Updating the bundle `README.md` to reflect artifact status, decisions, or implementation routing is allowed alongside the primary artifact. A reconnaissance note or research artifact may be created first only when the design would otherwise rest on unverified current-state claims; if you create it, stop there.
 
 When working inside `.humanlayer/tasks/<task>/`, use `ls -La` to inspect the directory because it may be a symlink. Do not use glob tools or plain `ls` there. Read task artifacts fully, not partial slices, before updating them.
 
@@ -82,8 +91,9 @@ When working inside `.humanlayer/tasks/<task>/`, use `ls -La` to inspect the dir
    - If a design discussion exists but is not accepted, iterate that document rather than writing an outline.
    - If an outline exists but is not accepted, iterate that outline rather than writing a final plan.
    - Define what “better” means for this artifact before writing: user outcome, architecture leverage, verification strength, executor readiness, reliability, or another concrete standard.
-   - Choose the artifact destination, defaulting to `.agents/plans/<effort-slug>/` when no project convention exists.
-   - Inspect existing artifact files and continue numbering; do not overwrite existing artifacts unless iterating them deliberately.
+   - Choose the artifact destination, defaulting to `.agents/plans/features/<feature-slug>/` when no project convention exists.
+   - Inspect existing artifact files and continue `NNN-` numbering; do not overwrite existing artifacts unless iterating them deliberately.
+   - Create or refresh `README.md` when opening a feature bundle, adding an artifact, accepting a stage, or recording whether implementation should proceed directly or be split into an improvement plan batch.
 
 2. **Research questions stage**
    - Write questions only about how the current codebase, dependencies, and prior artifacts work today.
@@ -129,7 +139,7 @@ When working inside `.humanlayer/tasks/<task>/`, use `ls -La` to inspect the dir
 8. **Final plan stage**
    - Require an accepted structure outline, unless the user explicitly provides an equivalent outline.
    - Write an executor-safe plan from the outline.
-   - Include current-state evidence, definition of “better,” desired end state, scope/out-of-scope, phase sequence, automated verification, evals/regression checks, manual checks only when meaningful, autonomy boundary, drift checks, STOP conditions, and rejected approaches.
+   - Include current-state evidence, definition of “better,” desired end state, scope/out-of-scope, phase sequence, implementation routing, automated verification, evals/regression checks, manual checks only when meaningful, autonomy boundary, drift checks, STOP conditions, and rejected approaches.
    - Do not reopen resolved design questions in the final plan.
    - Stop after writing or updating the final plan artifact.
 
@@ -156,4 +166,4 @@ If the user asks to proceed, continue from the accepted current artifact. If the
 
 ## Done Criteria
 
-The artifacts are ready when each stage has stopped at its review gate: research is descriptive, the design discussion records options and decisions, recurring decisions have policy recommendations when useful, the structure outline slices the work vertically, and the final plan can be handed to a fresh executor without relying on hidden conversation context.
+The artifacts are ready when each stage has stopped at its review gate: the bundle README shows current status and next gate, research is descriptive, the design discussion records options and decisions, recurring decisions have policy recommendations when useful, the structure outline slices the work vertically, and the final plan either supports direct execution or can be split into an improvement plan batch without relying on hidden conversation context.
