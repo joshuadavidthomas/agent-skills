@@ -103,10 +103,6 @@ or reference it by name when relevant to your task.
 
 ## Skills
 
-### [ai-writing-tropes](./ai-writing-tropes/)
-
-Detect and eliminate common AI writing tropes from prose. Comprehensive catalog of patterns (word choice, sentence structure, paragraph layout, tone, formatting, composition) that mark AI-generated writing, with a self-check workflow. Source: [tropes.fyi](https://tropes.fyi).
-
 ### [coding-standards](./coding-standards/)
 
 Language-agnostic coding standards for design-level code review and implementation judgment. Covers domain modeling, state, modules, boundaries, effects, error handling, verification, complexity, and maintainability.
@@ -132,9 +128,17 @@ Includes:
 
 Apply the Diátaxis framework for documentation structure and writing. Helps classify and produce tutorials, how-to guides, reference, and explanation docs.
 
+### [english-please](./english-please/)
+
+Quick corrective for over-compressed explanations: one idea per sentence, re-anchor coined terms, no notation in prose, restate reasoning the reader never saw. The fast call to distill after a long run; [writing](./writing/) is the full doctrine.
+
 ### [frontend-design-principles](./frontend-design-principles/)
 
 Design-focused frontend skill for producing intentional, non-generic interfaces. Includes required discovery gates, signature-definition workflow, and self-review checks before presenting UI output.
+
+### [html-artifacts](./html-artifacts/)
+
+Generate grounded, self-contained HTML explanations for codebases, features, PRs and diffs, implementation recaps, investigations, data, causal mechanisms, and presentations. Defaults to an offline visual document with purposeful interaction, source evidence, responsive and print behavior, accessibility, and browser validation—not a generic miniature website.
 
 ### [grug-brained-dev](./grug-brained-dev/)
 
@@ -220,13 +224,9 @@ Svelte 5 guidance covering runes (`$state`, `$derived`, `$effect`, `$props`, `$b
 
 SvelteKit routing, layouts, data loading, actions, authentication patterns, form validation, and remote functions (`command()`, `query()`, `form()`).
 
-### [writing-clearly-and-concisely](./writing-clearly-and-concisely/)
+### [writing](./writing/)
 
-Strunk's rules for clear prose, plus patterns to avoid in AI-generated writing. Use whenever you're writing text humans will read—documentation, commit messages, error messages, explanations, UI copy.
-
-Includes the full *Elements of Style* (1918) split into loadable sections covering grammar, composition, form, and word choice.
-
-Also includes a comprehensive guide to AI writing patterns Wikipedia editors developed to detect generated submissions—covering puffery (*pivotal*, *testament*), overused vocabulary (*delve*, *leverage*, *multifaceted*), and formatting tells.
+General prose doctrine for anything a human will read, built on Orwell's "Politics and the English Language": let the meaning choose the word, never reach for the ready-made phrase. Ten rules merging Orwell and Strunk, both reader-side questions (what they know, what they came for), tone-to-stakes discipline, and a catalog of AI writing tropes with examples and fixes. Includes the full Orwell essay as a reference and a distilled snippet for pasting into AGENTS.md/CLAUDE.md.
 
 ### [writing-error-messages](./writing-error-messages/)
 
@@ -248,10 +248,6 @@ Includes templates for individual plans, the effort-level index (status table, d
 
 This collection includes and adapts work from several sources.
 
-### ai-writing-tropes
-
-AI writing tropes skill from [Xe/site](https://github.com/Xe/site) (zlib, Christine Dodrill). Content sourced from [tropes.fyi](https://tropes.fyi).
-
 ### crafting-effective-readmes
 
 Reference materials include:
@@ -271,6 +267,10 @@ Adapted from:
 - The [frontend-design](https://github.com/anthropics/skills/tree/main/frontend-design) skill in [anthropics/skills](https://github.com/anthropics/skills) (Apache 2.0)
 - [Dammyjay93/interface-design](https://github.com/Dammyjay93/interface-design) (MIT, Damola Akinleye)
 - [Teaching Claude to Design Better: Improving Anthropic's Frontend Design Skill](https://www.justinwetch.com/blog/improvingclaudefrontend) ([relevant PR](https://github.com/anthropics/skills/pull/210)) by Justin Wetch
+
+### html-artifacts
+
+Synthesizes Anthropic's Artifact documentation and example skills; Thariq Shihipar's “The unreasonable effectiveness of HTML” and example gallery; Matt Pocock's HTML architecture report guidance; writings by Bret Victor, Distill, C4, GOV.UK, Datawrapper, and The Pudding; WCAG and MDN accessibility guidance; and open-source work from `visual-explainer`, `visualise`, SocratiCode, and Microsoft's `a11y-llm-eval`. See [`html-artifacts/references/research-basis.md`](html-artifacts/references/research-basis.md) for source-level notes and caveats.
 
 ### grug-brained-dev
 
@@ -368,9 +368,9 @@ Reference and guidance adapted from:
 - [Modern SvelteKit Tutorial](https://github.com/stolinski/Modern-Svelte-Kit-Tutorial) by Scott Tolinski
 - [Svelte Stores Streams Effect](https://github.com/bmdavis419/Svelte-Stores-Streams-Effect) by Ben Davis ([video](https://www.youtube.com/watch?v=kMBDsyozllk))
 
-### writing-clearly-and-concisely
+### writing
 
-Adapted from [obra/the-elements-of-style](https://github.com/obra/the-elements-of-style). The 1918 *Elements of Style* text is in the public domain via [Project Gutenberg](https://www.gutenberg.org/files/37134/37134-h/37134-h.htm). The AI writing patterns guide is adapted from Wikipedia's [Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) ([CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)).
+Built on George Orwell's ["Politics and the English Language"](https://www.orwellfoundation.com/the-orwell-foundation/orwell/essays-and-other-works/politics-and-the-english-language/) (1946), included in full as a reference. Strunk's composition rules are distilled from the public-domain 1918 *Elements of Style* ([Project Gutenberg](https://www.gutenberg.org/files/37134/37134-h/37134-h.htm), via [obra/the-elements-of-style](https://github.com/obra/the-elements-of-style)). The trope catalog is adapted and merged from the ai-writing-tropes skill in [Xe/site](https://github.com/Xe/site) (zlib, Christine Dodrill; content from [tropes.fyi](https://tropes.fyi)) and Wikipedia's [Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) ([CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)).
 
 ### writing-error-messages
 

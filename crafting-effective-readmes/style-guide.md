@@ -10,4 +10,4 @@
 
 ## Prose Quality
 
-For general writing advice — clear prose, Strunk's rules, and AI patterns to avoid — use the `writing-clearly-and-concisely` skill.
+For general writing advice — clear prose, Orwell's and Strunk's rules, and AI patterns to avoid — use the `writing` skill.

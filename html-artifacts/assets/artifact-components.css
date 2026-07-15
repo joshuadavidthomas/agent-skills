@@ -1,0 +1,562 @@
+/* HTML Artifacts component foundation
+ * Inline this file into the final artifact. Override tokens on .ha-root.
+ * Components own geometry and interaction states, not the artifact's identity.
+ */
+
+.ha-root {
+  --ha-canvas: #f6f3ec;
+  --ha-surface: #fffdf8;
+  --ha-ink: #24231f;
+  --ha-muted: #666159;
+  --ha-rule: color-mix(in srgb, var(--ha-ink) 18%, transparent);
+  --ha-rule-strong: color-mix(in srgb, var(--ha-ink) 34%, transparent);
+  --ha-accent: #a34124;
+  --ha-accent-soft: #f5e2da;
+  --ha-positive: #176d69;
+  --ha-positive-soft: #dceceb;
+  --ha-negative: #8c3a28;
+  --ha-negative-soft: #f3ddd5;
+  --ha-focus: #0069d9;
+  --ha-radius: 0.5rem;
+  --ha-page-max: 72rem;
+  --ha-gutter: clamp(1rem, 3vw, 2rem);
+  --ha-section-gap: clamp(2.75rem, 7vw, 6rem);
+  --ha-rail: minmax(10rem, 0.55fr);
+  --ha-content: minmax(0, 2fr);
+  color: var(--ha-ink);
+  background: var(--ha-canvas);
+}
+
+.ha-root,
+.ha-root *,
+.ha-root *::before,
+.ha-root *::after {
+  box-sizing: border-box;
+}
+
+.ha-root img,
+.ha-root svg,
+.ha-root canvas {
+  display: block;
+  max-inline-size: 100%;
+}
+
+.ha-root button,
+.ha-root input,
+.ha-root output,
+.ha-root select,
+.ha-root textarea {
+  font: inherit;
+}
+
+.ha-root :focus-visible {
+  outline: 3px solid var(--ha-focus);
+  outline-offset: 3px;
+}
+
+.ha-shell {
+  inline-size: min(calc(100% - 2 * var(--ha-gutter)), var(--ha-page-max));
+  margin-inline: auto;
+}
+
+.ha-section-grid {
+  display: grid;
+  grid-template-columns: var(--ha-rail) var(--ha-content);
+  column-gap: clamp(2rem, 6vw, 5.5rem);
+  row-gap: 1.75rem;
+  align-items: start;
+}
+
+.ha-section-grid > * {
+  min-inline-size: 0;
+}
+
+.ha-section-rail {
+  grid-column: 1;
+}
+
+.ha-section-main {
+  grid-column: 2;
+}
+
+.ha-breakout {
+  grid-column: 1 / -1;
+  min-inline-size: 0;
+}
+
+.ha-prose {
+  max-inline-size: 70ch;
+}
+
+.ha-stack > * {
+  margin-block: 0;
+}
+
+.ha-stack > * + * {
+  margin-block-start: var(--ha-stack-gap, 1rem);
+}
+
+.ha-figure {
+  container: ha-figure / inline-size;
+  margin: 0;
+  min-inline-size: 0;
+}
+
+.ha-figure-frame {
+  overflow: hidden;
+  background: var(--ha-surface);
+  border: 1px solid var(--ha-rule-strong);
+  border-radius: var(--ha-radius);
+}
+
+.ha-figure-frame[data-treatment="inline"] {
+  overflow: visible;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+.ha-figure-frame[data-treatment="inline"] .ha-figure-header {
+  padding-inline: 0;
+  border-top: 1px solid var(--ha-rule-strong);
+}
+
+.ha-figure-frame[data-treatment="inline"] .ha-stepper-region {
+  padding-inline: 0;
+}
+
+.ha-figure-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(17rem, 0.62fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: end;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border-bottom: 1px solid var(--ha-rule);
+}
+
+.ha-figure-header > * {
+  min-inline-size: 0;
+}
+
+.ha-figure-title {
+  margin: 0;
+  text-wrap: balance;
+}
+
+.ha-figure-summary {
+  max-inline-size: 62ch;
+  margin: 0.5rem 0 0;
+  color: var(--ha-muted);
+  text-wrap: pretty;
+}
+
+.ha-control {
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.ha-control-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.625rem;
+  color: var(--ha-muted);
+  font-size: 0.8125rem;
+}
+
+.ha-control-output {
+  color: var(--ha-accent);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.ha-control-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.ha-range {
+  inline-size: 100%;
+  min-block-size: 2.25rem;
+  accent-color: var(--ha-accent);
+  cursor: pointer;
+}
+
+.ha-button {
+  min-block-size: 2.25rem;
+  padding: 0.45rem 0.75rem;
+  color: var(--ha-ink);
+  background: var(--ha-surface);
+  border: 1px solid var(--ha-rule-strong);
+  border-radius: calc(var(--ha-radius) * 0.65);
+  cursor: pointer;
+}
+
+.ha-button:hover {
+  background: color-mix(in srgb, var(--ha-accent) 7%, var(--ha-surface));
+}
+
+.ha-control-ends {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.25rem;
+  color: var(--ha-muted);
+  font-size: 0.75rem;
+}
+
+.ha-stepper-region {
+  container: ha-stepper / inline-size;
+  min-inline-size: 0;
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.ha-stepper {
+  --ha-node-size: 2.25rem;
+  --ha-connector-gap: 0.5rem;
+  --ha-connector-height: 0.75rem;
+  display: grid;
+  grid-template-columns: repeat(var(--ha-step-count), minmax(0, 1fr));
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ha-stepper > .ha-step {
+  position: relative;
+  display: grid;
+  grid-template-rows: var(--ha-node-size) auto auto auto;
+  justify-items: center;
+  min-inline-size: 0;
+  padding-inline: 0.45rem;
+  text-align: center;
+}
+
+.ha-stepper > .ha-step::before,
+.ha-stepper > .ha-step::after {
+  content: none !important;
+  display: none !important;
+}
+
+.ha-svg-defs {
+  position: absolute;
+  inline-size: 0;
+  block-size: 0;
+  overflow: hidden;
+}
+
+.ha-step-connector {
+  position: absolute;
+  z-index: 0;
+  top: calc(var(--ha-node-size) / 2 - var(--ha-connector-height) / 2);
+  left: calc(50% + var(--ha-node-size) / 2 + var(--ha-connector-gap));
+  inline-size: calc(100% - var(--ha-node-size) - var(--ha-connector-gap) - var(--ha-connector-gap));
+  block-size: var(--ha-connector-height);
+  overflow: visible;
+  pointer-events: none;
+}
+
+.ha-step-connector line {
+  stroke: var(--ha-rule-strong);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.ha-step-arrowhead {
+  fill: var(--ha-rule-strong);
+}
+
+.ha-step-node {
+  position: relative;
+  z-index: 2;
+  display: inline-grid;
+  inline-size: var(--ha-node-size);
+  block-size: var(--ha-node-size);
+  place-items: center;
+  border: 1px solid var(--ha-rule-strong);
+  border-radius: 50%;
+  background: var(--ha-surface);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.ha-step-name {
+  margin: 0.75rem 0 0;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.ha-step-detail {
+  min-inline-size: 0;
+  margin: 0.4rem 0 0;
+  color: var(--ha-muted);
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.ha-step-state {
+  margin: 0.55rem 0 0;
+  color: var(--ha-muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.ha-step[data-state="complete"] .ha-step-node {
+  color: var(--ha-positive);
+  border-color: var(--ha-positive);
+  background: var(--ha-positive-soft);
+}
+
+.ha-step[data-state="active"] .ha-step-node {
+  color: var(--ha-accent);
+  border: 3px solid var(--ha-accent);
+  background: var(--ha-accent-soft);
+}
+
+.ha-step[data-state="active"] .ha-step-name {
+  color: var(--ha-accent);
+}
+
+.ha-step[data-state="pending"] .ha-step-name,
+.ha-step[data-state="pending"] .ha-step-detail,
+.ha-step[data-state="pending"] .ha-step-state {
+  color: var(--ha-muted);
+}
+
+.ha-outcomes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--ha-rule);
+}
+
+.ha-outcome {
+  min-inline-size: 0;
+  padding: clamp(1.1rem, 2.5vw, 1.6rem);
+}
+
+.ha-outcome + .ha-outcome {
+  border-left: 1px solid var(--ha-rule);
+}
+
+.ha-outcome[data-tone="negative"] {
+  background: var(--ha-negative-soft);
+}
+
+.ha-outcome[data-tone="positive"] {
+  background: var(--ha-positive-soft);
+}
+
+.ha-outcome-label {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+}
+
+.ha-outcome-copy {
+  margin: 0.6rem 0 0;
+  font-size: 1rem;
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+.ha-figure-caption {
+  max-inline-size: 70ch;
+  margin-block-start: 0.9rem;
+  color: var(--ha-muted);
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+
+.ha-scroll-cue {
+  margin: 0 0 0.5rem;
+  color: var(--ha-muted);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+.ha-scroll-region {
+  max-inline-size: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-gutter: stable;
+}
+
+.ha-visually-hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@container ha-figure (max-width: 48rem) {
+  .ha-figure-header {
+    grid-template-columns: 1fr;
+  }
+
+  .ha-outcomes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ha-outcome:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .ha-outcome:nth-child(2) {
+    border-left: 0;
+    border-top: 1px solid var(--ha-rule);
+  }
+
+  .ha-outcome:nth-child(3) {
+    border-top: 1px solid var(--ha-rule);
+  }
+}
+
+@container ha-stepper (max-width: 48rem) {
+  .ha-stepper {
+    grid-template-columns: 1fr;
+  }
+
+  .ha-stepper > .ha-step {
+    grid-template-columns: var(--ha-node-size) minmax(7rem, 0.38fr) minmax(0, 1fr) auto;
+    grid-template-rows: auto;
+    gap: 0.75rem;
+    align-items: center;
+    justify-items: start;
+    padding: 0.75rem 0;
+    text-align: left;
+  }
+
+  .ha-stepper > .ha-step:not(:first-child) {
+    border-top: 1px solid var(--ha-rule);
+  }
+
+  .ha-stepper .ha-step-connector {
+    display: none;
+  }
+
+  .ha-stepper .ha-step-name,
+  .ha-stepper .ha-step-detail,
+  .ha-stepper .ha-step-state {
+    margin: 0;
+  }
+
+  .ha-stepper .ha-step-state {
+    justify-self: end;
+    text-align: right;
+  }
+}
+
+@container ha-figure (max-width: 34rem) {
+  .ha-outcomes {
+    grid-template-columns: 1fr;
+  }
+
+  .ha-outcome:first-child {
+    grid-column: auto;
+  }
+
+  .ha-outcome + .ha-outcome {
+    border-left: 0;
+    border-top: 1px solid var(--ha-rule);
+  }
+}
+
+@container ha-stepper (max-width: 34rem) {
+  .ha-stepper > .ha-step {
+    grid-template-columns: var(--ha-node-size) minmax(0, 1fr) auto;
+  }
+
+  .ha-stepper .ha-step-detail {
+    grid-column: 2 / -1;
+  }
+}
+
+@media (max-width: 48rem) {
+  .ha-section-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ha-section-rail,
+  .ha-section-main,
+  .ha-breakout {
+    grid-column: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ha-root *,
+  .ha-root *::before,
+  .ha-root *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  .ha-root {
+    --ha-canvas: white !important;
+    --ha-surface: white !important;
+    --ha-ink: #111 !important;
+    --ha-muted: #444 !important;
+    --ha-rule: rgb(0 0 0 / 18%) !important;
+    --ha-rule-strong: rgb(0 0 0 / 36%) !important;
+    --ha-accent: #111 !important;
+    --ha-accent-soft: #f2f2f2 !important;
+    --ha-positive: #111 !important;
+    --ha-positive-soft: #f2f2f2 !important;
+    --ha-negative: #111 !important;
+    --ha-negative-soft: #f2f2f2 !important;
+  }
+
+  .ha-controls,
+  .ha-no-print {
+    display: none !important;
+  }
+
+  .ha-figure-frame {
+    border-color: var(--ha-rule-strong);
+  }
+
+  .ha-stepper {
+    grid-template-columns: repeat(var(--ha-step-count), minmax(0, 1fr));
+  }
+
+  .ha-stepper > .ha-step {
+    display: grid;
+    grid-template-rows: var(--ha-node-size) auto auto auto;
+    grid-template-columns: auto;
+    justify-items: center;
+    padding-inline: 0.25rem;
+    border-top: 0 !important;
+    text-align: center;
+  }
+
+  .ha-stepper .ha-step-connector {
+    display: block;
+  }
+
+  .ha-outcomes,
+  .ha-figure,
+  .ha-stepper-region {
+    break-inside: avoid;
+  }
+}

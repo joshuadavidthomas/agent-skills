@@ -36,6 +36,13 @@
       "strict": false
     },
     {
+      "name": "html-artifacts",
+      "source": "./",
+      "description": "Generate interactive HTML explainers, PR walkthroughs, and presentations",
+      "skills": "./html-artifacts",
+      "strict": false
+    },
+    {
       "name": "improving-prompts",
       "source": "./",
       "description": "Improve CLAUDE.md, AGENTS.md, and skill prompts",
@@ -92,10 +99,10 @@
       "strict": false
     },
     {
-      "name": "writing-clearly-and-concisely",
+      "name": "writing",
       "source": "./",
-      "description": "Clear, concise human-readable writing guidance",
-      "skills": "./writing-clearly-and-concisely",
+      "description": "General prose doctrine: Orwell's rules, Strunk's composition, and the AI trope catalog",
+      "skills": "./writing",
       "strict": false
     },
     {

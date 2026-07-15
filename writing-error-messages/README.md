@@ -48,7 +48,7 @@ This skill synthesizes guidance from:
 - [Shopify Polaris: Error messages](https://polaris.shopify.com/content/error-messages)
 - [Shopify Polaris: Inline error](https://polaris.shopify.com/components/inline-error)
 - [OWASP Authentication Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet)
-- [`writing-clearly-and-concisely`](../writing-clearly-and-concisely/SKILL.md), for general prose discipline
+- [`writing`](../writing/SKILL.md), for general prose discipline
 
 ## Scope boundary
 
